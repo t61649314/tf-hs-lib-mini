@@ -1,0 +1,7 @@
+@import "../../style/base.wxss";
+
+.occupation-icon {
+    width: 60rpx;
+    height: 60rpx;
+    margin-right: 15rpx;
+}

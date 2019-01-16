@@ -1,0 +1,39 @@
+@import "../../style/base.wxss";
+
+.item-box {
+    width: 100%;
+}
+.item-box:first-child {
+    border-top: 1rpx solid #ddd;
+}
+
+.item-box .item:first-child {
+    border-top: initial;
+}
+
+.time-node-text {
+    border-bottom: 1rpx solid #ddd;
+    text-align: left;
+    padding: 8rpx 32rpx;
+    background-color: #f5f5f5;
+    color: #919191;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+.has-time-title {
+    position: relative;
+    top: -10rpx;
+}
+.time-text {
+    position: absolute;
+    bottom: 10rpx;
+    left: 32rpx;
+    font-size: 28rpx;
+    color: #919191;
+    line-height: 1;
+}
+.time-node-text .time {
+    color: #919191;
+}
