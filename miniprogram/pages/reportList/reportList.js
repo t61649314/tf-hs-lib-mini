@@ -34,7 +34,7 @@ Page({
     promise.then(({data}) => {
       if (data && data.length) {
         data.forEach(item => {
-          item.time = formatTime(new Date(item.time));
+          item.timeStr = formatTime(new Date(item.time));
         });
         data = data.filter(item => {
           return !item.jumpUrl;

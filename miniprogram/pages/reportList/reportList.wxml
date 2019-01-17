@@ -3,7 +3,7 @@
         <navigator wx:if="{{item.name}}" url="{{'../occupationList/occupationList?page='+item.name+'&time='+item.time}}"
                    open-type="navigate" class="item">
             <span class="has-time-title">{{item.name}}</span>
-            <span class="time-text">{{item.time}}</span>
+            <span class="time-text">{{item.timeStr}}</span>
         </navigator>
         <div wx:else class="time-node-text">
             <div class="title">{{item.title}}</div>
