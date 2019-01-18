@@ -1,8 +1,9 @@
 <view class="container">
     <div wx:for="{{reportGroup}}" wx:key="index" class="item-box">
-        <navigator wx:if="{{item.name}}" url="{{'../occupationList/occupationList?page='+item.name+'&time='+item.time}}"
+        <navigator wx:if="{{item.name}}" url="{{'../occupationList/index?page='+item.name+'&time='+item.time}}"
                    open-type="navigate" class="item">
             <span class="has-time-title">{{item.name}}</span>
+            <span class="new-icon" wx:if="{{item.isNew}}">new!</span>
             <span class="time-text">{{item.timeStr}}</span>
         </navigator>
         <div wx:else class="time-node-text">

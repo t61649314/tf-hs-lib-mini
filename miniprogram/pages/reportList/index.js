@@ -33,8 +33,10 @@ Page({
     }
     promise.then(({data}) => {
       if (data && data.length) {
+        let now = new Date();
         data.forEach(item => {
           item.timeStr = formatTime(new Date(item.time));
+          item.isNew = now.getTime() - item.time < 3 * 24 * 60 * 60 * 1000;
         });
         data = data.filter(item => {
           return !item.jumpUrl;

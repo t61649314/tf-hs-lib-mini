@@ -1,0 +1,44 @@
+<view class="container">
+    <div class="search-bar">
+        <div class="name-bar">
+            <i-icon type="search" class="search-icon" size="18"/>
+            <i-input i-class="search-name" value="{{ searchData.name }}" bind:blur="searchNameBlur" title="卡组名称"
+                     placeholder="请输入卡组名称"/>
+        </div>
+        <div class="from-type-bar">
+            <div class="from-item" bindtap="handleOpen1">
+                来源：{{fromText}}
+                <i-icon type="unfold"/>
+            </div>
+            <div class="type-item" bindtap="handleOpen2">
+                模式：{{typeText}}
+                <i-icon type="unfold"/>
+            </div>
+        </div>
+        <div class="occupation-bar">
+            <image wx:for="{{occupationKeyList}}"
+                   wx:key="index" data-key="{{item}}" bindtap="occupationClick"
+                   class="{{'occupation-icon '+(item===searchData.occupation?'active':'')}}"
+                   src="{{'../../images/'+item+'-icon.png'}}"></image>
+        </div>
+    </div>
+    <scroll-view scroll-y='true' style="height:{{scrollHeight}}px" bindscrolltolower='lower'>
+        <navigator class="deck-item" wx:for="{{deckList}}" wx:key="{{index}}"
+                   url="{{'../deckList/index?id='+item._id+'&time='+item.time+'&page='+item.page}}"
+                   open-type="navigate">
+            <image class="item-occupation-icon" src="{{'../../images/'+item.occupation+'-icon.png'}}"></image>
+            <div class="item-name">{{item.name}}</div>
+            <div class="item-type">{{item.typeStr}}</div>
+            <div class="item-page">{{item.page}}</div>
+            <div class="item-time">{{item.timeStr}}</div>
+        </navigator>
+        <i-spin size="large" wx:if="{{scrollLoading}}" custom>
+            <i-icon type="refresh" size="20" i-class="icon-load"></i-icon>
+            加载中...
+        </i-spin>
+    </scroll-view>
+</view>
+<i-action-sheet visible="{{ visible1 }}" actions="{{ actions1 }}" show-cancel bind:cancel="handleCancel1"
+                bind:click="handleClickItem1"/>
+<i-action-sheet visible="{{ visible2 }}" actions="{{ actions2 }}" show-cancel bind:cancel="handleCancel2"
+                bind:click="handleClickItem2"/>

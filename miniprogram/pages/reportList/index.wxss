@@ -37,3 +37,9 @@
 .time-node-text .time {
     color: #919191;
 }
+.new-icon{
+    position: relative;
+    top: -20rpx;
+    color: red;
+    font-style: italic;
+}

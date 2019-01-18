@@ -1,14 +1,15 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/reportList/reportList",
-    "pages/occupationList/occupationList"
+    "pages/reportList/index",
+    "pages/occupationList/index",
+    "pages/deckList/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "TF套牌库",
+    "navigationBarTitleText": "TF炉石套牌库",
     "navigationBarTextStyle": "black"
   }
 }

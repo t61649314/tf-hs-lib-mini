@@ -1,0 +1,25 @@
+@import "../../style/base.wxss";
+.navigator-box {
+    width: 100%;
+    background: #fff;
+    border-left: none;
+    border-right: none;
+}
+
+.box-title {
+    text-align: left;
+    background-color: #fafafa;
+    padding: 30rpx;
+    font-size: 30rpx;
+    display:block;
+    color: #88888c;
+}
+.type-img{
+    display: inline-block;
+    width: 60rpx;
+    height: 60rpx;
+    background-size: contain;
+    margin-right: 10rpx;
+    position: relative;
+    top: -2rpx;
+}

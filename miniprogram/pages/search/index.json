@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-spin": "../../lib/iview/dist/spin/index",
+    "i-action-sheet": "../../lib/iview/dist/action-sheet/index",
+    "i-input": "../../lib/iview/dist/input/index",
+    "i-icon": "../../lib/iview/dist/icon/index"
+  }
+}

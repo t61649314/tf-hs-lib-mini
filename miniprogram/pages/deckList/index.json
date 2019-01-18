@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "i-toast": "../../lib/iview/dist/toast/index",
     "i-button": "../../lib/iview/dist/button/index",
     "i-icon": "../../lib/iview/dist/icon/index"
   }

@@ -27,5 +27,4 @@
     <div class="no-data-content" wx:elif="{{isInit}}">
         暂无数据
     </div>
-    <i-toast id="toast"/>
 </view>

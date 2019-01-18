@@ -1,0 +1,24 @@
+<view class="container">
+    <div class="navigator-box">
+        <text class="box-title">狂野</text>
+        <navigator url="../reportList/index?type=wild&from=vicious-syndicate" open-type="navigate" class="item">
+            <image class="type-img" src="../../images/wild-icon.png"></image>
+            <text>VS战报</text>
+        </navigator>
+        <navigator url="../reportList/index?type=wild&from=tempo-storm" open-type="navigate" class="item">
+            <image class="type-img" src="../../images/wild-icon.png"></image>
+            <text>TS战报</text>
+        </navigator>
+    </div>
+    <div class="navigator-box">
+        <text class="box-title">标准</text>
+        <navigator url="../reportList/index?type=standard&from=vicious-syndicate" open-type="navigate" class="item">
+            <image class="type-img" src="../../images/standard-icon.png"></image>
+            <text>VS战报</text>
+        </navigator>
+        <navigator url="../reportList/index?type=standard&from=tempo-storm" open-type="navigate" class="item">
+            <image class="type-img" src="../../images/standard-icon.png"></image>
+            <text>TS战报</text>
+        </navigator>
+    </div>
+</view>

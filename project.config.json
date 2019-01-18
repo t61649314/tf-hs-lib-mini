@@ -10,7 +10,7 @@
 	},
 	"appid": "wx111aafbe3d0326e3",
 	"projectname": "tf-deck-lib",
-	"libVersion": "2.2.5",
+	"libVersion": "2.5.0",
 	"condition": {
 		"search": {
 			"current": -1,

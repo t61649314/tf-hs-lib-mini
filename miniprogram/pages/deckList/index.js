@@ -1,8 +1,8 @@
-const {$Toast} = require('../../lib/iview/dist/base/index');
 const {timeNode} = require('../../lib/const');
 
 Page({
   data: {
+    id: "",
     page: "",
     occupation: "",
     time: "",
@@ -14,11 +14,18 @@ Page({
     wx.setNavigationBarTitle({
       title: options.page
     });
-    this.setData({
-      'page': options.page,
-      'occupation': options.occupation,
-      'time': options.time,
-    });
+    if (options.id) {
+      this.setData({
+        'id': options.id,
+        'time': options.time,
+      });
+    } else {
+      this.setData({
+        'page': options.page,
+        'occupation': options.occupation,
+        'time': options.time,
+      });
+    }
     let weakenArr = timeNode.filter(item => {
       return new Date(item.time).getTime() > this.data.time && item.weakenCardArr;
     });
@@ -28,15 +35,22 @@ Page({
     this.setData({
       'weakenArr': this.data.weakenArr
     });
-    console.log(this.data.weakenArr)
     this.getDeckList();
   },
   getDeckList: function () {
+    let where;
+    if (this.data.id) {
+      where = {_id: this.data.id};
+    } else {
+      where = {
+        page: this.data.page,
+        occupation: this.data.occupation,
+      };
+    }
     const db = wx.cloud.database();
-    db.collection('deck-list').where({
-      page: this.data.page,
-      occupation: this.data.occupation,
-    }).get().then(({data}) => {
+    db.collection('deck-list')
+      .where(where)
+      .get().then(({data}) => {
       this.data.isInit = true;
       if (data && data.length) {
         data.forEach(item => {
