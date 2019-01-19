@@ -31,6 +31,10 @@ Component({
       {
         name: 'TS战报',
         value: 'tempo-storm'
+      },
+      {
+        name: '生而狂野',
+        value: 'shengerkuangye'
       }
     ],
     actions2: [
@@ -59,6 +63,7 @@ Component({
             this.setData({
               'scrollHeight': windowHeight - res.height - 50
             });
+            this.getDeckList();
           });
           query.exec()
         }
@@ -117,9 +122,6 @@ Component({
         .orderBy('occupation', 'desc')
         .get()
         .then(({data}) => {
-          this.setData({
-            'scrollLoading': false
-          });
           if (data && data.length) {
             if (data.length < 20) {
               this.setData({
@@ -135,6 +137,9 @@ Component({
               'deckList': this.data.deckList
             });
           }
+          this.setData({
+            'scrollLoading': false
+          });
         }).catch(console.error)
     },
     occupationClick(event) {

@@ -1,30 +1,41 @@
-<view class="container" xmlns:wx="http://www.w3.org/1999/xhtml">
-    <div class="list" wx:if="{{deckList&&deckList.length&&isInit}}">
-        <div class="deck-item" wx:for="{{deckList}}" wx:key="index" wx:for-item="deckItem">
-            <div class="deck-info-box">
-                <div class="occupation-icon"></div>
-                <span class="deck-name-content">{{deckItem.name}}</span>
-            </div>
-            <div class="card-box">
-                <div class="card-item"
-                     wx:for="{{deckItem.cards}}"
-                     wx:key="index" wx:for-item="cardItem">
-                    <div class="is-weaken-text" wx:if="{{cardItem.isWeaken}}">已削弱</div>
-                    <div class="card-cost">{{cardItem.cost}}</div>
-                    <div class="card-name">{{cardItem.cnName}}</div>
-                    <div class="card-img-wrap">
-                        <image class="card-img" mode="aspectFit" src="{{'https://cdn.tempostorm.com/cards/'+cardItem.img}}"/>
-                    </div>
-                    <div class="card-quantity">
-                        <i-icon wx:if="{{cardItem.rarity==='Legendary'}}" type="collection_fill"/>
-                        <span wx:else>{{cardItem.quantity}}</span>
+<scroll-view scroll-y='true' style="height:{{scrollHeight}}px">
+    <view class="container">
+        <div class="info-content">转自：{{fromMap[deckList[0].from]}}</div>
+        <div class="info-content">原文：{{fromUrl}}</div>
+        <div class="list" wx:if="{{deckList&&deckList.length&&isInit}}">
+            <div class="deck-item" wx:for="{{deckList}}" wx:key="index" wx:for-item="deckItem">
+                <div class="deck-info-box">
+                    <div class="occupation-icon"></div>
+                    <span class="deck-name-content">{{deckItem.name}}</span>
+                </div>
+                <div class="card-box">
+                    <div class="card-item"
+                         wx:for="{{deckItem.cards}}"
+                         wx:key="index" wx:for-item="cardItem">
+                        <div class="is-weaken-text" wx:if="{{cardItem.isWeaken}}">已削弱</div>
+                        <div class="card-cost">{{cardItem.cost}}</div>
+                        <div class="card-name">{{cardItem.cnName}}</div>
+                        <div class="card-img-wrap">
+                            <image class="card-img" mode="aspectFit"
+                                   src="{{'https://cdn.tempostorm.com/cards/'+cardItem.img}}"/>
+                        </div>
+                        <div class="card-quantity">
+                            <i-icon wx:if="{{cardItem.rarity==='Legendary'}}" type="collection_fill"/>
+                            <span wx:else>{{cardItem.quantity}}</span>
+                        </div>
                     </div>
                 </div>
+                <i-button class="copy-deck-btn" data-code="{{deckItem.code}}" bind:click="handleClick" type="primary"
+                          size="small">复制卡组
+                </i-button>
             </div>
-            <i-button class="copy-deck-btn" data-code="{{deckItem.code}}" bind:click="handleClick" type="primary" size="small">复制卡组</i-button>
         </div>
-    </div>
-    <div class="no-data-content" wx:elif="{{isInit}}">
-        暂无数据
-    </div>
-</view>
+        <div class="no-data-content" wx:elif="{{isInit}}">
+            暂无数据
+        </div>
+    </view>
+</scroll-view>
+<i-spin size="large" fix custom wx:if="{{!isInit}}">
+    <i-icon type="refresh" size="20" i-class="icon-load"></i-icon>
+    加载中...
+</i-spin>

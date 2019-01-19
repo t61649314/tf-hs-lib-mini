@@ -4,10 +4,17 @@
         <navigator url="../reportList/index?type=wild&from=vicious-syndicate" open-type="navigate" class="item">
             <image class="type-img" src="../../images/wild-icon.png"></image>
             <text>VS战报</text>
+            <span class="new-icon" wx:if="{{vsWildHasNew}}">new!</span>
         </navigator>
         <navigator url="../reportList/index?type=wild&from=tempo-storm" open-type="navigate" class="item">
             <image class="type-img" src="../../images/wild-icon.png"></image>
             <text>TS战报</text>
+            <span class="new-icon" wx:if="{{tsWildHasNew}}">new!</span>
+        </navigator>
+        <navigator url="../reportList/index?type=wild&from=shengerkuangye" open-type="navigate" class="item">
+            <image class="type-img" src="../../images/wild-icon.png"></image>
+            <text>生而狂野战报</text>
+            <span class="new-icon" wx:if="{{sekyHasNew}}">new!</span>
         </navigator>
     </div>
     <div class="navigator-box">
@@ -15,10 +22,12 @@
         <navigator url="../reportList/index?type=standard&from=vicious-syndicate" open-type="navigate" class="item">
             <image class="type-img" src="../../images/standard-icon.png"></image>
             <text>VS战报</text>
+            <span class="new-icon" wx:if="{{vsStandardHasNew}}">new!</span>
         </navigator>
         <navigator url="../reportList/index?type=standard&from=tempo-storm" open-type="navigate" class="item">
             <image class="type-img" src="../../images/standard-icon.png"></image>
             <text>TS战报</text>
+            <span class="new-icon" wx:if="{{tsStandardHasNew}}">new!</span>
         </navigator>
     </div>
 </view>

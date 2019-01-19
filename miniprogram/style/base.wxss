@@ -43,3 +43,18 @@ body {
     bottom: 0;
     margin: auto;
 }
+.new-icon{
+    position: relative;
+    top: -20rpx;
+    color: red;
+    font-style: italic;
+    margin-left: 10rpx;
+}
+@keyframes ani-demo-spin {
+    from { transform: rotate(0deg);}
+    50%  { transform: rotate(180deg);}
+    to   { transform: rotate(360deg);}
+}
+.icon-load{
+    animation: ani-demo-spin 1s linear infinite;
+}

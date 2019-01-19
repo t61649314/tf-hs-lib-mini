@@ -105,16 +105,13 @@
     bottom: 10rpx;
     right: 64rpx;
 }
-@keyframes ani-demo-spin {
-    from { transform: rotate(0deg);}
-    50%  { transform: rotate(180deg);}
-    to   { transform: rotate(360deg);}
-}
-.icon-load{
-    animation: ani-demo-spin 1s linear infinite;
-}
+
 .item-occupation-icon {
     width: 60rpx;
     height: 60rpx;
     margin-right: 15rpx;
+}
+.no-data-content {
+    font-size: 28rpx;
+    color: #5a5a5a;
 }

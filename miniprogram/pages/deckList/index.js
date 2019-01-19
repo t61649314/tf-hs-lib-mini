@@ -1,5 +1,4 @@
 const {timeNode} = require('../../lib/const');
-
 Page({
   data: {
     id: "",
@@ -9,23 +8,34 @@ Page({
     weakenArr: [],
     isInit: false,
     deckList: [],
+    scrollHeight: 0,
+    fromUrl:"",
+    fromMap:{"vicious-syndicate": "ViciousSyndicate", "tempo-storm": "TempoStorm", "shengerkuangye": "生而狂野战报"}
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: options.page
     });
+    wx.getSystemInfo({
+      success: (res) => {
+        this.setData({
+          'scrollHeight': res.windowHeight
+        });
+      }
+    });;
     if (options.id) {
       this.setData({
         'id': options.id,
-        'time': options.time,
       });
     } else {
       this.setData({
         'page': options.page,
         'occupation': options.occupation,
-        'time': options.time,
       });
     }
+    this.setData({
+      'time': options.time
+    });
     let weakenArr = timeNode.filter(item => {
       return new Date(item.time).getTime() > this.data.time && item.weakenCardArr;
     });
@@ -64,6 +74,15 @@ Page({
         'isInit': this.data.isInit,
         'deckList': this.data.deckList
       });
+      db.collection('report-list')
+        .where({
+          name:this.data.deckList[0].page
+        })
+        .get().then(({data}) => {
+        this.setData({
+          'fromUrl': data[0].fromUrl
+        });
+      }).catch(console.error)
     }).catch(console.error)
   },
   isWeaken: function (dbfId) {

@@ -101,3 +101,13 @@
     margin-right: 0;
     margin-bottom: 60rpx;
 }
+.info-content{
+    text-align: left;
+    font-size: 22rpx;
+    width: 100%;
+    padding:32rpx 32rpx;
+    box-sizing: border-box;
+}
+.info-content+.info-content{
+    padding-top: 0;
+}

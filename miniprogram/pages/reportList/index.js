@@ -1,6 +1,6 @@
 const {timeNode} = require('../../lib/const');
 const {formatTime} = require('../../lib/utils');
-const reportTitleMap = {"vicious-syndicate": "VS", "tempo-storm": "TS"};
+const reportTitleMap = {"vicious-syndicate": "VS", "tempo-storm": "TS", "shengerkuangye": "生而"};
 const typeTitleMap = {"wild": "狂野", "standard": "标准"};
 Page({
   data: {
@@ -45,16 +45,18 @@ Page({
         if (data.length === 20) {
           this.getReportList(skip + 20);
         } else {
-          let reportGroup = this.data.reportList.concat(timeNode).sort((a, b) => {
+          let reportList = this.data.reportList.sort((a, b) => {
+            return b.time - a.time
+          });
+          let lastTime = reportList[reportList.length - 1].time;
+          let reportGroup = reportList.concat(timeNode).sort((a, b) => {
             return new Date(b.time).getTime() - new Date(a.time).getTime()
           });
           reportGroup = reportGroup.filter((item, index) => {
             if (item.name) {
               return true;
             } else {
-              let preItem = reportGroup[index - 1];
-              let nextItem = reportGroup[index + 1];
-              return !!((preItem && preItem.name) || (nextItem && nextItem.name));
+              return new Date(reportGroup[index].time).getTime() > lastTime || new Date(reportGroup[index - 1].time).getTime() === lastTime
             }
           });
           this.setData({
