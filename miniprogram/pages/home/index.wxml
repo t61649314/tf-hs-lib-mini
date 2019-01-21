@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" style="height:{{scrollHeight}}px">
     <div class="navigator-box">
         <text class="box-title">狂野</text>
         <navigator url="../reportList/index?type=wild&from=vicious-syndicate" open-type="navigate" class="item">
@@ -30,4 +30,5 @@
             <span class="new-icon" wx:if="{{tsStandardHasNew}}">new!</span>
         </navigator>
     </div>
+    <ad class="my-ad" unit-id="adunit-5215dd089956d3e6"></ad>
 </view>

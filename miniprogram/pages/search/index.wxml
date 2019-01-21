@@ -34,10 +34,12 @@
                 <div class="item-time">{{item.timeStr}}</div>
             </navigator>
         </div>
-        <div wx:elif="{{!scrollLoading}}" class="no-data-content">暂无数据</div>
+        <view wx:elif="{{!scrollLoading}}" class="no-data-content">暂无数据</view>
         <i-spin size="large" wx:if="{{scrollLoading}}" custom>
+            <view style="margin: 30rpx 0">
             <i-icon type="refresh" size="20" i-class="icon-load"></i-icon>
-            加载中...
+            <text>加载中...</text>
+            </view>
         </i-spin>
     </scroll-view>
 </view>

@@ -6,9 +6,17 @@ Component({
     tsStandardHasNew: false,
     tsWildHasNew: false,
     sekyHasNew: false,
+    scrollHeight: 0,
   },
   lifetimes: {
     attached() {
+      wx.getSystemInfo({
+        success: (res) => {
+          this.setData({
+            'scrollHeight': res.windowHeight - 50
+          });
+        }
+      });
       const db = wx.cloud.database();
       const _ = db.command;
       let timeLimit = new Date().getTime() - 3 * 24 * 60 * 60 * 1000;

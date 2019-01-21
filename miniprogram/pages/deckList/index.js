@@ -9,8 +9,8 @@ Page({
     isInit: false,
     deckList: [],
     scrollHeight: 0,
-    fromUrl:"",
-    fromMap:{"vicious-syndicate": "ViciousSyndicate", "tempo-storm": "TempoStorm", "shengerkuangye": "生而狂野战报"}
+    fromUrl: "",
+    fromMap: {"vicious-syndicate": "ViciousSyndicate", "tempo-storm": "TempoStorm", "shengerkuangye": "生而狂野战报"}
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({
@@ -22,7 +22,7 @@ Page({
           'scrollHeight': res.windowHeight
         });
       }
-    });;
+    });
     if (options.id) {
       this.setData({
         'id': options.id,
@@ -76,7 +76,7 @@ Page({
       });
       db.collection('report-list')
         .where({
-          name:this.data.deckList[0].page
+          name: this.data.deckList[0].page
         })
         .get().then(({data}) => {
         this.setData({
@@ -90,7 +90,15 @@ Page({
   },
   handleClick: function (event) {
     wx.setClipboardData({
-      data: event.currentTarget.dataset.code
+      data: event.currentTarget.dataset.code,
+      success(res) {
+        wx.hideToast();
+        wx.showToast({
+          title: '复制卡组成功',
+          icon: 'success',
+          duration: 2000
+        })
+      }
     })
   }
 });

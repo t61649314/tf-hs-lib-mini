@@ -1,5 +1,5 @@
 page {
-    background: #f6f6f6;
+    background: #fff;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -20,18 +20,19 @@ body {
     width: 100%;
     line-height: 100rpx;
     font-size: 32rpx;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
     position: relative;
     text-align: left;
     padding: 0 32rpx;
     display: flex;
     align-items: center;
+    background: #fff;
 }
 
 .item:after {
     content: " ";
     display: block;
-    border: 2px solid #c8c8cd;
+    border: 1rpx solid #7d7d80;
     border-bottom-width: 0;
     border-left-width: 0;
     width: 16rpx;
@@ -57,4 +58,7 @@ body {
 }
 .icon-load{
     animation: ani-demo-spin 1s linear infinite;
+}
+.my-ad{
+    margin-top: 50px;
 }

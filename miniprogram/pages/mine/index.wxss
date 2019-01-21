@@ -1,28 +1,35 @@
 /**index.wxss**/
 @import "../../style/base.wxss";
-
+.container{
+    margin-bottom: 50px;
+}
 .userinfo {
-    margin-top: 40rpx;
-    margin-bottom: 40rpx;
-    height: 140rpx;
     width: 100%;
+    padding: 30rpx 0;
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-left: none;
     border-right: none;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
     transition: all 300ms ease;
 }
 
 .userinfo-avatar {
-    width: 100rpx;
-    height: 100rpx;
+    width: 150rpx;
+    height: 150rpx;
     margin: 20rpx;
     border-radius: 50%;
     background-size: cover;
     background-color: white;
+    padding: 0;
+}
+.userinfo-avatar image{
+    width: 150rpx;
+    height: 150rpx;
+    border-radius: 50%;
 }
 
 .userinfo-avatar:after {
@@ -30,12 +37,28 @@
 }
 
 .userinfo-nickname {
-    font-size: 32rpx;
-    color: #007aff;
-    background-color: white;
-    background-size: cover;
+    height: 16px;
 }
 
-.userinfo-nickname::after {
-    border: none;
+
+.appreciation-code{
+    box-sizing: border-box;
+    width: 100%;
+    line-height: 100rpx;
+    font-size: 32rpx;
+    position: relative;
+    text-align: left;
+    padding: 0 32rpx;
+    display: flex;
+    align-items: center;
+    background: #fff;
+}
+.appreciation-image{
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+}
+.appreciation-image image{
+    width: 600rpx;
+    height: 600rpx;
 }

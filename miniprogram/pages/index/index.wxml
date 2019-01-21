@@ -1,8 +1,8 @@
 <home wx:if="{{current==='homepage'}}"></home>
 <search wx:if="{{current==='search'}}"></search>
-<!--<mine wx:if="{{current==='mine'}}"></mine>-->
+<mine wx:if="{{current==='mine'}}"></mine>
 <i-tab-bar current="{{ current }}" bindchange="handleChange" fixed="true">
     <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="主页"></i-tab-bar-item>
     <i-tab-bar-item key="search" icon="search" current-icon="searchfill" title="搜索"></i-tab-bar-item>
-    <!--<i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>-->
+    <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
 </i-tab-bar>

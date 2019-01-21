@@ -3,10 +3,21 @@
     <view class="userinfo">
         <button open-type="getUserInfo"
                 bindgetuserinfo="onGetUserInfo"
-                class="userinfo-avatar"
-                style="background-image: url({{avatarUrl}})"></button>
-        <view>
-            <button class="userinfo-nickname" bindtap="onGetOpenid">点击登录</button>
-        </view>
+                class="userinfo-avatar">
+            <image src="{{avatarUrl}}"></image>
+        </button>
+        <div class="userinfo-nickname">{{userInfo.nickName}}</div>
+    </view>
+    <navigator url="../about/index" open-type="navigate" class="item">
+        <text>关于小程序</text>
+    </navigator>
+    <navigator url="../about/index" open-type="navigate" class="item">
+        <text>卡组收藏</text>
+    </navigator>
+    <div class="appreciation-code">
+        <text>打赏作者</text>
+    </div>
+    <view class="appreciation-image" >
+        <image bindtap='previewImg' src="{{appreciationCodeUrl}}" data-src="{{appreciationCodeUrl}}"></image>
     </view>
 </view>

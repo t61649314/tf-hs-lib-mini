@@ -1,8 +1,8 @@
 <scroll-view scroll-y='true' style="height:{{scrollHeight}}px">
-    <view class="container">
+    <view class="container" wx:if="{{isInit}}">
         <div class="info-content">转自：{{fromMap[deckList[0].from]}}</div>
         <div class="info-content">原文：{{fromUrl}}</div>
-        <div class="list" wx:if="{{deckList&&deckList.length&&isInit}}">
+        <div class="list" wx:if="{{deckList&&deckList.length}}">
             <div class="deck-item" wx:for="{{deckList}}" wx:key="index" wx:for-item="deckItem">
                 <div class="deck-info-box">
                     <div class="occupation-icon"></div>
@@ -30,9 +30,10 @@
                 </i-button>
             </div>
         </div>
-        <div class="no-data-content" wx:elif="{{isInit}}">
+        <div class="no-data-content" wx:else>
             暂无数据
         </div>
+        <ad class="my-ad" unit-id="adunit-254b3b09f194c5a7"></ad>
     </view>
 </scroll-view>
 <i-spin size="large" fix custom wx:if="{{!isInit}}">

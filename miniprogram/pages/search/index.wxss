@@ -12,11 +12,14 @@
     padding: 20rpx;
     width: 100%;
     box-sizing: border-box;
-    border-bottom:1px solid #ccc;
+    border-bottom:1rpx solid #ccc;
+    box-shadow: 0 1px 2px 0 #b9b9b9;
+    z-index: 1;
 }
 .occupation-bar{
     display: flex;
     justify-content: space-between;
+    padding-top: 20rpx;
 }
 .occupation-bar image{
     width: 60rpx;
@@ -33,11 +36,10 @@
 .search-icon{
     position: absolute;
     left:10rpx;
-    top: 14rpx;
+    top: 12rpx;
     z-index: 1;
 }
 .search-name{
-    margin: 0 0 20rpx;
     padding: 0 0 0 32rpx;
 }
 .search-name input{
@@ -61,7 +63,7 @@
     flex: 1;
 }
 .deck-item{
-    border-bottom:1px solid #ccc;
+    border-bottom:1rpx solid #ccc;
     height: 100rpx;
     display: flex;
     justify-content: flex-start;
@@ -69,6 +71,7 @@
     padding: 0 32rpx;
     position: relative;
     background: #fff;
+    color: #9b9b9b;
 }
 .deck-item:after {
     content: " ";
@@ -89,11 +92,14 @@
     position: absolute;
     top: 10rpx;
     left: 124rpx;
+    font-size: 28rpx;
+    color: #595959;
+    font-weight: bold;
 }
 .item-type{
     position: absolute;
     top: 10rpx;
-    right: 64rpx;
+    right: 72rpx;
 }
 .item-page{
     position: absolute;
@@ -103,7 +109,7 @@
 .item-time{
     position: absolute;
     bottom: 10rpx;
-    right: 64rpx;
+    right: 72rpx;
 }
 
 .item-occupation-icon {
@@ -114,4 +120,5 @@
 .no-data-content {
     font-size: 28rpx;
     color: #5a5a5a;
+    margin: 50rpx;
 }
