@@ -1,6 +1,6 @@
 <scroll-view scroll-y='true' style="height:{{scrollHeight}}px" class="container" wx:if="{{isInit}}">
     <view class="occupation-content">
-        <image class="occupation-bg" src="https://tianfangcx.github.io/my-h5-page/src/assets/img/detail-bg/{{deck.occupation}}.png"
+        <image class="occupation-bg" src="https://other-1257959255.cos.ap-chengdu.myqcloud.com/{{deck.occupation}}.png"
                mode="aspectFit"></image>
         <view class="info-content">
             <view class="name-item">{{deck.name}}</view>
