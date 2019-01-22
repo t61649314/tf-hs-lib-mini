@@ -1,9 +1,0 @@
-<view class="container">
-    <navigator wx:for="{{occupationCnNameList}}" wx:key="index"
-               url="{{'../deckList/index?page='+page+'&occupation='+item.key+'&time='+time}}"
-               open-type="navigate"
-               class="item">
-        <image class="occupation-icon" src="{{'../../images/'+item.key+'-icon.png'}}"></image>
-        <text>{{item.cnName}}</text>
-    </navigator>
-</view>

@@ -1,0 +1,161 @@
+@import "../../style/base.wxss";
+.occupation-content{
+    position: relative;
+    width: 100%;
+    height: 345rpx;
+}
+.occupation-bg{
+    width: 100%;
+    height: 345rpx;
+}
+.info-content{
+    height: 345rpx;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 40rpx;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.type-item,.from-item,.fromUrl-item,.name-item{
+    width: 100%;
+    color: #fff;
+    text-align: left;
+}
+.name-item{
+    font-size: 32rpx;
+    font-weight: bold;
+}
+
+.deck-box {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40rpx 10rpx 20rpx;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.deck-box .card-item {
+    height: 50rpx;
+    line-height: 50rpx;
+    background: #1b1b1b;
+    color: #ddd;
+    position: relative;
+    display: flex;
+    width: 345rpx;
+    margin: 0 10rpx 4rpx;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.deck-box .card-item .card-img-wrap {
+    height: 50rpx;
+    text-align: right;
+    flex: 1;
+}
+.deck-box .card-item .card-img {
+    height: 100%;
+    width: 210rpx;
+}
+
+.deck-box .card-item .card-quantity {
+    width: 50rpx;
+    color: #fba31b;
+    font-weight: 700;
+}
+
+.deck-box .card-item .card-cost {
+    color: #fff;
+    width: 50rpx;
+    background-color: #2766ad;
+    font-weight: 700;
+    border-radius: 4px;
+}
+
+.deck-box .card-item .card-name {
+    color: #fff;
+    position: absolute;
+    left: 65rpx;
+}
+
+.deck-box .card-item .is-weaken-text {
+    position: absolute;
+    color: red;
+    font-size: 28rpx;
+    font-weight: bold;
+    word-break: keep-all;
+    left: 0;
+    right: 0;
+    text-align: right;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: #fff;
+    opacity: 0.7;
+    padding-right: 50rpx;
+    box-sizing: border-box;
+}
+
+.copy-deck-btn button{
+    width: 700rpx;
+}
+
+.my-ad{
+   margin-top: 40rpx;
+}
+.bottom-btn-box{
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+}
+.bottom-btn i-icon{
+    margin-right: 10rpx;
+}
+.bottom-btn{
+    -webkit-tap-highlight-color:initial;
+    padding: 15px 0;
+    background-color: initial!important;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28rpx;
+    color: #898d98;
+    border-radius: initial;
+}
+.collection{
+    color: #2d8cf0;
+}
+.bottom-btn:after {
+    border: none;
+}
+.bottom-btn .btn-inner{
+    border-right: 1rpx solid #ccc;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+}
+.bottom-btn .no-border{
+    border-right:0
+}
+.deck-box .card-item .card-name-Basic{
+    color:#fff;
+}
+.deck-box .card-item .card-name-Common{
+    color:#fff;
+}
+.deck-box .card-item .card-name-Rare{
+    color:#2d8cf0;
+}
+.deck-box .card-item .card-name-Epic{
+    color: #b341e2;
+}
+.deck-box .card-item .card-name-Legendary{
+    color:#fba31b;
+}

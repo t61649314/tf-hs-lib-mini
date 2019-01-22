@@ -60,12 +60,18 @@ Component({
           const windowHeight = res.windowHeight;
           const query = this.createSelectorQuery();
           query.select('.search-bar').boundingClientRect((res) => {
-            this.setData({
-              'scrollHeight': windowHeight - res.height - 50
+            const searchBarHeight = res.height;
+            const wxQuery = wx.createSelectorQuery();
+            wxQuery.select('#my-notice').boundingClientRect((res) => {
+              const noticeHeight = res.height;
+              this.setData({
+                'scrollHeight': windowHeight - searchBarHeight - noticeHeight - 50
+              });
+              this.getDeckList();
             });
-            this.getDeckList();
+            wxQuery.exec();
           });
-          query.exec()
+          query.exec();
         }
       })
     },
@@ -116,6 +122,7 @@ Component({
       db.collection('deck-list')
         .where(where)
         .skip((this.data.pageNum - 1) * 20)
+        .limit(20)
         .orderBy('type', 'asc')
         .orderBy('from', 'desc')
         .orderBy('time', 'desc')
@@ -128,9 +135,9 @@ Component({
                 'noMore': true
               });
             }
-            data.forEach(item=>{
-              item.timeStr=formatTime(new Date(item.time));
-              item.typeStr=typeTitleMap[item.type];
+            data.forEach(item => {
+              item.timeStr = formatTime(new Date(item.time));
+              item.typeStr = typeTitleMap[item.type];
             });
             this.data.deckList = this.data.deckList.concat(data);
             this.setData({

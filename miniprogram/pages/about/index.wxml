@@ -1,25 +1,31 @@
 <view class="about-content">
-    <image class="about-top-bg" src="../../images/about-bg.jpg" mode="aspectFit"></image>
+    <image class="about-top-bg" src="https://other-1257959255.cos.ap-chengdu.myqcloud.com/about-bg.jpg" mode="aspectFit"></image>
     <view class="about-text-content">
         <view class="title">卡组来源介绍</view>
         <view>
             ViciousSyndicate：https://www.vicioussyndicate.com
-            自己做了数据搜集，卡组和强度分析都是基于数据，每周都有标准周报产出，每月会有狂野月报产出（版本更新的时候正好没出的话，时间会顺延）。
+        </view>
+        <view style="margin-bottom: 20rpx">
+            卡组基于数据统计，每周都有标准周报产出，每月会有狂野月报产出（版本更新的时候正好没出的话，时间会顺延）。
         </view>
         <view>
             TempoStorm：https://tempostorm.com
-            有自己的战队，也不仅仅做炉石还涉及其他游戏，卡组和强度分析基于职业选手的主观评测和构筑。
+        </view>
+        <view style="margin-bottom: 20rpx">
+            国外知名战队，卡组基于职业玩家的构筑。
         </view>
         <view>
-            生而狂野战队
-            国内知名狂野战队，战报发布在旅法师营地（https://www.iyingdi.com），卡组和强度分析基于职业选手的主观评测和构筑。
+            生而狂野战队：发布在旅法师营地（https://www.iyingdi.com）
+        </view>
+        <view style="margin-bottom: 20rpx">
+            国内知名狂野战队，卡组基于职业玩家的构筑。
         </view>
         <view class="title">关于小程序</view>
         <view>
-            我会在战报更新的第一时间进行更新，一般会在当天的中午之前，功能也会继续迭代，敬请期待。
+            每天早上都会跑一次程序，有新内容一般会在中午之前更新，功能我也会继续迭代，敬请期待。
         </view>
         <view class="title">联系我</view>
-        <view>欢迎大家给我提意见和BUG，或者各种合作。</view>
+        <view>各种意见、BUG、合作请联系我。</view>
         <view>邮箱地址：
             <text class="email">tfhslib@163.com</text>
             <text class="copy-btn" data-content="tfhslib@163.com" bindtap='copy'>复制</text>

@@ -1,0 +1,52 @@
+<scroll-view scroll-y='true' style="height:{{scrollHeight}}px" class="container" wx:if="{{isInit}}">
+    <view class="occupation-content">
+        <image class="occupation-bg" src="https://other-1257959255.cos.ap-chengdu.myqcloud.com/{{deck.occupation}}.png"
+               mode="aspectFit"></image>
+        <view class="info-content">
+            <view class="name-item">{{deck.name}}</view>
+            <view class="type-item">模式：{{typeMap[deck.type]}}</view>
+            <view class="from-item">转自：{{fromMap[deck.from]}}</view>
+            <view class="fromUrl-item">原文：{{fromUrl}}</view>
+        </view>
+    </view>
+    <view class="deck-box">
+        <view class="card-item"
+              wx:for="{{deck.cards}}"
+              wx:key="index" wx:for-item="cardItem">
+            <view class="is-weaken-text" wx:if="{{cardItem.isWeaken}}">已削弱</view>
+            <view class="card-cost">{{cardItem.cost}}</view>
+            <view class="card-name card-name-{{cardItem.rarity}}">{{cardItem.cnName}}</view>
+            <view class="card-img-wrap">
+                <image class="card-img" mode="aspectFit"
+                       src="{{'https://cdn.tempostorm.com/cards/'+cardItem.img}}"/>
+            </view>
+            <view class="card-quantity">
+                <i-icon wx:if="{{cardItem.rarity==='Legendary'}}" type="collection_fill"/>
+                <span wx:else>{{cardItem.quantity}}</span>
+            </view>
+        </view>
+    </view>
+    <i-button class="copy-deck-btn" data-code="{{deck.code}}" bind:click="handleClick" type="primary"
+              size="small">复制卡组
+    </i-button>
+    <ad class="my-ad" unit-id="adunit-254b3b09f194c5a7"></ad>
+</scroll-view>
+<view class="bottom-btn-box">
+    <button open-type="share" class="bottom-btn">
+        <view class="btn-inner">
+            <i-icon type="share"/>
+            分享
+        </view>
+    </button>
+    <button class="bottom-btn {{collectionId?'collection':''}}" bindtap='collection'>
+        <view class="btn-inner no-border">
+            <i-icon type="collection_fill" wx:if="{{collectionId}}"/>
+            <i-icon type="collection" wx:else/>
+            {{collectionId?'已':''}}收藏
+        </view>
+    </button>
+</view>
+<i-spin size="large" fix custom wx:if="{{loading}}">
+    <i-icon type="refresh" size="20" i-class="icon-load"></i-icon>
+    加载中...
+</i-spin>

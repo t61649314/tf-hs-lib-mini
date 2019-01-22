@@ -1,113 +1,27 @@
 @import "../../style/base.wxss";
-
-.no-data-content {
-    margin: 200rpx;
-    font-size: 28rpx;
-    color: #5a5a5a;
-}
-
-.deck-item {
-    padding: 50rpx 0;
-    border-bottom: 1rpx solid #ddd;
-    background-color: #fff;
-}
-
-.deck-item .deck-info-box {
-    width: 450rpx;
-    margin: auto;
-    background: #1b1b1b;
-    color: #fff;
-    font-size: 30rpx;
-    font-weight: bold;
-    text-align: left;
-    padding: 20rpx 30rpx;
-    box-sizing: border-box;
-    word-break: break-all;
+.container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-}
-
-.deck-item .deck-info-box .deck-name-content {
-    max-width: 300rpx;
-}
-
-.card-box {
-    width: 450rpx;
-    margin: auto;
-}
-
-.card-box .card-item {
-    height: 50rpx;
-    line-height: 50rpx;
-    background: #1b1b1b;
-    color: #ddd;
-    border-top: 1px solid rgba(0, 0, 0, .3);
-    border-bottom: 1px solid rgba(255, 255, 255, .1);
-    position: relative;
-    display: flex;
-    width: 450rpx;
-}
-
-.card-box .card-item .card-img-wrap {
-    height: 50rpx;
-    text-align: right;
-    flex: 1;
-}
-.card-box .card-item .card-img {
-    height: 100%;
-    width: 210rpx;
-}
-
-.card-box .card-item .card-quantity {
-    width: 50rpx;
-    color: #fba31b;
-    font-weight: 700;
-}
-
-.card-box .card-item .card-cost {
-    color: #fff;
-    width: 50rpx;
-    background-color: #2766ad;
-    font-weight: 700;
-}
-
-.card-box .card-item .card-name {
-    color: #fff;
-    position: absolute;
-    left: 70rpx;
-}
-
-.card-box .card-item .is-weaken-text {
-    position: absolute;
-    left: 470rpx;
-    color: #ff4545;
-    word-break: keep-all;
-}
-
-.card-box .card-item .is-weaken-text:before {
-    content: "";
-    display: block;
-    position: absolute;
-    height: 4rpx;
-    background-color: #ff4545;
-    top: 0;
-    bottom: 0;
-    left: -470rpx;
-    width: 450rpx;
-    margin: auto;
-}
-.copy-deck-btn button{
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 60rpx;
-}
-.info-content{
-    text-align: left;
-    font-size: 22rpx;
-    width: 100%;
-    padding:32rpx 32rpx;
     box-sizing: border-box;
 }
-.info-content+.info-content{
-    padding-top: 0;
+
+.occupation-bar{
+    width: 100%;
+    padding: 20rpx;
+    box-sizing: border-box;
+    display: flex;
+    border-bottom:1rpx solid #ccc;
+    box-shadow: 0 1px 2px 0 #b9b9b9;
+    z-index: 1;
+    justify-content: space-between;
+}
+.occupation-bar image{
+    width: 60rpx;
+    height: 60rpx;
+    padding: 5rpx;
+}
+.occupation-bar .active{
+    background:#2d8cf0;
+    border-radius:50%;
 }

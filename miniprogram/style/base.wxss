@@ -15,19 +15,40 @@ body {
     margin: 0;
 }
 
-.item {
-    box-sizing: border-box;
-    width: 100%;
-    line-height: 100rpx;
-    font-size: 32rpx;
-    border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
-    position: relative;
-    text-align: left;
-    padding: 0 32rpx;
-    display: flex;
-    align-items: center;
-    background: #fff;
+.navigator-hover{
+    opacity: initial;
+    background-color: initial;
 }
+
+.item {
+    border-bottom:1rpx solid #ccc;
+    height: 100rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 32rpx;
+    position: relative;
+    background: #fff;
+    color: #9b9b9b;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.item:active:before {
+    opacity: 0.1;
+}
+
+.item:before {
+    background-color: #000;
+    content: "";
+    opacity: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+
 
 .item:after {
     content: " ";
@@ -59,6 +80,56 @@ body {
 .icon-load{
     animation: ani-demo-spin 1s linear infinite;
 }
-.my-ad{
-    margin-top: 50px;
+.item .item-name{
+    position: absolute;
+    top: 10rpx;
+    left: 124rpx;
+    font-size: 28rpx;
+    color: #595959;
+    font-weight: bold;
+}
+.item .item-type{
+    position: absolute;
+    top: 10rpx;
+    right: 72rpx;
+}
+.item .item-page{
+    position: absolute;
+    bottom: 10rpx;
+    left: 124rpx;
+}
+.item .item-time{
+    position: absolute;
+    bottom: 10rpx;
+    right: 72rpx;
+}
+.item  .item-occupation-icon {
+    width: 60rpx;
+    height: 60rpx;
+    margin-right: 15rpx;
+}
+.item .title{
+    font-size: 30rpx;
+    color: #595959;
+    font-weight: bold;
+}
+
+.item .report-time{
+    position: absolute;
+    bottom: 10rpx;
+    left: 32rpx;
+    font-size: 28rpx;
+    color: #919191;
+    line-height: 1;
+}
+
+.item .has-time-title {
+    position: relative;
+    top: -10rpx;
+}
+
+.no-data-content {
+    font-size: 28rpx;
+    color: #5a5a5a;
+    padding: 50rpx;
 }

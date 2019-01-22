@@ -1,3 +1,6 @@
+<i-notice-bar id="my-notice" icon="systemprompt" loop>
+    新增分享和收藏卡组功能！快去试试吧~闲着没事可以点点广告支持一下作者哟~
+</i-notice-bar>
 <home wx:if="{{current==='homepage'}}"></home>
 <search wx:if="{{current==='search'}}"></search>
 <mine wx:if="{{current==='mine'}}"></mine>

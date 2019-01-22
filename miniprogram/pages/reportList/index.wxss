@@ -22,18 +22,7 @@
     flex-direction: column;
     box-sizing: border-box;
 }
-.has-time-title {
-    position: relative;
-    top: -10rpx;
-}
-.time-text {
-    position: absolute;
-    bottom: 10rpx;
-    left: 32rpx;
-    font-size: 28rpx;
-    color: #919191;
-    line-height: 1;
-}
+
 .time-node-text .time {
     color: #919191;
 }

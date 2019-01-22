@@ -1,104 +1,84 @@
-const {timeNode} = require('../../lib/const');
+const {occupationInfo} = require('../../lib/const');
+const {formatTime} = require('../../lib/utils');
+const typeTitleMap = {"wild": "狂野", "standard": "标准"};
 Page({
   data: {
-    id: "",
-    page: "",
-    occupation: "",
-    time: "",
-    weakenArr: [],
-    isInit: false,
+    occupationKeyList: Object.keys(occupationInfo),
     deckList: [],
+    showDeckList: [],
+    searchOccupation: "",
+    page: "",
+    time: "",
     scrollHeight: 0,
-    fromUrl: "",
-    fromMap: {"vicious-syndicate": "ViciousSyndicate", "tempo-storm": "TempoStorm", "shengerkuangye": "生而狂野战报"}
+    scrollLoading: false
   },
-  onLoad: function (options) {
-    wx.setNavigationBarTitle({
-      title: options.page
+  onLoad(options) {
+    this.setData({
+      'page': options.page,
+      'time': options.time,
     });
+  },
+  onReady() {
     wx.getSystemInfo({
       success: (res) => {
-        this.setData({
-          'scrollHeight': res.windowHeight
+        const windowHeight = res.windowHeight;
+        const query = this.createSelectorQuery();
+        query.select('.occupation-bar').boundingClientRect((res) => {
+          this.setData({
+            'scrollHeight': windowHeight - res.height,
+            'scrollLoading': true
+          });
+          this.getDeckList(0);
         });
-      }
-    });
-    if (options.id) {
-      this.setData({
-        'id': options.id,
-      });
-    } else {
-      this.setData({
-        'page': options.page,
-        'occupation': options.occupation,
-      });
-    }
-    this.setData({
-      'time': options.time
-    });
-    let weakenArr = timeNode.filter(item => {
-      return new Date(item.time).getTime() > this.data.time && item.weakenCardArr;
-    });
-    weakenArr.forEach(item => {
-      this.data.weakenArr = this.data.weakenArr.concat(item.weakenCardArr)
-    });
-    this.setData({
-      'weakenArr': this.data.weakenArr
-    });
-    this.getDeckList();
-  },
-  getDeckList: function () {
-    let where;
-    if (this.data.id) {
-      where = {_id: this.data.id};
-    } else {
-      where = {
-        page: this.data.page,
-        occupation: this.data.occupation,
-      };
-    }
-    const db = wx.cloud.database();
-    db.collection('deck-list')
-      .where(where)
-      .get().then(({data}) => {
-      this.data.isInit = true;
-      if (data && data.length) {
-        data.forEach(item => {
-          item.cards.forEach(item => {
-            item.isWeaken = this.isWeaken(item.dbfId);
-          })
-        });
-        this.data.deckList = data;
-      }
-      this.setData({
-        'isInit': this.data.isInit,
-        'deckList': this.data.deckList
-      });
-      db.collection('report-list')
-        .where({
-          name: this.data.deckList[0].page
-        })
-        .get().then(({data}) => {
-        this.setData({
-          'fromUrl': data[0].fromUrl
-        });
-      }).catch(console.error)
-    }).catch(console.error)
-  },
-  isWeaken: function (dbfId) {
-    return this.data.weakenArr.includes(dbfId);
-  },
-  handleClick: function (event) {
-    wx.setClipboardData({
-      data: event.currentTarget.dataset.code,
-      success(res) {
-        wx.hideToast();
-        wx.showToast({
-          title: '复制卡组成功',
-          icon: 'success',
-          duration: 2000
-        })
+        query.exec()
       }
     })
-  }
+  },
+  getDeckList(skip) {
+    const db = wx.cloud.database();
+    db.collection('deck-list')
+      .where({
+        page: this.data.page
+      })
+      .limit(20)
+      .skip(skip)
+      .get()
+      .then(({data}) => {
+        if (data) {
+          this.data.deckList = this.data.deckList.concat(data);
+          if (data.length === 20) {
+            this.getDeckList(skip + 20)
+          } else {
+            this.data.deckList.forEach(item => {
+              item.timeStr = formatTime(new Date(item.time));
+              item.typeStr = typeTitleMap[item.type];
+            });
+            this.setData({
+              'deckList': this.data.deckList,
+              'showDeckList': this.data.deckList,
+              'scrollLoading': false
+            });
+          }
+        }
+      }).catch(console.error)
+  },
+  occupationClick(event) {
+    const key = event.currentTarget.dataset.key;
+    if (this.data.searchOccupation !== key) {
+      this.data.searchOccupation = key;
+      this.setData({
+        'showDeckList': this.data.deckList.filter(item => {
+          return item.occupation === key;
+        }),
+      });
+    } else {
+      this.data.searchOccupation = "";
+      this.setData({
+        'showDeckList': this.data.deckList,
+      });
+    }
+    this.setData({
+      'searchOccupation': this.data.searchOccupation,
+    });
+  },
 });

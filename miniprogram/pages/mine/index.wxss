@@ -53,6 +53,11 @@
     align-items: center;
     background: #fff;
 }
+.appreciation-code .title{
+    font-size: 30rpx;
+    color: #595959;
+    font-weight: bold;
+}
 .appreciation-image{
     background: #fff;
     width: 100%;

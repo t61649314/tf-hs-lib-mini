@@ -24,8 +24,8 @@
     </div>
     <scroll-view scroll-y='true' style="height:{{scrollHeight}}px" bindscrolltolower='lower'>
         <div wx:if="{{deckList&&deckList.length}}">
-            <navigator class="deck-item" wx:for="{{deckList}}" wx:key="{{index}}"
-                       url="{{'../deckList/index?id='+item._id+'&time='+item.time+'&page='+item.page}}"
+            <navigator class="item" wx:for="{{deckList}}" wx:key="{{index}}"
+                       url="{{'../deckDetail/index?id='+item._id+'&time='+item.time+'&page='+item.page}}"
                        open-type="navigate">
                 <image class="item-occupation-icon" src="{{'../../images/'+item.occupation+'-icon.png'}}"></image>
                 <div class="item-name">{{item.name}}</div>
@@ -36,7 +36,7 @@
         </div>
         <view wx:elif="{{!scrollLoading}}" class="no-data-content">暂无数据</view>
         <i-spin size="large" wx:if="{{scrollLoading}}" custom>
-            <view style="margin: 30rpx 0">
+            <view style="padding: 30rpx 0">
             <i-icon type="refresh" size="20" i-class="icon-load"></i-icon>
             <text>加载中...</text>
             </view>

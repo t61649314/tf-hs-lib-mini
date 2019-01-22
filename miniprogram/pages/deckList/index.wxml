@@ -1,42 +1,28 @@
-<scroll-view scroll-y='true' style="height:{{scrollHeight}}px">
-    <view class="container" wx:if="{{isInit}}">
-        <div class="info-content">转自：{{fromMap[deckList[0].from]}}</div>
-        <div class="info-content">原文：{{fromUrl}}</div>
-        <div class="list" wx:if="{{deckList&&deckList.length}}">
-            <div class="deck-item" wx:for="{{deckList}}" wx:key="index" wx:for-item="deckItem">
-                <div class="deck-info-box">
-                    <div class="occupation-icon"></div>
-                    <span class="deck-name-content">{{deckItem.name}}</span>
-                </div>
-                <div class="card-box">
-                    <div class="card-item"
-                         wx:for="{{deckItem.cards}}"
-                         wx:key="index" wx:for-item="cardItem">
-                        <div class="is-weaken-text" wx:if="{{cardItem.isWeaken}}">已削弱</div>
-                        <div class="card-cost">{{cardItem.cost}}</div>
-                        <div class="card-name">{{cardItem.cnName}}</div>
-                        <div class="card-img-wrap">
-                            <image class="card-img" mode="aspectFit"
-                                   src="{{'https://cdn.tempostorm.com/cards/'+cardItem.img}}"/>
-                        </div>
-                        <div class="card-quantity">
-                            <i-icon wx:if="{{cardItem.rarity==='Legendary'}}" type="collection_fill"/>
-                            <span wx:else>{{cardItem.quantity}}</span>
-                        </div>
-                    </div>
-                </div>
-                <i-button class="copy-deck-btn" data-code="{{deckItem.code}}" bind:click="handleClick" type="primary"
-                          size="small">复制卡组
-                </i-button>
-            </div>
-        </div>
-        <div class="no-data-content" wx:else>
-            暂无数据
-        </div>
-        <ad class="my-ad" unit-id="adunit-254b3b09f194c5a7"></ad>
+<view class="container">
+    <view class="occupation-bar">
+        <image wx:for="{{occupationKeyList}}"
+               wx:key="index" data-key="{{item}}" bindtap="occupationClick"
+               class="{{item===searchOccupation?'active':''}}"
+               src="{{'../../images/'+item+'-icon.png'}}"></image>
     </view>
-</scroll-view>
-<i-spin size="large" fix custom wx:if="{{!isInit}}">
-    <i-icon type="refresh" size="20" i-class="icon-load"></i-icon>
-    加载中...
-</i-spin>
+    <scroll-view scroll-y='true' style="height:{{scrollHeight}}px">
+        <div wx:if="{{showDeckList&&showDeckList.length}}">
+            <navigator class="item" wx:for="{{showDeckList}}" wx:key="{{index}}"
+                       url="{{'../deckDetail/index?id='+item._id+'&time='+item.time+'&page='+item.page}}"
+                       open-type="navigate">
+                <image class="item-occupation-icon" src="{{'../../images/'+item.occupation+'-icon.png'}}"></image>
+                <div class="item-name">{{item.name}}</div>
+                <div class="item-type">{{item.typeStr}}</div>
+                <div class="item-page">{{item.page}}</div>
+                <div class="item-time">{{item.timeStr}}</div>
+            </navigator>
+        </div>
+        <view wx:elif="{{!scrollLoading}}" class="no-data-content">暂无数据</view>
+        <i-spin size="large" wx:if="{{scrollLoading}}" custom>
+            <view style="padding: 30rpx 0">
+                <i-icon type="refresh" size="20" i-class="icon-load"></i-icon>
+                <text>加载中...</text>
+            </view>
+        </i-spin>
+    </scroll-view>
+</view>

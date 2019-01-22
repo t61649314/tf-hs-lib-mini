@@ -9,12 +9,17 @@ Component({
     scrollHeight: 0,
   },
   lifetimes: {
-    attached() {
+    ready() {
       wx.getSystemInfo({
         success: (res) => {
-          this.setData({
-            'scrollHeight': res.windowHeight - 50
+          const windowHeight = res.windowHeight;
+          const query = wx.createSelectorQuery();
+          query.select('#my-notice').boundingClientRect((res) => {
+            this.setData({
+              'scrollHeight': windowHeight - res.height - 50
+            });
           });
+          query.exec()
         }
       });
       const db = wx.cloud.database();

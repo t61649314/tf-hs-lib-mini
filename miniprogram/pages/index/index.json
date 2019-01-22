@@ -4,6 +4,7 @@
     "search": "../search/index",
     "home": "../home/index",
     "i-tab-bar": "../../lib/iview/dist/tab-bar/index",
-    "i-tab-bar-item": "../../lib/iview/dist/tab-bar-item/index"
+    "i-tab-bar-item": "../../lib/iview/dist/tab-bar-item/index",
+    "i-notice-bar": "../../lib/iview/dist/notice-bar/index"
   }
 }

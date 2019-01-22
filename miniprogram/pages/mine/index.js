@@ -1,17 +1,29 @@
-//index.js
-const app = getApp()
-
 Component({
   data: {
     avatarUrl: '../../images/user-unlogin.png',
     userInfo: {},
     logged: false,
     takeSession: false,
+    scrollHeight: 0,
     requestResult: '',
     appreciationCodeUrl: 'https://other-1257959255.cos.ap-chengdu.myqcloud.com/appreciation-code.jpg',
     current: "homepage"
   },
   lifetimes: {
+    ready() {
+      wx.getSystemInfo({
+        success: (res) => {
+          const windowHeight = res.windowHeight;
+          const query = wx.createSelectorQuery();
+          query.select('#my-notice').boundingClientRect((res) => {
+            this.setData({
+              'scrollHeight': windowHeight - res.height - 50
+            });
+          });
+          query.exec()
+        }
+      });
+    },
     created() {
       wx.getSetting({
         success: res => {
@@ -28,16 +40,6 @@ Component({
           }
         }
       });
-      wx.cloud.callFunction({
-        name: 'login',
-        data: {},
-        success: res => {
-          console.log('[云函数] [login] user openid: ', res.result.openid);
-          app.globalData.openid = res.result.openid
-        }, fail: err => {
-          console.error('[云函数] [login] 调用失败', err)
-        }
-      })
     },
   },
   methods: {
