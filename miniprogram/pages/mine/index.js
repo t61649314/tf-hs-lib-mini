@@ -6,7 +6,7 @@ Component({
     takeSession: false,
     scrollHeight: 0,
     requestResult: '',
-    appreciationCodeUrl: 'https://other-1257959255.cos.ap-chengdu.myqcloud.com/appreciation-code.jpg',
+    appreciationCodeUrl: 'https://tianfangcx.github.io/my-h5-page/src/assets/img/appreciation-code.jpg',
     current: "homepage"
   },
   lifetimes: {

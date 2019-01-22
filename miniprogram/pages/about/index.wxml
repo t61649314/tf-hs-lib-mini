@@ -1,5 +1,5 @@
 <view class="about-content">
-    <image class="about-top-bg" src="https://other-1257959255.cos.ap-chengdu.myqcloud.com/about-bg.jpg" mode="aspectFit"></image>
+    <image class="about-top-bg" src="https://tianfangcx.github.io/my-h5-page/src/assets/img/about-bg.jpg" mode="aspectFit"></image>
     <view class="about-text-content">
         <view class="title">卡组来源介绍</view>
         <view>
