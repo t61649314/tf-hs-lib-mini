@@ -55,6 +55,7 @@ Page({
         data.forEach(item => {
           item.cards.forEach(item => {
             item.isWeaken = this.isWeaken(item.dbfId);
+            item.img = item.img.replace("'","%27");
           })
         });
         this.data.deck = data[0];

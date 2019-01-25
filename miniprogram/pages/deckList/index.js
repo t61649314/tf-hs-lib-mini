@@ -36,31 +36,35 @@ Page({
   },
   getDeckList(skip) {
     const db = wx.cloud.database();
-    db.collection('deck-list')
+    let collection = db.collection('deck-list')
       .where({
         page: this.data.page
       })
-      .limit(20)
-      .skip(skip)
-      .get()
-      .then(({data}) => {
-        if (data) {
-          this.data.deckList = this.data.deckList.concat(data);
-          if (data.length === 20) {
-            this.getDeckList(skip + 20)
-          } else {
-            this.data.deckList.forEach(item => {
-              item.timeStr = formatTime(new Date(item.time));
-              item.typeStr = typeTitleMap[item.type];
-            });
-            this.setData({
-              'deckList': this.data.deckList,
-              'showDeckList': this.data.deckList,
-              'scrollLoading': false
-            });
-          }
+      .limit(20);
+    let promise;
+    if (skip > 0) {
+      promise = collection.skip(skip).get();
+    } else {
+      promise = collection.get();
+    }
+    promise.then(({data}) => {
+      if (data) {
+        this.data.deckList = this.data.deckList.concat(data);
+        if (data.length === 20) {
+          this.getDeckList(skip + 20)
+        } else {
+          this.data.deckList.forEach(item => {
+            item.timeStr = formatTime(new Date(item.time));
+            item.typeStr = typeTitleMap[item.type];
+          });
+          this.setData({
+            'deckList': this.data.deckList,
+            'showDeckList': this.data.deckList,
+            'scrollLoading': false
+          });
         }
-      }).catch(console.error)
+      }
+    }).catch(console.error)
   },
   occupationClick(event) {
     const key = event.currentTarget.dataset.key;
