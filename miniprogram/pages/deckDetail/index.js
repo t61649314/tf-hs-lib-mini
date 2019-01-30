@@ -1,8 +1,9 @@
-const {timeNode} = require('../../lib/const');
+const {timeNode, occupationInfo} = require('../../lib/const');
 const app = getApp();
 Page({
   data: {
     typeMap: {"wild": "狂野", "standard": "标准"},
+    occupationInfo: occupationInfo,
     id: "",
     page: "",
     time: "",
@@ -13,7 +14,8 @@ Page({
     deck: {},
     fromUrl: "",
     fromMap: {"vicious-syndicate": "ViciousSyndicate", "tempo-storm": "TempoStorm", "shengerkuangye": "生而狂野战报"},
-    scrollHeight: 0
+    scrollHeight: 0,
+    costList: [0, 0, 0, 0, 0, 0, 0, 0]
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({
@@ -49,16 +51,16 @@ Page({
       'loading': true
     });
     db.collection('deck-list')
-      .where({_id: this.data.id})
+      .doc(this.data.id)
       .get().then(({data}) => {
-      if (data && data.length) {
-        data.forEach(item => {
-          item.cards.forEach(item => {
-            item.isWeaken = this.isWeaken(item.dbfId);
-            item.img = item.img.replace("'","%27");
-          })
+      if (data) {
+        data.cards.forEach(item => {
+          item.isWeaken = this.isWeaken(item.dbfId);
+          item.img = item.img.replace("'", "%27");
+          let cost = item.cost >= 7 ? 7 : item.cost;
+          this.data.costList[cost]++;
         });
-        this.data.deck = data[0];
+        this.data.deck = data;
       }
       db.collection('collection-list')
         .where({
@@ -67,21 +69,15 @@ Page({
         })
         .get().then(({data}) => {
         if (data && data.length) {
-            this.data.collectionId=data[0]._id;
+          this.data.collectionId = data[0]._id;
         }
-        db.collection('report-list')
-          .where({
-            name: this.data.deck.page
-          })
-          .get().then(({data}) => {
-          this.setData({
-            'fromUrl': data[0].fromUrl,
-            'collectionId': this.data.collectionId,
-            'isInit': true,
-            'loading': false,
-            'deck': this.data.deck
-          });
-        }).catch(console.error)
+        this.setData({
+          'collectionId': this.data.collectionId,
+          'isInit': true,
+          'loading': false,
+          'deck': this.data.deck,
+          'costList': this.data.costList
+        });
       }).catch(console.error)
     }).catch(console.error)
   },

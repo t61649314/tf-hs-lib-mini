@@ -1,5 +1,5 @@
 <view class="container">
-    <div class="search-bar">
+    <div class="search-bar" id="search-bar">
         <div class="name-bar">
             <i-icon type="search" class="search-icon" size="18"/>
             <i-input i-class="search-name" value="{{ searchData.name }}" bind:blur="searchNameBlur" title="卡组名称"

@@ -24,11 +24,22 @@
         <view>
             每天早上都会跑一次程序，有新内容一般会在中午之前更新，功能我也会继续迭代，敬请期待。
         </view>
+        <view class="title">我想说的</view>
+        <view style="margin-bottom: 20rpx">
+            我有自己的工作，广告和赞赏的收入其实很少，对我来说更多的是鼓励作用，所以如果大家觉得碍事我是可以下掉的。
+            但是我想在这里推荐一个老哥的小程序叫做“炉石传说情报站”。
+            里面有所有的hsReplay的数据，胜率、排行、卡组、卡牌查询，功能应有尽有，比我的小程序做的好太多。
+            这位老哥因为生病，脊髓损伤，不能工作，但是热爱炉石，愿意为炉石付出心血，让我特别敬佩。
+            可能小程序的广告点击收入对他来说更重要，所以恳求大家多去点点他的广告，谢谢了。
+        </view>
         <view class="title">联系我</view>
-        <view>各种意见、BUG、合作请联系我。</view>
         <view>邮箱地址：
-            <text class="email">tfhslib@163.com</text>
+            <text>tfhslib@163.com</text>
             <text class="copy-btn" data-content="tfhslib@163.com" bindtap='copy'>复制</text>
+        </view>
+        <view>QQ群：
+            <text>669718716</text>
+            <text class="copy-btn" data-content="669718716" bindtap='copy'>复制</text>
         </view>
     </view>
 </view>

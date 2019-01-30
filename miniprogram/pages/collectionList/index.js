@@ -39,34 +39,39 @@ Page({
     this.setData({
       'scrollLoading': true
     });
+    const skip = (this.data.pageNum - 1) * 20;
     const db = wx.cloud.database();
-    db.collection('collection-list')
+    let collection = db.collection('collection-list')
       .where({
         userId: app.globalData.openid
       })
-      .skip((this.data.pageNum - 1) * 20)
       .limit(20)
-      .orderBy('createTime', 'desc')
-      .get()
-      .then(({data}) => {
-        if (data && data.length) {
-          if (data.length < 20) {
-            this.setData({
-              'noMore': true
-            });
-          }
-          data.forEach(item => {
-            item.createTimeStr = formatTime(new Date(item.createTime));
-            item.deckTypeStr = typeTitleMap[item.deckType];
-          });
-          this.data.deckList = this.data.deckList.concat(data);
+      .orderBy('createTime', 'desc');
+    let promise;
+    if (skip && skip > 0) {
+      promise = collection.skip(skip).get();
+    } else {
+      promise = collection.get();
+    }
+    promise.then(({data}) => {
+      if (data && data.length) {
+        if (data.length < 20) {
           this.setData({
-            'deckList': this.data.deckList
+            'noMore': true
           });
         }
-        this.setData({
-          'scrollLoading': false
+        data.forEach(item => {
+          item.createTimeStr = formatTime(new Date(item.createTime));
+          item.deckTypeStr = typeTitleMap[item.deckType];
         });
-      }).catch(console.error)
+        this.data.deckList = this.data.deckList.concat(data);
+        this.setData({
+          'deckList': this.data.deckList
+        });
+      }
+      this.setData({
+        'scrollLoading': false
+      });
+    }).catch(console.error)
   }
 });

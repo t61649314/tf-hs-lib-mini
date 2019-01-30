@@ -1,9 +1,9 @@
-<i-notice-bar id="my-notice" icon="systemprompt" loop>
-    新增分享和收藏卡组功能！快去试试吧~闲着没事可以点点广告支持一下作者哟~
+<i-notice-bar id="my-notice" icon="systemprompt">
+    {{notice}}
 </i-notice-bar>
-<home wx:if="{{current==='homepage'}}"></home>
-<search wx:if="{{current==='search'}}"></search>
-<mine wx:if="{{current==='mine'}}"></mine>
+<home wx:if="{{current==='homepage'}}" component-height="{{componentHeight}}"></home>
+<search wx:if="{{current==='search'}}" component-height="{{componentHeight}}"></search>
+<mine wx:if="{{current==='mine'}}" component-height="{{componentHeight}}"></mine>
 <i-tab-bar current="{{ current }}" bindchange="handleChange" fixed="true">
     <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="主页"></i-tab-bar-item>
     <i-tab-bar-item key="search" icon="search" current-icon="searchfill" title="搜索"></i-tab-bar-item>

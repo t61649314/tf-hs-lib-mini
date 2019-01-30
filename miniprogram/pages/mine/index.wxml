@@ -1,4 +1,4 @@
-<scroll-view scroll-y='true' style="height:{{scrollHeight}}px" >
+<scroll-view scroll-y='true' style="height:{{componentHeight}}px" >
     <view class="userinfo">
         <button open-type="getUserInfo"
                 bindgetuserinfo="onGetUserInfo"

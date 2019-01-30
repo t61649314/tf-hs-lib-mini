@@ -1,4 +1,4 @@
-<view class="container" style="height:{{scrollHeight}}px">
+<view class="container" style="height:{{componentHeight}}px">
     <div class="navigator-box">
         <text class="box-title">狂野</text>
         <navigator url="../reportList/index?type=wild&from=vicious-syndicate" open-type="navigate" class="item">

@@ -1,4 +1,7 @@
 Component({
+  properties: {
+    componentHeight: Number
+  },
   data: {
     avatarUrl: '../../images/user-unlogin.png',
     userInfo: {},
@@ -10,20 +13,6 @@ Component({
     current: "homepage"
   },
   lifetimes: {
-    ready() {
-      wx.getSystemInfo({
-        success: (res) => {
-          const windowHeight = res.windowHeight;
-          const query = wx.createSelectorQuery();
-          query.select('#my-notice').boundingClientRect((res) => {
-            this.setData({
-              'scrollHeight': windowHeight - res.height - 50
-            });
-          });
-          query.exec()
-        }
-      });
-    },
     created() {
       wx.getSetting({
         success: res => {
@@ -60,4 +49,4 @@ Component({
       }
     }
   }
-})
+});

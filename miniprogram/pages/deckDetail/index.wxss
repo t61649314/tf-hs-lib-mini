@@ -159,3 +159,29 @@
 .deck-box .card-item .card-name-Legendary{
     color:#fba31b;
 }
+.cost-list-content{
+    color: #fff;
+    position: absolute;
+    height: 200rpx;
+    width: 400rpx;
+    border-left: 1rpx solid #fff;
+    border-bottom: 1rpx solid #fff;
+    right:40rpx;
+}
+.cost-list-content .item-histogram .item-histogram-num{
+    position: relative;
+    top: -32rpx;
+}
+.cost-list-content .item-histogram{
+    position: absolute;
+    bottom: 0;
+    margin: 0 10rpx;
+    width: 30rpx;
+    background-color: #2d8cf0;
+}
+
+.cost-list-content .item-num{
+    position: absolute;
+    width: 50rpx;
+    top: 200rpx;
+}

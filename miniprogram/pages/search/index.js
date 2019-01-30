@@ -2,7 +2,9 @@ const {occupationInfo} = require('../../lib/const');
 const {formatTime} = require('../../lib/utils');
 const typeTitleMap = {"wild": "狂野", "standard": "标准"};
 Component({
-  properties: {},
+  properties: {
+    componentHeight: Number
+  },
   data: {
     occupationKeyList: Object.keys(occupationInfo),
     deckList: [],
@@ -55,25 +57,15 @@ Component({
   },
   lifetimes: {
     ready() {
-      wx.getSystemInfo({
-        success: (res) => {
-          const windowHeight = res.windowHeight;
-          const query = this.createSelectorQuery();
-          query.select('.search-bar').boundingClientRect((res) => {
-            const searchBarHeight = res.height;
-            const wxQuery = wx.createSelectorQuery();
-            wxQuery.select('#my-notice').boundingClientRect((res) => {
-              const noticeHeight = res.height;
-              this.setData({
-                'scrollHeight': windowHeight - searchBarHeight - noticeHeight - 50
-              });
-              this.getDeckList();
-            });
-            wxQuery.exec();
-          });
-          query.exec();
-        }
-      })
+      const query = this.createSelectorQuery();
+      query.select('#search-bar').boundingClientRect((res) => {
+        const searchBarHeight = res.height;
+        this.setData({
+          'scrollHeight': this.data.componentHeight - searchBarHeight
+        });
+        this.getDeckList();
+      });
+      query.exec();
     },
   },
   methods: {

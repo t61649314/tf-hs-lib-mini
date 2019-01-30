@@ -1,27 +1,16 @@
 Component({
-  properties: {},
+  properties: {
+    componentHeight: Number
+  },
   data: {
     vsStandardHasNew: false,
     vsWildHasNew: false,
     tsStandardHasNew: false,
     tsWildHasNew: false,
-    sekyHasNew: false,
-    scrollHeight: 0,
+    sekyHasNew: false
   },
   lifetimes: {
-    ready() {
-      wx.getSystemInfo({
-        success: (res) => {
-          const windowHeight = res.windowHeight;
-          const query = wx.createSelectorQuery();
-          query.select('#my-notice').boundingClientRect((res) => {
-            this.setData({
-              'scrollHeight': windowHeight - res.height - 50
-            });
-          });
-          query.exec()
-        }
-      });
+    attached() {
       const db = wx.cloud.database();
       const _ = db.command;
       let timeLimit = new Date().getTime() - 3 * 24 * 60 * 60 * 1000;
