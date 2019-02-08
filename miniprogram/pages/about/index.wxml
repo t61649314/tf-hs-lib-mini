@@ -1,25 +1,6 @@
 <view class="about-content">
     <image class="about-top-bg" src="https://other-1257959255.cos.ap-chengdu.myqcloud.com/about-bg.jpg" mode="aspectFit"></image>
     <view class="about-text-content">
-        <view class="title">卡组来源介绍</view>
-        <view>
-            ViciousSyndicate：https://www.vicioussyndicate.com
-        </view>
-        <view style="margin-bottom: 20rpx">
-            卡组基于数据统计，每周都有标准周报产出，每月会有狂野月报产出（版本更新的时候正好没出的话，时间会顺延）。
-        </view>
-        <view>
-            TempoStorm：https://tempostorm.com
-        </view>
-        <view style="margin-bottom: 20rpx">
-            国外知名战队，卡组基于职业玩家的构筑。
-        </view>
-        <view>
-            生而狂野战队：发布在旅法师营地（https://www.iyingdi.com）
-        </view>
-        <view style="margin-bottom: 20rpx">
-            国内知名狂野战队，卡组基于职业玩家的构筑。
-        </view>
         <view class="title">关于小程序</view>
         <view>
             每天早上都会跑一次程序，有新内容一般会在中午之前更新，功能我也会继续迭代，敬请期待。

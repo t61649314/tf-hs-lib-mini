@@ -54,11 +54,17 @@ Component({
               this.data.standardFromList.find(item => {
                 return item.from === reportItem.from
               }).hasNew = true;
+              this.setData({
+                'standardFromList': this.data.standardFromList
+              });
             }
             if (reportItem.type === "wild") {
               this.data.wildFromList.find(item => {
                 return item.from === reportItem.from
               }).hasNew = true;
+              this.setData({
+                'wildFromList': this.data.wildFromList
+              });
             }
           })
         }
