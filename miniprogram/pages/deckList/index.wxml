@@ -1,9 +1,15 @@
 <view class="container">
-    <view class="occupation-bar">
-        <image wx:for="{{occupationKeyList}}"
-               wx:key="index" data-key="{{item}}" bindtap="occupationClick"
-               class="{{item===searchOccupation?'active':''}}"
-               src="{{'../../images/'+item+'-icon.png'}}"></image>
+    <view class="page-head">
+        <view class="page-title">{{page}}</view>
+        <view class="page-info-item">转自：{{fromUrl}}</view>
+        <view class="page-info-item">模式：{{typeMap[type]}}</view>
+        <view class="page-info-item">时间：{{timeStr}}</view>
+        <view class="occupation-bar">
+            <image wx:for="{{occupationKeyList}}"
+                   wx:key="index" data-key="{{item}}" bindtap="occupationClick"
+                   class="{{item===searchOccupation?'active':''}}"
+                   src="{{'../../images/'+item+'-icon.png'}}"></image>
+        </view>
     </view>
     <scroll-view scroll-y='true' style="height:{{scrollHeight}}px">
         <div wx:if="{{showDeckList&&showDeckList.length}}">
@@ -11,10 +17,7 @@
                        url="{{'../deckDetail/index?id='+item._id+'&time='+item.time+'&page='+item.page}}"
                        open-type="navigate">
                 <image class="item-occupation-icon" src="{{'../../images/'+item.occupation+'-icon.png'}}"></image>
-                <div class="item-name">{{item.name}}</div>
-                <div class="item-type">{{item.typeStr}}</div>
-                <div class="item-page">{{item.page}}</div>
-                <div class="item-time">{{item.timeStr}}</div>
+                <div class="deck-name">{{item.name}}</div>
             </navigator>
         </div>
         <view wx:elif="{{!scrollLoading}}" class="no-data-content">暂无数据</view>

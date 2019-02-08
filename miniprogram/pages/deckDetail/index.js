@@ -1,4 +1,4 @@
-const {timeNode, occupationInfo} = require('../../lib/const');
+const {timeNode, occupationInfo,fromMap} = require('../../lib/const');
 const app = getApp();
 Page({
   data: {
@@ -9,11 +9,11 @@ Page({
     time: "",
     weakenArr: [],
     isInit: false,
-    loading: false,
+    loading: true,
     collectionId: "",
     deck: {},
     fromUrl: "",
-    fromMap: {"vicious-syndicate": "ViciousSyndicate", "tempo-storm": "TempoStorm", "shengerkuangye": "生而狂野战报"},
+    fromMap: fromMap,
     scrollHeight: 0,
     costList: [0, 0, 0, 0, 0, 0, 0, 0]
   },
@@ -45,11 +45,13 @@ Page({
       }
     });
   },
+  getSuggestionsAndSimilarities: function () {
+    wx.navigateTo({
+      url: '../fineTuning/index?deckId=' + this.data.id
+    })
+  },
   getDeck: function () {
     const db = wx.cloud.database();
-    this.setData({
-      'loading': true
-    });
     db.collection('deck-list')
       .doc(this.data.id)
       .get().then(({data}) => {
@@ -58,7 +60,7 @@ Page({
           item.isWeaken = this.isWeaken(item.dbfId);
           item.img = item.img.replace("'", "%27");
           let cost = item.cost >= 7 ? 7 : item.cost;
-          this.data.costList[cost]++;
+          this.data.costList[cost] += item.quantity;
         });
         this.data.deck = data;
       }

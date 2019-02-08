@@ -1,0 +1,108 @@
+@import "../../style/base.wxss";
+
+
+.sug-card-wrap .card-item {
+    height: 50rpx;
+    line-height: 50rpx;
+    background: #1b1b1b;
+    color: #ddd;
+    position: relative;
+    display: flex;
+    width: 345rpx;
+    margin: 0 10rpx 4rpx;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.sug-card-wrap .card-item .card-img-wrap {
+    height: 50rpx;
+    text-align: right;
+    flex: 1;
+}
+.sug-card-wrap .card-item .card-img {
+    height: 100%;
+    width: 210rpx;
+}
+
+
+.sug-card-wrap .card-item .card-cost {
+    color: #fff;
+    width: 50rpx;
+    background-color: #2766ad;
+    font-weight: 700;
+    border-radius: 4px;
+}
+
+.sug-card-wrap .card-item .card-name {
+    color: #fff;
+    position: absolute;
+    left: 65rpx;
+}
+.sug-card-wrap .card-item .card-add {
+    width: 50rpx;
+    color: #09bb07;
+    font-weight: 700;
+    font-size:32rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sug-card-wrap .card-item .card-add text{
+    display:block;
+    width:50rpx;
+    height:50rpx;
+}
+.sug-card-wrap .card-item .card-remove {
+    width: 50rpx;
+    color: #e64340;
+    font-weight: 700;
+    font-size:32rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sug-card-wrap .card-item .card-remove text{
+    display:block;
+    width:50rpx;
+    height:50rpx;
+}
+.similar-deck-wrap{
+    border-top: 1rpx solid #ccc;
+}
+.sug-card-wrap{
+    display: flex;
+    padding:0 10rpx;
+}
+.add-card-wrap.remove-card-wrap{
+    flex: 1;
+}
+.head {
+    padding: 40rpx 20rpx;
+    text-align: left;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.head .title{
+    font-weight: bold;
+    color: black;
+    font-size: 36rpx;
+}
+
+.sug-card-wrap .card-item .card-name-Basic{
+    color:#fff;
+}
+.sug-card-wrap .card-item .card-name-Common{
+    color:#fff;
+}
+.sug-card-wrap .card-item .card-name-Rare{
+    color:#2d8cf0;
+}
+.sug-card-wrap .card-item .card-name-Epic{
+    color: #b341e2;
+}
+.sug-card-wrap .card-item .card-name-Legendary{
+    color:#fba31b;
+}

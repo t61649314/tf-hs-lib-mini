@@ -1,21 +1,26 @@
 const {occupationInfo} = require('../../lib/const');
 const {formatTime} = require('../../lib/utils');
-const typeTitleMap = {"wild": "狂野", "standard": "标准"};
+const typeMap = {"wild": "狂野", "standard": "标准"};
 Page({
   data: {
     occupationKeyList: Object.keys(occupationInfo),
+    typeMap: typeMap,
     deckList: [],
     showDeckList: [],
     searchOccupation: "",
+    type: "",
+    fromUrl: "",
     page: "",
-    time: "",
+    timeStr: "",
     scrollHeight: 0,
     scrollLoading: false
   },
   onLoad(options) {
     this.setData({
+      'type': options.type,
+      'fromUrl': options.fromUrl,
       'page': options.page,
-      'time': options.time,
+      'timeStr': formatTime(new Date(parseInt(options.time))),
     });
   },
   onReady() {
@@ -23,7 +28,7 @@ Page({
       success: (res) => {
         const windowHeight = res.windowHeight;
         const query = this.createSelectorQuery();
-        query.select('.occupation-bar').boundingClientRect((res) => {
+        query.select('.page-head').boundingClientRect((res) => {
           this.setData({
             'scrollHeight': windowHeight - res.height,
             'scrollLoading': true
@@ -52,10 +57,6 @@ Page({
         if (data.length === 20) {
           this.getDeckList(skip + 20)
         } else {
-          this.data.deckList.forEach(item => {
-            item.timeStr = formatTime(new Date(item.time));
-            item.typeStr = typeTitleMap[item.type];
-          });
           this.setData({
             'deckList': this.data.deckList,
             'showDeckList': this.data.deckList,

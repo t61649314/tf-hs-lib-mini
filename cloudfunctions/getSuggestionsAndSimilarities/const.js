@@ -1,52 +1,3 @@
-const occupationInfo = {
-  Druid: {
-    cnName: "德鲁伊",
-    simpleName: "德",
-    dbfId: 274
-  },
-  Hunter: {
-    cnName: "猎人",
-    simpleName: "猎",
-    dbfId: 31
-  },
-  Mage: {
-    cnName: "法师",
-    simpleName: "法",
-    dbfId: 637
-  },
-  Paladin: {
-    cnName: "骑士",
-    simpleName: "骑",
-    dbfId: 671
-  },
-  Priest: {
-    cnName: "牧师",
-    simpleName: "牧",
-    dbfId: 813
-  },
-  Rogue: {
-    cnName: "盗贼",
-    simpleName: "贼",
-    dbfId: 930
-  },
-  Shaman: {
-    cnName: "萨满",
-    simpleName: "萨",
-    dbfId: 1066
-  },
-  Warlock: {
-    cnName: "术士",
-    simpleName: "术",
-    dbfId: 893
-  },
-  Warrior: {
-    cnName: "战士",
-    simpleName: "战",
-    dbfId: 7
-  },
-};
-
-
 const timeNode = [
   {
     time: "2019-02-06",
@@ -130,9 +81,7 @@ const timeNode = [
     title: "《古神的低语》上线、知识古树、自然之力、丛林守护者、铁喙猫头鹰、王牌猎人、猎人印记、剑刃乱舞、飞刀杂耍者、麻疯侏儒、奥术傀儡、熔核巨人、伪装大师削弱、《纳克萨玛斯的诅咒》、《地精大战侏儒》退环境",
   }
 ];
-const fromMap={"vicious-syndicate": "ViciousSyndicate", "tempo-storm": "TempoStorm", "shengerkuangye": "生而狂野战报", "fengtian": "奉天狂野战报"};
+
 module.exports = {
-  fromMap,
-  occupationInfo,
   timeNode
 };

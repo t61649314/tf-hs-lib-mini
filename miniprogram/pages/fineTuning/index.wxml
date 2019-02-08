@@ -1,0 +1,55 @@
+<view wx:if="{{!loading}}" class="fine-tuning">
+    <view class="head">
+        <text class="title">微调建议</text>
+    </view>
+    <view class="sug-card-wrap">
+        <view class="add-card-wrap">
+            <view class="card-item"
+                  wx:for="{{suggestionsAddCardList}}"
+                  wx:key="index">
+                <view class="card-cost">{{item.info.cost}}</view>
+                <view class="card-name card-name-{{item.info.rarity}}">{{item.info.cnName}}</view>
+                <view class="card-img-wrap">
+                    <image class="card-img" mode="aspectFit"
+                           src="{{'https://cdn.tempostorm.com/cards/'+item.info.img}}"/>
+                </view>
+                <view class="card-add">
+                    <text>+</text>
+                </view>
+            </view>
+        </view>
+        <view class="remove-card-wrap">
+            <view class="card-item"
+                  wx:for="{{suggestionsRemoveCardsList}}"
+                  wx:key="index">
+                <view class="card-cost">{{item.info.cost}}</view>
+                <view class="card-name card-name-{{item.info.rarity}}">{{item.info.cnName}}</view>
+                <view class="card-img-wrap">
+                    <image class="card-img" mode="aspectFit"
+                           src="{{'https://cdn.tempostorm.com/cards/'+item.info.img}}"/>
+                </view>
+                <view class="card-remove">
+                    <text>-</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="head">
+        <text class="title">相似卡组</text>
+    </view>
+    <view class="similar-deck-wrap">
+        <navigator class="item" wx:for="{{similarDeckList}}" wx:key="{{index}}"
+                   url="{{'../deckDetail/index?id='+item.deck._id+'&time='+item.deck.time+'&page='+item.deck.page}}"
+                   open-type="navigate">
+            <image class="item-occupation-icon" src="{{'../../images/'+item.deck.occupation+'-icon.png'}}"></image>
+            <div class="item-name">{{item.deck.name}}</div>
+            <div class="item-type">{{item.union}}张相同卡</div>
+            <div class="item-page">{{item.deck.page}}</div>
+            <div class="item-time">{{item.deck.timeStr}}</div>
+        </navigator>
+    </view>
+</view>
+<i-spin size="large" fix custom wx:if="{{loading}}">
+    <i-icon type="refresh" size="20" i-class="icon-load"></i-icon>
+    加载中...
+</i-spin>

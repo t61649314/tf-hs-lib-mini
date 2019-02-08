@@ -1,11 +1,11 @@
 <view class="container">
-    <div class="search-bar" id="search-bar">
-        <div class="name-bar">
+    <div class="search-bar"  i-class="search-bar" id="search-bar">
+        <div class="name-bar search-item">
             <i-icon type="search" class="search-icon" size="18"/>
             <i-input i-class="search-name" value="{{ searchData.name }}" bind:blur="searchNameBlur" title="卡组名称"
                      placeholder="请输入卡组名称"/>
         </div>
-        <div class="from-type-bar">
+        <div class="from-type-bar search-item">
             <div class="from-item" bindtap="handleOpen1">
                 来源：{{fromText}}
                 <i-icon type="unfold"/>
@@ -15,7 +15,7 @@
                 <i-icon type="unfold"/>
             </div>
         </div>
-        <div class="occupation-bar">
+        <div class="occupation-bar search-item">
             <image wx:for="{{occupationKeyList}}"
                    wx:key="index" data-key="{{item}}" bindtap="occupationClick"
                    class="{{'occupation-icon '+(item===searchData.occupation?'active':'')}}"

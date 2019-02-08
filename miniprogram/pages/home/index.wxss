@@ -2,10 +2,6 @@
 .container{
     position: relative;
 }
-.my-ad{
-    bottom: 0;
-    position: absolute;
-}
 .navigator-box {
     width: 100%;
     background: #fff;

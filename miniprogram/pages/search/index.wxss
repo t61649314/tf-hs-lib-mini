@@ -9,18 +9,13 @@
 .search-bar{
     display: flex;
     flex-direction: column;
-    padding: 20rpx;
+    padding: 0 20rpx;
     width: 100%;
     box-sizing: border-box;
-    border-bottom:1rpx solid #ccc;
     box-shadow: 0 1px 2px 0 #b9b9b9;
     z-index: 1;
 }
-.occupation-bar{
-    display: flex;
-    justify-content: space-between;
-    padding-top: 20rpx;
-}
+
 .occupation-bar image{
     width: 60rpx;
     height: 60rpx;
@@ -30,13 +25,21 @@
     background:#2d8cf0;
     border-radius:50%;
 }
-.name-bar{
+.search-item{
     position: relative;
+    height: 100rpx;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    border-bottom: 1rpx solid #ccc;
+}
+.occupation-bar{
+    justify-content: space-between;
+    border-bottom:0;
 }
 .search-icon{
     position: absolute;
     left:10rpx;
-    top: 12rpx;
     z-index: 1;
 }
 .search-name{
@@ -47,18 +50,23 @@
 }
 
 .from-type-bar{
-    display: flex;
-    padding: 20rpx 0;
     text-align: left;
 }
 .from-type-bar .from-item{
     box-sizing: border-box;
-    padding-left: 30rpx;
+    padding-left: 10rpx;
     flex: 1;
     border-right: 1rpx solid #ccc;
 }
 .from-type-bar .type-item{
     box-sizing: border-box;
-    padding-left: 30rpx;
+    padding-left: 10rpx;
     flex: 1;
+}
+.search-bar view{
+    font-size: 24rpx;
+}
+
+.search-bar .i-input{
+    border: 0;
 }

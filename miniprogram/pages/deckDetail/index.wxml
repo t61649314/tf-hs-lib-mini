@@ -8,16 +8,23 @@
             <view class="type-item">模式：{{typeMap[deck.type]}}</view>
             <view class="from-item">来源：{{fromMap[deck.from]}}</view>
             <view class="cost-list-content">
-                <view class="cost-item"  wx:for="{{['0','1','2','3','4','5','6','7+']}}"  wx:key="index">
+                <view class="cost-item" wx:for="{{['0','1','2','3','4','5','6','7+']}}" wx:key="index">
+                    <view class="item-histogram-num"
+                          style="right:{{(7-index)*50+4}}rpx;bottom: {{costList[index]*15}}rpx">
+                        {{costList[index]}}
+                    </view>
                     <view class="item-histogram" style="height: {{costList[index]*15}}rpx;right:{{(7-index)*50}}rpx">
-                        <view class="item-histogram-num">
-                            {{costList[index]}}
-                        </view>
                     </view>
                     <view class="item-num" style="right:{{(7-index)*50}}rpx">{{item}}</view>
                 </view>
             </view>
         </view>
+    </view>
+    <view class="deck-box-head">
+        <text class="title">卡组详情</text>
+        <i-button wx:if="{{deck.type==='wild'}}" class="sug-sim-btn" bind:click="getSuggestionsAndSimilarities" type="primary" inline="true" size="small">
+            相似卡组
+        </i-button>
     </view>
     <view class="deck-box">
         <view class="card-item"
@@ -39,7 +46,6 @@
     <i-button class="copy-deck-btn" data-code="{{deck.code}}" bind:click="handleClick" type="primary"
               size="small">复制卡组
     </i-button>
-    <ad class="my-ad" unit-id="adunit-254b3b09f194c5a7"></ad>
 </scroll-view>
 <view class="bottom-btn-box">
     <button open-type="share" class="bottom-btn">

@@ -3,11 +3,40 @@ Component({
     componentHeight: Number
   },
   data: {
-    vsStandardHasNew: false,
-    vsWildHasNew: false,
-    tsStandardHasNew: false,
-    tsWildHasNew: false,
-    sekyHasNew: false
+    wildFromList: [
+      {
+        from: "vicious-syndicate",
+        cnName: "VS战报",
+        hasNew: false
+      },
+      {
+        from: "tempo-storm",
+        cnName: "TS战报",
+        hasNew: false
+      },
+      {
+        from: "shengerkuangye",
+        cnName: "生而狂野战报",
+        hasNew: false
+      },
+      {
+        from: "fengtian",
+        cnName: "奉天狂野战报",
+        hasNew: false
+      }
+    ],
+    standardFromList: [
+      {
+        from: "vicious-syndicate",
+        cnName: "VS战报",
+        hasNew: false
+      },
+      {
+        from: "tempo-storm",
+        cnName: "TS战报",
+        hasNew: false
+      }
+    ],
   },
   lifetimes: {
     attached() {
@@ -20,35 +49,16 @@ Component({
         })
         .get().then(({data}) => {
         if (data && data.length) {
-          data.forEach(item => {
-            if (item.type === "standard") {
-              if (item.from === "vicious-syndicate") {
-                this.setData({
-                  'vsStandardHasNew': true
-                });
-              }
-              if (item.from === "tempo-storm") {
-                this.setData({
-                  'tsStandardHasNew': true
-                });
-              }
+          data.forEach(reportItem => {
+            if (reportItem.type === "standard") {
+              this.data.standardFromList.find(item => {
+                return item.from === reportItem.from
+              }).hasNew = true;
             }
-            if (item.type === "wild") {
-              if (item.from === "vicious-syndicate") {
-                this.setData({
-                  'vsWildHasNew': true
-                });
-              }
-              if (item.from === "tempo-storm") {
-                this.setData({
-                  'tsWildHasNew': true
-                });
-              }
-              if (item.from === "shengerkuangye") {
-                this.setData({
-                  'sekyHasNew': true
-                });
-              }
+            if (reportItem.type === "wild") {
+              this.data.wildFromList.find(item => {
+                return item.from === reportItem.from
+              }).hasNew = true;
             }
           })
         }
