@@ -14,7 +14,7 @@
     <scroll-view scroll-y='true' style="height:{{scrollHeight}}px">
         <div wx:if="{{showDeckList&&showDeckList.length}}">
             <navigator class="item" wx:for="{{showDeckList}}" wx:key="{{index}}"
-                       url="{{'../deckDetail/index?id='+item._id+'&time='+item.time+'&page='+item.page}}"
+                       url="{{'../deckDetail/index?id='+item._id+'&time='+item.time+'&name='+item.name}}"
                        open-type="navigate">
                 <image class="item-occupation-icon" src="{{'../../images/'+item.occupation+'-icon.png'}}"></image>
                 <div class="deck-name">{{item.name}}</div>

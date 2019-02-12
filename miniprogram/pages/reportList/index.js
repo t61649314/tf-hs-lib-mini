@@ -1,7 +1,5 @@
 const {timeNode} = require('../../lib/const');
 const {formatTime} = require('../../lib/utils');
-const reportTitleMap = {"vicious-syndicate": "VS", "tempo-storm": "TS", "shengerkuangye": "生而", "fengtian": "奉天"};
-const typeTitleMap = {"wild": "狂野", "standard": "标准"};
 Page({
   data: {
     reportList: [],
@@ -12,7 +10,7 @@ Page({
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: `${reportTitleMap[options.from]}${typeTitleMap[options.type]}战报`
+      title: options.cnName
     });
     this.setData({
       'from': options.from,

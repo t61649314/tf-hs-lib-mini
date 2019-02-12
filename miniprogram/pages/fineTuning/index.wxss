@@ -80,11 +80,11 @@
     padding: 40rpx 20rpx;
     text-align: left;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
+.head .sub-title{
+    color: #9b9b9b;
+}
 .head .title{
     font-weight: bold;
     color: black;

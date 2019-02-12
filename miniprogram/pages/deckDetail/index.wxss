@@ -13,14 +13,14 @@
     position: absolute;
     top: 0;
     width: 100%;
-    padding: 40rpx;
+    padding: 30rpx;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.type-item,.from-item,.fromUrl-item,.name-item{
+.info-item{
     width: 100%;
     color: #fff;
     text-align: left;
@@ -31,7 +31,7 @@
 }
 
 .deck-box-head {
-    padding: 40rpx 20rpx 0;
+    padding: 40rpx 20rpx;
     text-align: left;
     position: relative;
     display: flex;
@@ -58,7 +58,7 @@
 .deck-box {
     width: 100%;
     box-sizing: border-box;
-    padding: 20rpx 10rpx 20rpx;
+    padding:0 10rpx;
     display: flex;
     flex-wrap: wrap;
 }
@@ -124,8 +124,14 @@
     box-sizing: border-box;
 }
 
+.copy-deck-btn {
+    padding: 20rpx 0;
+}
+
 .copy-deck-btn button{
     width: 700rpx;
+    margin: 20px 10px;
+    border-radius: 4px;
 }
 
 .my-ad{
@@ -138,6 +144,7 @@
     box-sizing: border-box;
     width: 100%;
     display: flex;
+    border-top: 1rpx solid #ccc;
 }
 .bottom-btn i-icon{
     margin-right: 10rpx;
@@ -192,6 +199,7 @@
     border-left: 1rpx solid #fff;
     border-bottom: 1rpx solid #fff;
     right:40rpx;
+    top:40rpx;
 }
 .cost-list-content .item-histogram-num{
     position: absolute;

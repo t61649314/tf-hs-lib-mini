@@ -1,8 +1,11 @@
 <view wx:if="{{!loading}}" class="fine-tuning">
     <view class="head">
-        <text class="title">微调建议</text>
+        <view class="title">微调建议</view>
+        <view class="sub-title" wx:if="{{similarDeckList&&similarDeckList.length}}">
+            <text class="waring-text">数据来自相似卡组</text>，相似卡组中带了的而当前卡组没带的为推荐加入的卡，推荐度由上至下（左边），相似卡组中没带而当前卡组中带了的为推荐去掉的卡，推荐度由上至下（右边）。
+            <text class="waring-text">只提供思路并不代表调整后会提高强度，有可能当前卡组为最优构筑也说不定哟~</text></view>
     </view>
-    <view class="sug-card-wrap">
+    <view class="sug-card-wrap" wx:if="{{similarDeckList&&similarDeckList.length}}">
         <view class="add-card-wrap">
             <view class="card-item"
                   wx:for="{{suggestionsAddCardList}}"
@@ -34,19 +37,44 @@
             </view>
         </view>
     </view>
-    <view class="head">
-        <text class="title">相似卡组</text>
+    <view class="no-data-content" wx:else>
+        暂无数据
     </view>
-    <view class="similar-deck-wrap">
+
+    <view class="head">
+        <view class="title">相似卡组</view>
+    </view>
+    <view class="similar-deck-wrap" wx:if="{{similarDeckList&&similarDeckList.length}}">
         <navigator class="item" wx:for="{{similarDeckList}}" wx:key="{{index}}"
-                   url="{{'../deckDetail/index?id='+item.deck._id+'&time='+item.deck.time+'&page='+item.deck.page}}"
+                   url="{{'../deckDetail/index?id='+item.deck._id+'&time='+item.deck.time+'&name='+item.deck.name}}"
                    open-type="navigate">
             <image class="item-occupation-icon" src="{{'../../images/'+item.deck.occupation+'-icon.png'}}"></image>
             <div class="item-name">{{item.deck.name}}</div>
-            <div class="item-type">{{item.union}}张相同卡</div>
+            <div class="item-type">{{item.sameQuantity}}张相同卡</div>
             <div class="item-page">{{item.deck.page}}</div>
             <div class="item-time">{{item.deck.timeStr}}</div>
         </navigator>
+    </view>
+    <view class="no-data-content" wx:else>
+        暂无数据
+    </view>
+
+    <view class="head">
+        <view class="title">已削弱的卡</view>
+    </view>
+    <view class="weaken-card-wrap" wx:if="{{weakenCardList&&weakenCardList.length}}">
+    </view>
+    <view class="no-data-content" wx:else>
+        暂无数据
+    </view>
+
+    <view class="head">
+        <view class="title">可加入新版本卡</view>
+    </view>
+    <view class="new-version-wrap" wx:if="{{newVersionList&&newVersionList.length}}">
+    </view>
+    <view class="no-data-content" wx:else>
+        暂无数据
     </view>
 </view>
 <i-spin size="large" fix custom wx:if="{{loading}}">

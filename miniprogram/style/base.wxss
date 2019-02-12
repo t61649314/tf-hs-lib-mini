@@ -133,3 +133,6 @@ body {
     color: #5a5a5a;
     padding: 50rpx;
 }
+.waring-text{
+    color: red;
+}

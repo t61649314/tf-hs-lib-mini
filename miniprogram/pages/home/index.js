@@ -6,12 +6,12 @@ Component({
     wildFromList: [
       {
         from: "vicious-syndicate",
-        cnName: "VS战报",
+        cnName: "VS狂野月报",
         hasNew: false
       },
       {
         from: "tempo-storm",
-        cnName: "TS战报",
+        cnName: "TS狂野月报",
         hasNew: false
       },
       {
@@ -28,12 +28,12 @@ Component({
     standardFromList: [
       {
         from: "vicious-syndicate",
-        cnName: "VS战报",
+        cnName: "VS标准周报",
         hasNew: false
       },
       {
         from: "tempo-storm",
-        cnName: "TS战报",
+        cnName: "TS标准周报",
         hasNew: false
       }
     ],

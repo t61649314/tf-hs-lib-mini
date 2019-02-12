@@ -16,6 +16,9 @@ Page({
     scrollLoading: false
   },
   onLoad(options) {
+    wx.setNavigationBarTitle({
+      title: options.page
+    });
     this.setData({
       'type': options.type,
       'fromUrl': options.fromUrl,
@@ -67,6 +70,9 @@ Page({
     }).catch(console.error)
   },
   occupationClick(event) {
+    if(this.data.scrollLoading){
+      return;
+    }
     const key = event.currentTarget.dataset.key;
     if (this.data.searchOccupation !== key) {
       this.data.searchOccupation = key;

@@ -19,7 +19,7 @@ Page({
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: options.page
+      title: options.name
     });
     this.setData({
       'id': options.id,

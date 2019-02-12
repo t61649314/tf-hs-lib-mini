@@ -27,16 +27,20 @@ Component({
         value: '',
       },
       {
-        name: 'VS战报',
+        name: 'ViciousSyndicate',
         value: 'vicious-syndicate',
       },
       {
-        name: 'TS战报',
+        name: 'TempoStorm',
         value: 'tempo-storm'
       },
       {
         name: '生而狂野',
         value: 'shengerkuangye'
+      },
+      {
+        name: '奉天战队',
+        value: 'fengtian'
       }
     ],
     actions2: [

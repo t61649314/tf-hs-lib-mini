@@ -9,7 +9,7 @@ Component({
     takeSession: false,
     scrollHeight: 0,
     requestResult: '',
-    appreciationCodeUrl: 'https://other-1257959255.cos.ap-chengdu.myqcloud.com/appreciation-code.jpg',
+    appreciationCodeUrl: 'cloud://tf-deck-lib-server-593c3f.7466-tf-deck-lib-server-593c3f/other/appreciation-code.jpg',
     current: "homepage"
   },
   lifetimes: {
