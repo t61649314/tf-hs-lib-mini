@@ -1,3 +1,4 @@
+<wxs src="../../lib/utils.wxs" module="utils" />
 <scroll-view scroll-y='true' style="height:{{scrollHeight}}px" class="container" wx:if="{{isInit}}">
     <view class="occupation-content">
         <image class="occupation-bg" src="cloud://tf-deck-lib-server-593c3f.7466-tf-deck-lib-server-593c3f/occupation-bg/{{deck.occupation}}.png"
@@ -35,7 +36,7 @@
             <view class="card-name card-name-{{cardItem.rarity}}">{{cardItem.cnName}}</view>
             <view class="card-img-wrap">
                 <image class="card-img" mode="aspectFit"
-                       src="{{'https://cdn.tempostorm.com/cards/'+cardItem.img}}"/>
+                       src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(cardItem.img)}}"/>
             </view>
             <view class="card-quantity">
                 <i-icon wx:if="{{cardItem.rarity==='Legendary'}}" type="collection_fill"/>

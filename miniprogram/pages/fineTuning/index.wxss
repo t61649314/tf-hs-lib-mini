@@ -69,6 +69,12 @@
 .similar-deck-wrap{
     border-top: 1rpx solid #ccc;
 }
+.any-card-wrap{
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+}
+
 .sug-card-wrap{
     display: flex;
     padding:0 10rpx;
@@ -82,8 +88,11 @@
     position: relative;
 }
 
-.head .sub-title{
+.sub-title{
+    padding: 40rpx 20rpx 20rpx;
+    text-align: left;
     color: #9b9b9b;
+    font-size: 28rpx;
 }
 .head .title{
     font-weight: bold;
@@ -105,4 +114,25 @@
 }
 .sug-card-wrap .card-item .card-name-Legendary{
     color:#fba31b;
+}
+.version-list .item{
+    height: 80rpx;
+    border-top:1rpx solid #ccc;
+    margin-top: -1rpx;
+}
+
+.item-open:after {
+    transform: rotate(-45deg);
+    bottom:-11.3rpx
+}
+.item-close:after {
+    transform: rotate(135deg);
+    top:-11.3rpx
+}
+.version-img{
+    display: inline-block;
+    width: 60rpx;
+    height: 60rpx;
+    margin-right: 20rpx;
+    position: relative;
 }

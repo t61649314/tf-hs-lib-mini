@@ -1,0 +1,7 @@
+function formatImageUrl(url) {
+  return url.replace("'", "%27");
+}
+
+module.exports = {
+  formatImageUrl: formatImageUrl
+}

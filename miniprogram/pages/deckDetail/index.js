@@ -58,7 +58,6 @@ Page({
       if (data) {
         data.cards.forEach(item => {
           item.isWeaken = this.isWeaken(item.dbfId);
-          item.img = item.img.replace("'", "%27");
           let cost = item.cost >= 7 ? 7 : item.cost;
           this.data.costList[cost] += item.quantity;
         });
