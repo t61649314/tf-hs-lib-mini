@@ -47,7 +47,11 @@ Page({
     let collection = db.collection('deck-list')
       .where({
         page: this.data.page
-      }).limit(20);
+      }).limit(20).field({
+        time: true,
+        name: true,
+        occupation: true
+      });
     let promise;
     if (skip > 0) {
       promise = collection.skip(skip).get();

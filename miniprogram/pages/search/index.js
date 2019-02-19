@@ -73,6 +73,10 @@ Component({
       {
         name: '奉天战队',
         value: 'fengtian'
+      },
+      {
+        name: '其他',
+        value: 'other'
       }
     ],
     actions2: [
@@ -152,9 +156,15 @@ Component({
         .skip((this.data.pageNum - 1) * 20)
         .limit(20)
         .orderBy('type', 'asc')
-        .orderBy('from', 'desc')
         .orderBy('time', 'desc')
-        .orderBy('occupation', 'desc')
+        .orderBy('from', 'desc')
+        .orderBy('occupation', 'desc').field({
+        type: true,
+        page: true,
+        time: true,
+        name: true,
+        occupation: true
+      })
         .get()
         .then(({data}) => {
           if (data && data.length) {
