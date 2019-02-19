@@ -70,3 +70,23 @@
 .search-bar .i-input{
     border: 0;
 }
+.often-word{
+    border-bottom:0;
+    flex-wrap: wrap;
+    height: auto;
+    padding: 16rpx 0;
+    font-size: 24rpx;
+}
+.word-item{
+    padding: 0 10rpx;
+    border-radius: 4px;
+    border: 1rpx solid #ccc;
+    margin: 9rpx 14rpx;
+    height: 50rpx;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+.word-selected{
+
+}

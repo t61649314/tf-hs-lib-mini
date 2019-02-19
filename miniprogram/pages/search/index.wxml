@@ -21,6 +21,11 @@
                    class="{{'occupation-icon '+(item===searchData.occupation?'active':'')}}"
                    src="{{'../../images/'+item+'-icon.png'}}"></image>
         </div>
+        <!--<div class="often-word search-item">-->
+            <!--<div class="word-item {{item.isSelected?'word-selected':''}}"  wx:for="{{oftenWordList}}" wx:key="{{index}}">-->
+                <!--{{item.name}}-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
     <scroll-view scroll-y='true' style="height:{{scrollHeight}}px" bindscrolltolower='lower'>
         <div wx:if="{{deckList&&deckList.length}}">

@@ -7,6 +7,38 @@ Component({
   },
   data: {
     occupationKeyList: Object.keys(occupationInfo),
+    oftenWordList: [
+      {
+        name: "奇数", isSelected: false
+      },
+      {
+        name: "偶数", isSelected: false
+      },
+      {
+        name: "奥秘", isSelected: false
+      },
+      {
+        name: "控制", isSelected: false
+      },
+      {
+        name: "中速", isSelected: false
+      },
+      {
+        name: "快攻", isSelected: false
+      },
+      {
+        name: "宇宙", isSelected: false
+      },
+      {
+        name: "青玉", isSelected: false
+      },
+      {
+        name: "海盗", isSelected: false
+      },
+      {
+        name: "蓝龙", isSelected: false
+      }
+    ],
     deckList: [],
     searchData: {
       name: "",

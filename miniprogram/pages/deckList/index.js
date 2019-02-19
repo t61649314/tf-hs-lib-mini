@@ -21,7 +21,7 @@ Page({
     });
     this.setData({
       'type': options.type,
-      'fromUrl': options.fromUrl,
+      'fromUrl': decodeURIComponent(options.fromUrl),
       'page': options.page,
       'timeStr': formatTime(new Date(parseInt(options.time))),
     });

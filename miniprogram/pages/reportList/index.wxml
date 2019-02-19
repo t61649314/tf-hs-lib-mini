@@ -1,6 +1,6 @@
 <view class="container">
     <div wx:for="{{reportGroup}}" wx:key="index" class="item-box">
-        <navigator wx:if="{{item.name}}" url="{{'../deckList/index?page='+item.name+'&time='+item.time+'&type='+item.type+'&fromUrl='+item.fromUrl}}"
+        <navigator wx:if="{{item.name}}" url="{{'../deckList/index?page='+item.name+'&time='+item.time+'&type='+item.type+'&fromUrl='+item.fromUrlEncode}}"
                    open-type="navigate" class="item">
             <span class="has-time-title title">{{item.name}}</span>
             <span class="new-icon" wx:if="{{item.isNew}}">new!</span>

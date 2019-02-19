@@ -23,6 +23,11 @@ Component({
         from: "fengtian",
         cnName: "奉天狂野战报",
         hasNew: false
+      },
+      {
+        from: "other",
+        cnName: "其他",
+        hasNew: false
       }
     ],
     standardFromList: [
