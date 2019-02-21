@@ -1,3 +1,13 @@
+const honorRoomTimeNode = [
+  {
+    time: "2017-04-07",
+    cardArr: [825, 1721, 374, 846, 172, 990, 736, 530, 1754, 858]
+  },
+  {
+    time: "2018-04-13",
+    cardArr: [192, 1016, 1372]
+  }
+]
 const timeNode = [
   {
     time: "2019-02-06",
@@ -29,7 +39,7 @@ const timeNode = [
   },
   {
     time: "2018-04-13",
-    title: "《女巫森林》上线、冰箱、寒光智者、熔核巨人进入荣誉室、《上古之神的低语》、《卡拉赞之夜》、《龙争虎斗加基森》退环境",
+    title: "《女巫森林》上线、寒冰屏障、寒光智者、熔核巨人进入荣誉室、《上古之神的低语》、《卡拉赞之夜》、《龙争虎斗加基森》退环境",
   },
   {
     time: "2018-02-07",
@@ -163,6 +173,7 @@ const versionInfo = {
   }
 };
 module.exports = {
+  honorRoomTimeNode,
   timeNode,
   versionInfo
 };

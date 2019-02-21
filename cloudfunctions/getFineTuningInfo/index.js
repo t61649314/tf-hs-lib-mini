@@ -2,7 +2,7 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 const db = cloud.database()
 const MAX_LIMIT = 100
-let {timeNode, versionInfo} = require('./const');
+let {timeNode, versionInfo, honorRoomTimeNode} = require('./const');
 
 function formatNum(num) {
   return Math.round(num * 100) / 100
@@ -182,18 +182,31 @@ exports.main = async (event, context) => {
       suggestionsRemoveCardsList = sortCardWeightInfoToList(suggestionsRemoveCardsObj, 5, false).filter(item => item.weight > 0);
       suggestionsAddCardList = sortCardWeightInfoToList(suggestionsAddCardsObj, 5, true).filter(item => item.weight > 0);
     }
+    let currentDeckWithOutHonorRoomCards = [];
     Object.keys(versionInfo).forEach(key => {
       let item = versionInfo[key];
       let itemTime = new Date(item.time).getTime();
       versionInfo[key].hotCardWeightInfo = {};
-      if (!item.time) {
-        delete versionInfo[key]
-      } else if (fineTuningType === 3 && currentDeckMinTimeLong) {
-        if (itemTime < deck.time && itemTime >= currentDeckMinTimeLong) {
+      if (fineTuningType === 3 && key === "4") {//type为3的时候要考虑荣誉室
+        honorRoomTimeNode.forEach(honorRoomItem => {
+          let honorRoomItemTime = new Date(honorRoomItem.time).getTime();
+          if (honorRoomItemTime < deck.time) {
+            currentDeckWithOutHonorRoomCards = currentDeckWithOutHonorRoomCards.concat(honorRoomItem.cardArr);
+          }
+        });
+        if (!currentDeckWithOutHonorRoomCards.length) {
           delete versionInfo[key]
         }
-      } else if (itemTime < deck.time) {
-        delete versionInfo[key]
+      } else {
+        if (!item.time) {
+          delete versionInfo[key]
+        } else if (fineTuningType === 3 && currentDeckMinTimeLong) {
+          if (itemTime < deck.time && itemTime >= currentDeckMinTimeLong) {
+            delete versionInfo[key]
+          }
+        } else if (itemTime < deck.time) {
+          delete versionInfo[key]
+        }
       }
     });
     deckList.forEach(item => {
@@ -207,6 +220,9 @@ exports.main = async (event, context) => {
         let versionInfoItem = versionInfo[item.cardSet];
         if (versionInfoItem) {
           if (!weakenCardList.includes(item.dbfId)) {
+            if (item.cardSet === "4" && !currentDeckWithOutHonorRoomCards.includes(item.dbfId)) {
+              return false;
+            }
             if (versionInfoItem.hotCardWeightInfo[item.dbfId]) {
               versionInfoItem.hotCardWeightInfo[item.dbfId].weight += item.quantity;
             } else {

@@ -1,6 +1,7 @@
 const {formatTime} = require('../../lib/utils');
 Page({
   data: {
+    fineTuningType: 0,
     loading: true,
     suggestionsRemoveCardsList: [],
     suggestionsAddCardList: [],
@@ -20,6 +21,7 @@ Page({
       console.log(res);
       this.setData({
         'loading': false,
+        'fineTuningType': res.result.fineTuningType,
         'deckWeakenCardList': res.result.deckWeakenCardList,
         'newVersionCardList': res.result.newVersionCardList,
         'suggestionsRemoveCardsList': res.result.suggestionsRemoveCardsList,

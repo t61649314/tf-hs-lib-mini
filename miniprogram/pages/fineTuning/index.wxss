@@ -92,11 +92,20 @@
     padding-top:0rpx ;
 }
 
+.sub-title-text{
+    font-weight: bold;
+}
+
+.sub-title-info{
+    color: #888888;
+    font-size: 28rpx;
+}
+
 .sub-title{
     padding: 20rpx 20rpx 0;
     text-align: left;
-    color: #9b9b9b;
-    font-size: 28rpx;
+    color: #545454;
+    font-size: 32rpx;
 }
 .head .title{
     font-weight: bold;

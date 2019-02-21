@@ -1,11 +1,16 @@
 <wxs src="../../lib/utils.wxs" module="utils"/>
 <view wx:if="{{!loading}}" class="fine-tuning">
     <view class="head">
-        <view class="title">微调建议（该卡组）</view>
+        <view class="title">微调建议
+            <view class="sub-title-info" wx:if="{{fineTuningType===1}}">该卡组为最新的补丁之后的标准卡组，相似卡组和微调建议均来自最新补丁之后的标准卡组</view>
+            <view class="sub-title-info" wx:if="{{fineTuningType===2}}">该卡组为当前标准年份构筑的标准卡组，相似卡组和微调建议均来自当前标准年份的标准卡组</view>
+            <view class="sub-title-info" wx:if="{{fineTuningType===3}}">该卡组为当前标准年份之前构筑的标准卡组，相似卡组和微调建议均来自狂野卡组</view>
+            <view class="sub-title-info" wx:if="{{fineTuningType===4}}">该卡组为狂野卡组，相似卡组和微调建议均来自狂野卡组</view>
+        </view>
     </view>
     <view class="sub-title" wx:if="{{similarDeckList.length}}">
-        <text class="waring-text">来自相似卡组的出现率排名</text>
-        (左边从上至下为当前卡组之外出现率由高到低，右边从上至下为当前卡组之中出现率由低到高)
+        <view class="sub-title-text">来自相似卡组的单卡出现率和未出现率排名</view>
+        <view class="sub-title-info">左侧为当前卡组中不存在而相似卡组中出现率高的卡，右侧为当前卡组存在而相似卡组中未出现率高的卡</view>
     </view>
     <view class="sug-card-wrap" wx:if="{{similarDeckList.length}}">
         <view class="add-card-wrap">
@@ -40,7 +45,7 @@
         </view>
     </view>
     <view class="sub-title" wx:if="{{deckWeakenCardList.length}}">
-        <text class="waring-text">已经被削弱的卡</text>
+        <view class="sub-title-text">已经被削弱的卡</view>
     </view>
     <view class="sug-card-wrap" wx:if="{{deckWeakenCardList.length}}">
         <view class="any-card-wrap">
@@ -60,10 +65,8 @@
         </view>
     </view>
     <view class="sub-title" wx:if="{{newVersionCardList.length}}">
-        <text class="waring-text">当前卡组构筑以外的其他版本</text>
-        （点击版本查看该版本该职业的人气单卡，
-        <text class="waring-text">已经剔除已经削弱的卡</text>
-        ）
+        <view class="sub-title-text">当前卡组构筑以外的其他版本</view>
+        <view class="sub-title-info">点击下方版本可查看该版本该职业的人气单卡，统计时已排除被削弱的卡</view>
     </view>
     <view class="version-list" wx:if="{{newVersionCardList.length}}">
         <view wx:for="{{newVersionCardList}}" wx:key="{{index}}">
