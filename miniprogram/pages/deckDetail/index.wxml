@@ -23,7 +23,7 @@
     </view>
     <view class="deck-box-head">
         <text class="title">卡组详情</text>
-        <i-button wx:if="{{deck.type==='wild'}}" class="sug-sim-btn" bind:click="getSuggestionsAndSimilarities" type="primary" inline="true" size="small">
+        <i-button class="sug-sim-btn" bind:click="getSuggestionsAndSimilarities" type="primary" inline="true" size="small">
             相似卡组&微调建议
         </i-button>
     </view>

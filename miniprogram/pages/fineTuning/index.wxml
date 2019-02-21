@@ -3,7 +3,7 @@
     <view class="head">
         <view class="title">微调建议</view>
     </view>
-    <view class="sub-title" style="padding-top: 0" wx:if="{{similarDeckList.length}}">
+    <view class="sub-title" wx:if="{{similarDeckList.length}}">
         相似卡组中出现率最高和最低的卡(排名从上至下，左边为出现率高，右边为出现率低)
     </view>
     <view class="sug-card-wrap" wx:if="{{similarDeckList.length}}">

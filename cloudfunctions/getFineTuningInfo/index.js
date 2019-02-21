@@ -4,12 +4,8 @@ const db = cloud.database()
 const MAX_LIMIT = 100
 let {timeNode, versionInfo} = require('./const');
 
-function getWeight(card) {
-  if (card.rarity === 'Legendary') {
-    return 2;
-  } else {
-    return card.quantity
-  }
+function formatNum(num) {
+  return Math.round(num * 100) / 100
 }
 
 function sortCardWeightInfoToList(obj, len, legendaryIsUp) {
@@ -36,8 +32,48 @@ exports.main = async (event, context) => {
 // 先取出集合记录总数
   const where = {
     occupation: deck.occupation,
-    type: deck.type
   };
+  const newVersionTimeLong = new Date(timeNode[0].time).getTime();
+  let versionInfoKeys = Object.keys(versionInfo);
+  const currentStandardVersion = versionInfo[versionInfoKeys[versionInfoKeys.length - 1]];
+  let currentStandardVersionKeys = versionInfoKeys.filter(key => {
+    return versionInfo[key].year === currentStandardVersion.year
+  });
+  const standardMinTimeLong = new Date(versionInfo[currentStandardVersionKeys[0]].time).getTime();
+  let sameQuantityLimit;
+  let fineTuningType;
+  let currentDeckMinTimeLong;
+  if (deck.type === "standard") {
+    if (deck.time > newVersionTimeLong) {//最新补丁之后的标准卡组
+      const _ = db.command;
+      where.time = _.gt(newVersionTimeLong);
+      where.type = "standard";
+      sameQuantityLimit = 25;
+      fineTuningType = 1;
+    } else if (deck.time > standardMinTimeLong) {//当前标准年份时期构筑的卡组，可能更贴近标准一些
+      const _ = db.command;
+      where.time = _.gt(standardMinTimeLong);
+      where.type = "standard";
+      sameQuantityLimit = 15;
+      fineTuningType = 2;
+    } else {//更早的标准卡组，贴近狂野
+      //拿当前卡组的构筑起始时间
+      let currentDeckVersion = versionInfo[versionInfoKeys.find((key, index) => {
+        return new Date(versionInfo[key].time).getTime() < deck.time && new Date(versionInfo[versionInfoKeys[index + 1]].time).getTime() > deck.time
+      })];
+      let currentDeckVersionKeys = versionInfoKeys.filter(key => {
+        return versionInfo[key].year === currentDeckVersion.year || versionInfo[key].year === currentDeckVersion.year - 1
+      });
+      currentDeckMinTimeLong = new Date(versionInfo[currentDeckVersionKeys[0]].time).getTime();
+      where.type = "wild";
+      sameQuantityLimit = 15;
+      fineTuningType = 3;
+    }
+  } else {//狂野卡组
+    where.type = "wild";
+    sameQuantityLimit = 20;
+    fineTuningType = 4;
+  }
   const countResult = await db.collection('deck-list').where(where).count()
   const total = countResult.total
   // 计算需分几次取
@@ -61,30 +97,14 @@ exports.main = async (event, context) => {
     }
   });
 
-  deck.cards.forEach(item => {
-    let weight = getWeight(item);
-    suggestionsRemoveCardsObj[item.dbfId] = {
-      weight: weight * similarDeckList.length,
-      info: item
-    };
-    if (weakenCardList.includes(item.dbfId)) {
-      deckWeakenCardList.push(item);
-    }
-  });
+  //查询同职业同类型的所有卡组
   if (deckList && deckList.length) {
+    //获取到相似的卡组，最多5个
     similarDeckList = deckList.map(otherItem => {
-      let sameWeight = 0;
       let sameQuantity = 0;
       deck.cards.forEach(currentCardItem => {
-        let currentCardWeight = getWeight(currentCardItem);
         let otherCard = otherItem.cards.find(otherCardItem => otherCardItem.dbfId === currentCardItem.dbfId);
         if (otherCard) {
-          let otherCardWeight = getWeight(otherCard);
-          if (otherCardWeight === currentCardWeight && otherCardWeight === 2) {
-            sameWeight += 2;
-          } else {
-            sameWeight += 1;
-          }
           if (otherCard.quantity === currentCardItem.quantity && otherCard.quantity === 2) {
             sameQuantity += 2;
           } else {
@@ -93,17 +113,32 @@ exports.main = async (event, context) => {
         }
       });
       return {
-        sameWeight: sameWeight,
         sameQuantity: sameQuantity,
         deck: otherItem
       }
-    }).filter(item => item.sameQuantity < 30 && item.sameWeight >= 20).sort((a, b) => {
-      return b.sameWeight - a.sameWeight
+    }).filter(item => item.sameQuantity < 30 && item.sameQuantity >= sameQuantityLimit).sort((a, b) => {
+      return b.sameQuantity - a.sameQuantity
     }).slice(0, 5);
+    //遍历相似卡组得到权重合
+    let similarPercentTotal = 0;
+    similarDeckList.forEach(item => {
+      similarPercentTotal += formatNum(item.sameQuantity / 30);
+    });
+    //遍历当前卡组的所有卡，初始化根据相似卡组数量得到remove权重，同时得到当前卡组中削弱的卡
+    deck.cards.forEach(item => {
+      suggestionsRemoveCardsObj[item.dbfId] = {
+        weight: formatNum(item.quantity * similarPercentTotal),
+        info: item
+      };
+      if (weakenCardList.includes(item.dbfId)) {
+        deckWeakenCardList.push(item);
+      }
+    });
 
     if (similarDeckList && similarDeckList.length) {
-      similarDeckList.forEach(({deck: similarDeckItem}) => {
+      similarDeckList.forEach(({deck: similarDeckItem, sameQuantity}) => {
         let time = similarDeckItem.time;
+        let similarPercent = formatNum(sameQuantity / 30);
         let weakenArr = timeNode.filter(item => {
           return new Date(item.time).getTime() > time && item.weakenCardArr;
         });
@@ -113,20 +148,18 @@ exports.main = async (event, context) => {
         });
         similarDeckItem.cards.forEach(cardItem => {
           let findCurrentCard = deck.cards.find(item => item.dbfId === cardItem.dbfId);
-          let similarCardWeight = getWeight(cardItem);
           if (findCurrentCard) {//当前有这张卡，为remove做一次反向统计
-            let currentCardWeight = getWeight(findCurrentCard);
-            suggestionsRemoveCardsObj[cardItem.dbfId].weight -= similarCardWeight;
+            suggestionsRemoveCardsObj[cardItem.dbfId].weight = formatNum(suggestionsRemoveCardsObj[cardItem.dbfId].weight - cardItem.quantity * similarPercent);
 
             if (weakenCardIdList.includes(cardItem.dbfId)) {
               return false;
             }
-            if (similarCardWeight > currentCardWeight) {
+            if (cardItem.quantity > findCurrentCard.quantity) {
               if (suggestionsAddCardsObj[cardItem.dbfId]) {
-                suggestionsAddCardsObj[cardItem.dbfId].weight += (similarCardWeight - currentCardWeight);
+                suggestionsAddCardsObj[cardItem.dbfId].weight = formatNum(suggestionsAddCardsObj[cardItem.dbfId].weight + (cardItem.quantity - findCurrentCard.quantity) * similarPercent);
               } else {
                 suggestionsAddCardsObj[cardItem.dbfId] = {
-                  weight: (similarCardWeight - currentCardWeight),
+                  weight: formatNum((cardItem.quantity - findCurrentCard.quantity) * similarPercent),
                   info: cardItem
                 }
               }
@@ -136,23 +169,30 @@ exports.main = async (event, context) => {
               return false;
             }
             if (suggestionsAddCardsObj[cardItem.dbfId]) {
-              suggestionsAddCardsObj[cardItem.dbfId].weight += similarCardWeight;
+              suggestionsAddCardsObj[cardItem.dbfId].weight = formatNum(suggestionsAddCardsObj[cardItem.dbfId].weight + cardItem.quantity * similarPercent);
             } else {
               suggestionsAddCardsObj[cardItem.dbfId] = {
-                weight: similarCardWeight,
+                weight: formatNum(cardItem.quantity * similarPercent),
                 info: cardItem
               }
             }
           }
         });
       });
-      suggestionsRemoveCardsList = sortCardWeightInfoToList(suggestionsRemoveCardsObj, 5, false);
-      suggestionsAddCardList = sortCardWeightInfoToList(suggestionsAddCardsObj, 5, true);
+      suggestionsRemoveCardsList = sortCardWeightInfoToList(suggestionsRemoveCardsObj, 5, false).filter(item => item.weight > 0);
+      suggestionsAddCardList = sortCardWeightInfoToList(suggestionsAddCardsObj, 5, true).filter(item => item.weight > 0);
     }
     Object.keys(versionInfo).forEach(key => {
       let item = versionInfo[key];
+      let itemTime = new Date(item.time).getTime();
       versionInfo[key].hotCardWeightInfo = {};
-      if (!item.time || new Date(item.time).getTime() < deck.time) {
+      if (!item.time) {
+        delete versionInfo[key]
+      } else if (fineTuningType === 3 && currentDeckMinTimeLong) {
+        if (itemTime < deck.time && itemTime >= currentDeckMinTimeLong) {
+          delete versionInfo[key]
+        }
+      } else if (itemTime < deck.time) {
         delete versionInfo[key]
       }
     });
@@ -165,10 +205,10 @@ exports.main = async (event, context) => {
           });
           if (!findSugAddCard && !weakenCardList.includes(item.dbfId)) {
             if (versionInfoItem.hotCardWeightInfo[item.dbfId]) {
-              versionInfoItem.hotCardWeightInfo[item.dbfId].weight += getWeight(item);
+              versionInfoItem.hotCardWeightInfo[item.dbfId].weight += item.quantity;
             } else {
               versionInfoItem.hotCardWeightInfo[item.dbfId] = {
-                weight: getWeight(item),
+                weight: item.quantity,
                 info: item
               };
             }
@@ -184,6 +224,7 @@ exports.main = async (event, context) => {
     });
   }
   return {
+    fineTuningType: fineTuningType,
     deckWeakenCardList: deckWeakenCardList,
     newVersionCardList: Object.keys(versionInfo).reverse().map(item => {
       return {...versionInfo[item], id: item}

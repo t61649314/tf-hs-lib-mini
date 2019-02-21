@@ -77,7 +77,7 @@
 
 .sug-card-wrap{
     display: flex;
-    padding:0 10rpx;
+    padding:20rpx 10rpx;
 }
 .add-card-wrap.remove-card-wrap{
     flex: 1;
@@ -89,7 +89,7 @@
 }
 
 .sub-title{
-    padding: 40rpx 20rpx 20rpx;
+    padding: 0 20rpx;
     text-align: left;
     color: #9b9b9b;
     font-size: 28rpx;
@@ -114,6 +114,9 @@
 }
 .sug-card-wrap .card-item .card-name-Legendary{
     color:#fba31b;
+}
+.version-list{
+    padding:20rpx 0;
 }
 .version-list .item{
     height: 80rpx;
