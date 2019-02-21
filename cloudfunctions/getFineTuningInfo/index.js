@@ -197,13 +197,16 @@ exports.main = async (event, context) => {
       }
     });
     deckList.forEach(item => {
+      let weakenCardList = [];
+      timeNode.forEach(timeNodeItem => {
+        if (new Date(timeNodeItem.time).getTime() > item.time && timeNodeItem.weakenCardArr) {
+          weakenCardList = weakenCardList.concat(timeNodeItem.weakenCardArr)
+        }
+      });
       item.cards.forEach(item => {
         let versionInfoItem = versionInfo[item.cardSet];
         if (versionInfoItem) {
-          let findSugAddCard = suggestionsAddCardList.find(sugItem => {
-            return sugItem.info.dbfId === item.dbfId
-          });
-          if (!findSugAddCard && !weakenCardList.includes(item.dbfId)) {
+          if (!weakenCardList.includes(item.dbfId)) {
             if (versionInfoItem.hotCardWeightInfo[item.dbfId]) {
               versionInfoItem.hotCardWeightInfo[item.dbfId].weight += item.quantity;
             } else {

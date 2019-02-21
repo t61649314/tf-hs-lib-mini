@@ -1,10 +1,11 @@
 <wxs src="../../lib/utils.wxs" module="utils"/>
 <view wx:if="{{!loading}}" class="fine-tuning">
     <view class="head">
-        <view class="title">微调建议</view>
+        <view class="title">微调建议（该卡组）</view>
     </view>
     <view class="sub-title" wx:if="{{similarDeckList.length}}">
-        相似卡组中出现率最高和最低的卡(排名从上至下，左边为出现率高，右边为出现率低)
+        <text class="waring-text">来自相似卡组的出现率排名</text>
+        (左边从上至下为当前卡组之外出现率由高到低，右边从上至下为当前卡组之中出现率由低到高)
     </view>
     <view class="sug-card-wrap" wx:if="{{similarDeckList.length}}">
         <view class="add-card-wrap">
@@ -39,7 +40,7 @@
         </view>
     </view>
     <view class="sub-title" wx:if="{{deckWeakenCardList.length}}">
-        已经被削弱的卡
+        <text class="waring-text">已经被削弱的卡</text>
     </view>
     <view class="sug-card-wrap" wx:if="{{deckWeakenCardList.length}}">
         <view class="any-card-wrap">
@@ -59,7 +60,10 @@
         </view>
     </view>
     <view class="sub-title" wx:if="{{newVersionCardList.length}}">
-        当前卡组构筑时间之后才上线的其他版本（点击版本名查看当前职业的人气单卡，已经剔除根据相似卡组推荐的卡和已经削弱的卡）
+        <text class="waring-text">当前卡组构筑以外的其他版本</text>
+        （点击版本查看该版本该职业的人气单卡，
+        <text class="waring-text">已经剔除已经削弱的卡</text>
+        ）
     </view>
     <view class="version-list" wx:if="{{newVersionCardList.length}}">
         <view wx:for="{{newVersionCardList}}" wx:key="{{index}}">
