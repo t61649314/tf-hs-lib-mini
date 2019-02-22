@@ -61,6 +61,7 @@ Page({
           });
         }
         data.forEach(item => {
+          item.deckTimeStr = formatTime(new Date(item.deckTime));
           item.createTimeStr = formatTime(new Date(item.createTime));
           item.deckTypeStr = typeTitleMap[item.deckType];
         });

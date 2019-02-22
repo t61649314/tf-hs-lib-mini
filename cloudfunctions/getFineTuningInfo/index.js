@@ -91,6 +91,7 @@ exports.main = async (event, context) => {
   let similarDeckList = [];
   let deckWeakenCardList = [];
   let weakenCardList = [];
+  let latestTimeSimilarDeckIndex = -1;
   timeNode.forEach(item => {
     if (new Date(item.time).getTime() > deck.time && item.weakenCardArr) {
       weakenCardList = weakenCardList.concat(item.weakenCardArr)
@@ -117,12 +118,21 @@ exports.main = async (event, context) => {
         deck: otherItem
       }
     }).filter(item => item.sameQuantity < 30 && item.sameQuantity >= sameQuantityLimit).sort((a, b) => {
-      return b.sameQuantity - a.sameQuantity
+      if (b.sameQuantity === a.sameQuantity) {
+        return b.deck.time - a.deck.time
+      } else {
+        return b.sameQuantity - a.sameQuantity
+      }
     }).slice(0, 5);
     //遍历相似卡组得到权重合
     let similarPercentTotal = 0;
-    similarDeckList.forEach(item => {
+    let latestTime = 0;
+    similarDeckList.forEach((item, index) => {
       similarPercentTotal += formatNum(item.sameQuantity / 30);
+      if (item.deck.time > latestTime) {
+        latestTime = item.deck.time;
+        latestTimeSimilarDeckIndex = index;
+      }
     });
     //遍历当前卡组的所有卡，初始化根据相似卡组数量得到remove权重，同时得到当前卡组中削弱的卡
     deck.cards.forEach(item => {
@@ -243,6 +253,8 @@ exports.main = async (event, context) => {
     });
   }
   return {
+    deck: deck,
+    latestTimeSimilarDeckIndex: latestTimeSimilarDeckIndex,
     fineTuningType: fineTuningType,
     deckWeakenCardList: deckWeakenCardList,
     newVersionCardList: Object.keys(versionInfo).reverse().map(item => {

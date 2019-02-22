@@ -1,35 +1,4 @@
 @import "../../style/base.wxss";
-.occupation-content{
-    position: relative;
-    width: 100%;
-    height: 345rpx;
-}
-.occupation-bg{
-    width: 100%;
-    height: 345rpx;
-}
-.info-content{
-    height: 345rpx;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    padding: 30rpx;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.info-item{
-    width: 100%;
-    color: #fff;
-    text-align: left;
-}
-.name-item{
-    font-size: 32rpx;
-    font-weight: bold;
-}
-
 .deck-box-head {
     padding: 40rpx 20rpx;
     text-align: left;
@@ -190,31 +159,4 @@
 }
 .deck-box .card-item .card-name-Legendary{
     color:#fba31b;
-}
-.cost-list-content{
-    color: #fff;
-    position: absolute;
-    height: 200rpx;
-    width: 400rpx;
-    border-left: 1rpx solid #fff;
-    border-bottom: 1rpx solid #fff;
-    right:40rpx;
-    top:40rpx;
-}
-.cost-list-content .item-histogram-num{
-    position: absolute;
-    width: 50rpx;
-}
-.cost-list-content .item-histogram{
-    position: absolute;
-    bottom: 0;
-    margin: 0 10rpx;
-    width: 30rpx;
-    background-color: #2d8cf0;
-}
-
-.cost-list-content .item-num{
-    position: absolute;
-    width: 50rpx;
-    top: 200rpx;
 }

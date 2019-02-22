@@ -42,6 +42,19 @@ Page({
       }
     })
   },
+  copy(event){
+    wx.setClipboardData({
+      data: event.currentTarget.dataset.content,
+      success(res) {
+        wx.hideToast();
+        wx.showToast({
+          title: '复制成功',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+    })
+  },
   getDeckList(skip) {
     const db = wx.cloud.database();
     let collection = db.collection('deck-list')

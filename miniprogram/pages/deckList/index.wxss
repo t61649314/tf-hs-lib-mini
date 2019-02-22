@@ -23,7 +23,7 @@
     font-size: 36rpx;
 }
 .page-info-item{
-    padding: 12rpx 30rpx;
+    padding: 8rpx 30rpx;
     word-break: break-all;
 }
 .occupation-bar{
@@ -41,4 +41,12 @@
 .occupation-bar .active{
     background:#2d8cf0;
     border-radius:50%;
+}
+.from-url-text{
+    width: 550rpx;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: sub;
 }

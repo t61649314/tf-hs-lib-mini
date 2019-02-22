@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "deck-info": "../deckInfo/index",
     "i-spin": "../../lib/iview/dist/spin/index",
     "i-button": "../../lib/iview/dist/button/index",
     "i-icon": "../../lib/iview/dist/icon/index"

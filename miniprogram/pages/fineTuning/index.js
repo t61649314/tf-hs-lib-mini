@@ -1,7 +1,10 @@
 const {formatTime} = require('../../lib/utils');
 Page({
   data: {
+    deck: {},
+    latestTimeSimilarDeckIndex: -1,
     fineTuningType: 0,
+    hideToPageBtn: false,
     loading: true,
     suggestionsRemoveCardsList: [],
     suggestionsAddCardList: [],
@@ -10,6 +13,12 @@ Page({
     newVersionCardList: []
   },
   onLoad: function (option) {
+    wx.setNavigationBarTitle({
+      title: "相似卡组&微调建议"
+    });
+    this.setData({
+      'hideToPageBtn': option.hideToPageBtn === "true",
+    });
     wx.cloud.callFunction({
       // 云函数名称
       name: 'getFineTuningInfo',
@@ -21,6 +30,8 @@ Page({
       console.log(res);
       this.setData({
         'loading': false,
+        'deck': res.result.deck,
+        'latestTimeSimilarDeckIndex': res.result.latestTimeSimilarDeckIndex,
         'fineTuningType': res.result.fineTuningType,
         'deckWeakenCardList': res.result.deckWeakenCardList,
         'newVersionCardList': res.result.newVersionCardList,

@@ -38,6 +38,11 @@ Component({
         hasNew: false
       },
       {
+        from: "nga-carry",
+        cnName: "NGA搬运狂野卡组",
+        hasNew: false
+      },
+      {
         from: "other",
         cnName: "其他",
         hasNew: false

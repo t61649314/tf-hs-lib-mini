@@ -18,11 +18,3 @@
     padding: 20rpx 30rpx;
     box-sizing: border-box;
 }
-.copy-btn{
-    color: #80848f;
-    border: 1rpx solid #ccc;
-    border-radius:8px;
-    margin-left:20rpx;
-    padding:0 20rpx;
-
-}

@@ -1,7 +1,7 @@
 <view class="container">
     <view class="page-head">
         <view class="page-title">{{page}}</view>
-        <view class="page-info-item">转自：{{fromUrl}}</view>
+        <view class="page-info-item"><text class="from-url-text">转自：{{fromUrl}}</text><text class="copy-btn" data-content="{{fromUrl}}" bindtap='copy'>复制</text></view>
         <view class="page-info-item">模式：{{typeMap[type]}}</view>
         <view class="page-info-item">时间：{{timeStr}}</view>
         <view class="occupation-bar">
@@ -14,7 +14,7 @@
     <scroll-view scroll-y='true' style="height:{{scrollHeight}}px">
         <div wx:if="{{showDeckList&&showDeckList.length}}">
             <navigator class="item" wx:for="{{showDeckList}}" wx:key="{{index}}"
-                       url="{{'../deckDetail/index?id='+item._id+'&time='+item.time+'&name='+item.name}}"
+                       url="{{'../deckDetail/index?id='+item._id+'&time='+item.time+'&hideToPageBtn=true'}}"
                        open-type="navigate">
                 <image class="item-occupation-icon" src="{{'../../images/'+item.occupation+'-icon.png'}}"></image>
                 <div class="deck-name">{{item.name}}</div>

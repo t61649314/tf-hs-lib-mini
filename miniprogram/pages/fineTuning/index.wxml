@@ -1,5 +1,6 @@
 <wxs src="../../lib/utils.wxs" module="utils"/>
 <view wx:if="{{!loading}}" class="fine-tuning">
+    <deck-info  deck="{{deck}}" hideToPageBtn="{{hideToPageBtn}}"></deck-info>
     <view class="head">
         <view class="title">微调建议</view>
         <view class="sub-title-info" wx:if="{{fineTuningType===1}}">该卡组为最新的补丁之后的标准卡组，相似卡组和微调建议均来自最新补丁之后的标准卡组</view>
@@ -110,13 +111,13 @@
     </view>
     <view class="similar-deck-wrap" wx:if="{{similarDeckList.length}}">
         <navigator class="item" wx:for="{{similarDeckList}}" wx:key="{{index}}"
-                   url="{{'../deckDetail/index?id='+item.deck._id+'&time='+item.deck.time+'&name='+item.deck.name}}"
+                   url="{{'../deckDetail/index?id='+item.deck._id+'&time='+item.deck.time+'&hideSugBtn=true'}}"
                    open-type="navigate">
             <image class="item-occupation-icon" src="{{'../../images/'+item.deck.occupation+'-icon.png'}}"></image>
             <div class="item-name">{{item.deck.name}}</div>
-            <div class="item-type">{{item.sameQuantity}}张相同卡</div>
+            <div class="item-type {{item.sameQuantity===similarDeckList[0].sameQuantity?'success-text':''}}">{{item.sameQuantity}}张相同卡</div>
             <div class="item-page">{{item.deck.page}}</div>
-            <div class="item-time">{{item.deck.timeStr}}</div>
+            <div class="item-time {{latestTimeSimilarDeckIndex===index?'success-text':''}}">{{item.deck.timeStr}}</div>
         </navigator>
     </view>
     <view class="no-data-content" wx:else>

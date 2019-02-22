@@ -1,9 +1,9 @@
-const {timeNode, occupationInfo,fromMap} = require('../../lib/const');
+const {timeNode, fromMap} = require('../../lib/const');
 const app = getApp();
 Page({
   data: {
-    typeMap: {"wild": "狂野", "standard": "标准"},
-    occupationInfo: occupationInfo,
+    hideSugBtn: false,
+    hideToPageBtn: false,
     id: "",
     page: "",
     time: "",
@@ -15,13 +15,14 @@ Page({
     fromUrl: "",
     fromMap: fromMap,
     scrollHeight: 0,
-    costList: [0, 0, 0, 0, 0, 0, 0, 0]
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: options.name
+      title: "卡组详情"
     });
     this.setData({
+      'hideSugBtn': options.hideSugBtn || false,
+      'hideToPageBtn': options.hideToPageBtn || false,
       'id': options.id,
       'time': options.time
     });
@@ -47,7 +48,7 @@ Page({
   },
   getSuggestionsAndSimilarities: function () {
     wx.navigateTo({
-      url: '../fineTuning/index?deckId=' + this.data.id
+      url: `../fineTuning/index?deckId=${this.data.id}&hideToPageBtn=${this.data.hideToPageBtn}`
     })
   },
   getDeck: function () {
@@ -58,8 +59,6 @@ Page({
       if (data) {
         data.cards.forEach(item => {
           item.isWeaken = this.isWeaken(item.dbfId);
-          let cost = item.cost >= 7 ? 7 : item.cost;
-          this.data.costList[cost] += item.quantity;
         });
         this.data.deck = data;
       }
@@ -76,8 +75,7 @@ Page({
           'collectionId': this.data.collectionId,
           'isInit': true,
           'loading': false,
-          'deck': this.data.deck,
-          'costList': this.data.costList
+          'deck': this.data.deck
         });
       }).catch(console.error)
     }).catch(console.error)

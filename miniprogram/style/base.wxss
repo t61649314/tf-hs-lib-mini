@@ -97,6 +97,10 @@ body {
     position: absolute;
     bottom: 10rpx;
     left: 124rpx;
+    max-width: 400rpx;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
 }
 .item .item-time{
     position: absolute;
@@ -135,4 +139,15 @@ body {
 }
 .waring-text{
     color: red;
+}
+.success-text{
+    color: #09bb07;
+}
+.copy-btn{
+    color: #80848f;
+    border: 1rpx solid #ccc;
+    border-radius:8px;
+    margin-left:20rpx;
+    padding:0 20rpx;
+
 }
