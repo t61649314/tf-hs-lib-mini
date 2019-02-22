@@ -3,6 +3,9 @@ Component({
     componentHeight: Number
   },
   data: {
+    current: "wild",
+    wildHasNew: false,
+    standardHasNew: false,
     wildFromList: [
       {
         from: "vicious-syndicate",
@@ -22,6 +25,16 @@ Component({
       {
         from: "fengtian",
         cnName: "奉天狂野战报",
+        hasNew: false
+      },
+      {
+        from: "zaowuzhe",
+        cnName: "造物者狂野战报",
+        hasNew: false
+      },
+      {
+        from: "suzhijicha",
+        cnName: "素质极差狂野战报",
         hasNew: false
       },
       {
@@ -56,25 +69,39 @@ Component({
         if (data && data.length) {
           data.forEach(reportItem => {
             if (reportItem.type === "standard") {
-              this.data.standardFromList.find(item => {
+              let findItem = this.data.standardFromList.find(item => {
                 return item.from === reportItem.from
-              }).hasNew = true;
-              this.setData({
-                'standardFromList': this.data.standardFromList
               });
+              if (findItem) {
+                findItem.hasNew = true;
+                this.setData({
+                  'standardHasNew': true,
+                  'standardFromList': this.data.standardFromList
+                });
+              }
             }
             if (reportItem.type === "wild") {
-              this.data.wildFromList.find(item => {
+              let findItem = this.data.wildFromList.find(item => {
                 return item.from === reportItem.from
-              }).hasNew = true;
-              this.setData({
-                'wildFromList': this.data.wildFromList
               });
+              if (findItem) {
+                findItem.hasNew = true;
+                this.setData({
+                  'wildHasNew': true,
+                  'wildFromList': this.data.wildFromList
+                });
+              }
             }
           })
         }
       }).catch(console.error)
     }
   },
-  methods: {}
+  methods: {
+    handleChange({detail}) {
+      this.setData({
+        current: detail.key
+      });
+    },
+  }
 })

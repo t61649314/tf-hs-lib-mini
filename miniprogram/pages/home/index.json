@@ -1,3 +1,7 @@
 {
-  "component": true
+  "component": true,
+  "usingComponents": {
+    "i-tabs": "../../lib/iview/dist/tabs/index",
+    "i-tab": "../../lib/iview/dist/tab/index"
+  }
 }

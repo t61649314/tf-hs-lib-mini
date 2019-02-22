@@ -1,94 +1,99 @@
 <wxs src="../../lib/utils.wxs" module="utils"/>
 <view wx:if="{{!loading}}" class="fine-tuning">
     <view class="head">
-        <view class="title">微调建议
-            <view class="sub-title-info" wx:if="{{fineTuningType===1}}">该卡组为最新的补丁之后的标准卡组，相似卡组和微调建议均来自最新补丁之后的标准卡组</view>
-            <view class="sub-title-info" wx:if="{{fineTuningType===2}}">该卡组为当前标准年份构筑的标准卡组，相似卡组和微调建议均来自当前标准年份的标准卡组</view>
-            <view class="sub-title-info" wx:if="{{fineTuningType===3}}">该卡组为当前标准年份之前构筑的标准卡组，相似卡组和微调建议均来自狂野卡组</view>
-            <view class="sub-title-info" wx:if="{{fineTuningType===4}}">该卡组为狂野卡组，相似卡组和微调建议均来自狂野卡组</view>
+        <view class="title">微调建议</view>
+        <view class="sub-title-info" wx:if="{{fineTuningType===1}}">该卡组为最新的补丁之后的标准卡组，相似卡组和微调建议均来自最新补丁之后的标准卡组</view>
+        <view class="sub-title-info" wx:if="{{fineTuningType===2}}">该卡组为当前标准年份构筑的标准卡组，相似卡组和微调建议均来自当前标准年份的标准卡组</view>
+        <view class="sub-title-info" wx:if="{{fineTuningType===3}}">该卡组为当前标准年份之前构筑的标准卡组，相似卡组和微调建议均来自狂野卡组</view>
+        <view class="sub-title-info" wx:if="{{fineTuningType===4}}">该卡组为狂野卡组，相似卡组和微调建议均来自狂野卡组</view>
+    </view>
+    <view class="sug-box">
+        <view class="sub-title" wx:if="{{similarDeckList.length}}">
+            <view class="sub-title-text">来自相似卡组的单卡出现频率和未出现频率排名</view>
+            <view class="sub-title-info">左侧为当前卡组中不存在而相似卡组中出现频率高的卡，右侧为当前卡组中存在而相似卡组中未出现频率高的卡</view>
         </view>
-    </view>
-    <view class="sub-title" wx:if="{{similarDeckList.length}}">
-        <view class="sub-title-text">来自相似卡组的单卡出现率和未出现率排名</view>
-        <view class="sub-title-info">左侧为当前卡组中不存在而相似卡组中出现率高的卡，右侧为当前卡组存在而相似卡组中未出现率高的卡</view>
-    </view>
-    <view class="sug-card-wrap" wx:if="{{similarDeckList.length}}">
-        <view class="add-card-wrap">
-            <view class="card-item"
-                  wx:for="{{suggestionsAddCardList}}"
-                  wx:key="index">
-                <view class="card-cost">{{item.info.cost}}</view>
-                <view class="card-name card-name-{{item.info.rarity}}">{{item.info.cnName}}</view>
-                <view class="card-img-wrap">
-                    <image class="card-img" mode="aspectFit"
-                           src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(item.info.img)}}"/>
-                </view>
-                <view class="card-add">
-                    <text>+</text>
+        <view class="sug-card-wrap" wx:if="{{similarDeckList.length}}">
+            <view class="add-card-wrap">
+                <view class="card-item"
+                      wx:for="{{suggestionsAddCardList}}"
+                      wx:key="index">
+                    <view class="card-cost">{{item.info.cost}}</view>
+                    <view class="card-name card-name-{{item.info.rarity}}">{{item.info.cnName}}</view>
+                    <view class="card-img-wrap">
+                        <image class="card-img" mode="aspectFit"
+                               src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(item.info.img)}}"/>
+                    </view>
+                    <view class="card-add">
+                        <text>+</text>
+                    </view>
                 </view>
             </view>
-        </view>
-        <view class="remove-card-wrap">
-            <view class="card-item"
-                  wx:for="{{suggestionsRemoveCardsList}}"
-                  wx:key="index">
-                <view class="card-cost">{{item.info.cost}}</view>
-                <view class="card-name card-name-{{item.info.rarity}}">{{item.info.cnName}}</view>
-                <view class="card-img-wrap">
-                    <image class="card-img" mode="aspectFit"
-                           src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(item.info.img)}}"/>
-                </view>
-                <view class="card-remove">
-                    <text>-</text>
-                </view>
-            </view>
-        </view>
-    </view>
-    <view class="sub-title" wx:if="{{deckWeakenCardList.length}}">
-        <view class="sub-title-text">已经被削弱的卡</view>
-    </view>
-    <view class="sug-card-wrap" wx:if="{{deckWeakenCardList.length}}">
-        <view class="any-card-wrap">
-            <view class="card-item"
-                  wx:for="{{deckWeakenCardList}}"
-                  wx:key="index">
-                <view class="card-cost">{{item.cost}}</view>
-                <view class="card-name card-name-{{item.rarity}}">{{item.cnName}}</view>
-                <view class="card-img-wrap">
-                    <image class="card-img" mode="aspectFit"
-                           src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(item.img)}}"/>
-                </view>
-                <view class="card-remove">
-                    <text>-</text>
+            <view class="remove-card-wrap">
+                <view class="card-item"
+                      wx:for="{{suggestionsRemoveCardsList}}"
+                      wx:key="index">
+                    <view class="card-cost">{{item.info.cost}}</view>
+                    <view class="card-name card-name-{{item.info.rarity}}">{{item.info.cnName}}</view>
+                    <view class="card-img-wrap">
+                        <image class="card-img" mode="aspectFit"
+                               src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(item.info.img)}}"/>
+                    </view>
+                    <view class="card-remove">
+                        <text>-</text>
+                    </view>
                 </view>
             </view>
         </view>
     </view>
-    <view class="sub-title" wx:if="{{newVersionCardList.length}}">
-        <view class="sub-title-text">当前卡组构筑以外的其他版本</view>
-        <view class="sub-title-info">点击下方版本可查看该版本该职业的人气单卡，统计时已排除被削弱的卡</view>
-    </view>
-    <view class="version-list" wx:if="{{newVersionCardList.length}}">
-        <view wx:for="{{newVersionCardList}}" wx:key="{{index}}">
-            <view class="item {{item.isOpen?'item-open':'item-close'}}" data-index="{{index}}"
-                  bindtap='versionItemClick'>
-                <image class="version-img" src="../../images/version-icon/{{item.id}}.png"></image>
-                <div class="title">{{item.title}}</div>
+    <view class="sug-box">
+        <view class="sub-title" wx:if="{{deckWeakenCardList.length}}">
+            <view class="sub-title-text">已经被削弱的卡</view>
+        </view>
+        <view class="sug-card-wrap" wx:if="{{deckWeakenCardList.length}}">
+            <view class="any-card-wrap">
+                <view class="card-item"
+                      wx:for="{{deckWeakenCardList}}"
+                      wx:key="index">
+                    <view class="card-cost">{{item.cost}}</view>
+                    <view class="card-name card-name-{{item.rarity}}">{{item.cnName}}</view>
+                    <view class="card-img-wrap">
+                        <image class="card-img" mode="aspectFit"
+                               src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(item.img)}}"/>
+                    </view>
+                    <view class="card-remove">
+                        <text>-</text>
+                    </view>
+                </view>
             </view>
-            <view class="sug-card-wrap" wx:if="{{item.isOpen}}" style="padding: 20rpx 10rpx">
-                <view class="any-card-wrap">
-                    <view class="card-item"
-                          wx:for="{{item.hotCardWeightList}}"
-                          wx:key="index"
-                          wx:for-item="cardItem">
-                        <view class="card-cost">{{cardItem.info.cost}}</view>
-                        <view class="card-name card-name-{{cardItem.info.rarity}}">{{cardItem.info.cnName}}</view>
-                        <view class="card-img-wrap">
-                            <image class="card-img" mode="aspectFit"
-                                   src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(cardItem.info.img)}}"/>
-                        </view>
-                        <view class="card-add">
-                            <text>+</text>
+        </view>
+    </view>
+    <view class="sug-box">
+        <view class="sub-title" wx:if="{{newVersionCardList.length}}">
+            <view class="sub-title-text">当前卡组构筑以外的其他版本</view>
+            <view class="sub-title-info">点击下方版本可查看该版本该职业的人气单卡，统计时已排除被削弱的卡</view>
+        </view>
+        <view class="version-list" wx:if="{{newVersionCardList.length}}">
+            <view wx:for="{{newVersionCardList}}" wx:key="{{index}}">
+                <view class="item {{item.isOpen?'item-open':'item-close'}}" data-index="{{index}}"
+                      bindtap='versionItemClick'>
+                    <image class="version-img" src="../../images/version-icon/{{item.id}}.png"></image>
+                    <div class="title">{{item.title}}</div>
+                </view>
+                <view class="sug-card-wrap" wx:if="{{item.isOpen}}" style="padding: 20rpx 10rpx">
+                    <view class="any-card-wrap">
+                        <view class="card-item"
+                              wx:for="{{item.hotCardWeightList}}"
+                              wx:key="index"
+                              wx:for-item="cardItem">
+                            <view class="card-cost">{{cardItem.info.cost}}</view>
+                            <view class="card-name card-name-{{cardItem.info.rarity}}">{{cardItem.info.cnName}}</view>
+                            <view class="card-img-wrap">
+                                <image class="card-img" mode="aspectFit"
+                                       src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(cardItem.info.img)}}"/>
+                            </view>
+                            <view class="card-add">
+                                <text>+</text>
+                            </view>
                         </view>
                     </view>
                 </view>

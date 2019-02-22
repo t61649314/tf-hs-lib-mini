@@ -88,21 +88,23 @@
     position: relative;
 }
 
-.head+.sub-title{
-    padding-top:0rpx ;
+.sug-box{
+    padding-bottom: 20rpx;
 }
 
 .sub-title-text{
+    color: #6c6c6c;
+    font-size: 28rpx;
     font-weight: bold;
 }
 
 .sub-title-info{
     color: #888888;
-    font-size: 28rpx;
+    font-size: 24rpx;
 }
 
 .sub-title{
-    padding: 20rpx 20rpx 0;
+    padding: 0 20rpx;
     text-align: left;
     color: #545454;
     font-size: 32rpx;
