@@ -81,7 +81,7 @@
                     <div class="title">{{item.title}}</div>
                 </view>
                 <view class="sug-card-wrap" wx:if="{{item.isOpen}}" style="padding: 20rpx 10rpx">
-                    <view class="any-card-wrap">
+                    <view class="any-card-wrap" wx:if="{{item.hotCardWeightList&&item.hotCardWeightList.length}}">
                         <view class="card-item"
                               wx:for="{{item.hotCardWeightList}}"
                               wx:key="index"
@@ -96,6 +96,9 @@
                                 <text>+</text>
                             </view>
                         </view>
+                    </view>
+                    <view class="no-data-content" wx:else>
+                        暂无数据
                     </view>
                 </view>
             </view>

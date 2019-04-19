@@ -67,14 +67,6 @@ Component({
         value: 'tempo-storm'
       },
       {
-        name: '生而狂野',
-        value: 'shengerkuangye'
-      },
-      {
-        name: '奉天战队',
-        value: 'fengtian'
-      },
-      {
         name: '其他',
         value: 'other'
       }
@@ -146,7 +138,12 @@ Component({
         where.occupation = searchData.occupation
       }
       if (searchData.from) {
-        where.from = searchData.from
+        if (searchData.from === "other") {
+          const _ = db.command;
+          where.from = _.in(["shengerkuangye", "fengtian", "zaowuzhe", "suzhijicha", "nga-carry", "other"])
+        } else {
+          where.from = searchData.from
+        }
       }
       if (searchData.type) {
         where.type = searchData.type

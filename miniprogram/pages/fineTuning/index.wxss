@@ -154,3 +154,8 @@
     margin-right: 20rpx;
     position: relative;
 }
+.no-data-content{
+    padding: 0;
+    text-align: center;
+    width: 100%;
+}
