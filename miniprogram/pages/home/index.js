@@ -18,6 +18,11 @@ Component({
         hasNew: false
       },
       {
+        from: "team-rankstar",
+        cnName: "TeamRankstar狂野月报",
+        hasNew: false
+      },
+      {
         from: "shengerkuangye",
         cnName: "生而狂野战报",
         hasNew: false
