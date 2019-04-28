@@ -140,7 +140,7 @@ Component({
       if (searchData.from) {
         if (searchData.from === "other") {
           const _ = db.command;
-          where.from = _.in(["shengerkuangye", "fengtian", "zaowuzhe", "suzhijicha", "nga-carry", "other"])
+          where.from = _.in(["shengerkuangye","team-rankstar", "fengtian", "zaowuzhe", "suzhijicha", "nga-carry", "other"])
         } else {
           where.from = searchData.from
         }
