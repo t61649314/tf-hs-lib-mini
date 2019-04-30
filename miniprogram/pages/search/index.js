@@ -67,6 +67,10 @@ Component({
         value: 'tempo-storm'
       },
       {
+        name: 'Hearthstone Top Decks',
+        value: 'hearthstone-top-decks'
+      },
+      {
         name: '其他',
         value: 'other'
       }
