@@ -18,8 +18,18 @@ Component({
         hasNew: false
       },
       {
+        from: "hearthstone-top-decks",
+        cnName: "Hearthstone Top Decks",
+        hasNew: false
+      },
+      {
         from: "team-rankstar",
         cnName: "TeamRankstar狂野月报",
+        hasNew: false
+      },
+      {
+        from: "suzhijicha",
+        cnName: "素质极差狂野战报",
         hasNew: false
       },
       {
@@ -35,11 +45,6 @@ Component({
       {
         from: "zaowuzhe",
         cnName: "造物者狂野战报",
-        hasNew: false
-      },
-      {
-        from: "suzhijicha",
-        cnName: "素质极差狂野战报",
         hasNew: false
       },
       {
