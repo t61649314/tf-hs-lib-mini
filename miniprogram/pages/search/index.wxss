@@ -55,13 +55,13 @@
 .from-type-bar .from-item{
     box-sizing: border-box;
     padding-left: 10rpx;
-    flex: 1;
+    flex: 3;
     border-right: 1rpx solid #ccc;
 }
 .from-type-bar .type-item{
     box-sizing: border-box;
     padding-left: 10rpx;
-    flex: 1;
+    flex: 2;
 }
 .search-bar view{
     font-size: 24rpx;
