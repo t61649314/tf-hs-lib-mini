@@ -4,6 +4,8 @@ const db = cloud.database()
 const MAX_LIMIT = 100
 let {timeNode, versionInfo, honorRoomTimeNode} = require('./const');
 
+let mVersionInfo = Object.assign({}, versionInfo);
+
 function formatNum(num) {
   return Math.round(num * 100) / 100
 }
@@ -34,12 +36,12 @@ exports.main = async (event, context) => {
     occupation: deck.occupation,
   };
   const newVersionTimeLong = new Date(timeNode[0].time).getTime();
-  let versionInfoKeys = Object.keys(versionInfo);
-  const currentStandardVersion = versionInfo[versionInfoKeys[versionInfoKeys.length - 1]];
+  let versionInfoKeys = Object.keys(mVersionInfo);
+  const currentStandardVersion = mVersionInfo[versionInfoKeys[versionInfoKeys.length - 1]];
   let currentStandardVersionKeys = versionInfoKeys.filter(key => {
-    return versionInfo[key].year === currentStandardVersion.year
+    return mVersionInfo[key].year === currentStandardVersion.year
   });
-  const standardMinTimeLong = new Date(versionInfo[currentStandardVersionKeys[0]].time).getTime();
+  const standardMinTimeLong = new Date(mVersionInfo[currentStandardVersionKeys[0]].time).getTime();
   let sameQuantityLimit;
   let fineTuningType;
   let currentDeckMinTimeLong;
@@ -58,13 +60,13 @@ exports.main = async (event, context) => {
       fineTuningType = 2;
     } else {//更早的标准卡组，贴近狂野
       //拿当前卡组的构筑起始时间
-      let currentDeckVersion = versionInfo[versionInfoKeys.find((key, index) => {
-        return new Date(versionInfo[key].time).getTime() < deck.time && new Date(versionInfo[versionInfoKeys[index + 1]].time).getTime() > deck.time
+      let currentDeckVersion = mVersionInfo[versionInfoKeys.find((key, index) => {
+        return new Date(mVersionInfo[key].time).getTime() < deck.time && new Date(mVersionInfo[versionInfoKeys[index + 1]].time).getTime() > deck.time
       })];
       let currentDeckVersionKeys = versionInfoKeys.filter(key => {
-        return versionInfo[key].year === currentDeckVersion.year || versionInfo[key].year === currentDeckVersion.year - 1
+        return mVersionInfo[key].year === currentDeckVersion.year || mVersionInfo[key].year === currentDeckVersion.year - 1
       });
-      currentDeckMinTimeLong = new Date(versionInfo[currentDeckVersionKeys[0]].time).getTime();
+      currentDeckMinTimeLong = new Date(mVersionInfo[currentDeckVersionKeys[0]].time).getTime();
       where.type = "wild";
       sameQuantityLimit = 15;
       fineTuningType = 3;
@@ -193,10 +195,10 @@ exports.main = async (event, context) => {
       suggestionsAddCardList = sortCardWeightInfoToList(suggestionsAddCardsObj, 5, true).filter(item => item.weight > 0);
     }
     let currentDeckWithOutHonorRoomCards = [];
-    Object.keys(versionInfo).forEach(key => {
-      let item = versionInfo[key];
+    Object.keys(mVersionInfo).forEach(key => {
+      let item = mVersionInfo[key];
       let itemTime = new Date(item.time).getTime();
-      versionInfo[key].hotCardWeightInfo = {};
+      mVersionInfo[key].hotCardWeightInfo = {};
       if (fineTuningType === 3 && key === "4") {//type为3的时候要考虑荣誉室
         honorRoomTimeNode.forEach(honorRoomItem => {
           let honorRoomItemTime = new Date(honorRoomItem.time).getTime();
@@ -205,17 +207,17 @@ exports.main = async (event, context) => {
           }
         });
         if (!currentDeckWithOutHonorRoomCards.length) {
-          delete versionInfo[key]
+          delete mVersionInfo[key]
         }
       } else {
         if (!item.time) {
-          delete versionInfo[key]
+          delete mVersionInfo[key]
         } else if (fineTuningType === 3 && currentDeckMinTimeLong) {
           if (itemTime < deck.time && itemTime >= currentDeckMinTimeLong) {
-            delete versionInfo[key]
+            delete mVersionInfo[key]
           }
         } else if (itemTime < deck.time) {
-          delete versionInfo[key]
+          delete mVersionInfo[key]
         }
       }
     });
@@ -227,7 +229,7 @@ exports.main = async (event, context) => {
         }
       });
       item.cards.forEach(item => {
-        let versionInfoItem = versionInfo[item.cardSet];
+        let versionInfoItem = mVersionInfo[item.cardSet];
         if (versionInfoItem) {
           if (!weakenCardList.includes(item.dbfId)) {
             if (item.cardSet === "4" && !currentDeckWithOutHonorRoomCards.includes(item.dbfId)) {
@@ -245,8 +247,8 @@ exports.main = async (event, context) => {
         }
       })
     });
-    Object.keys(versionInfo).forEach(key => {
-      let item = versionInfo[key];
+    Object.keys(mVersionInfo).forEach(key => {
+      let item = mVersionInfo[key];
       let hotCardWeightInfo = item.hotCardWeightInfo;
       item.hotCardWeightList = sortCardWeightInfoToList(hotCardWeightInfo, 10, true);
       delete item.hotCardWeightInfo;
@@ -257,8 +259,8 @@ exports.main = async (event, context) => {
     latestTimeSimilarDeckIndex: latestTimeSimilarDeckIndex,
     fineTuningType: fineTuningType,
     deckWeakenCardList: deckWeakenCardList,
-    newVersionCardList: Object.keys(versionInfo).reverse().map(item => {
-      return {...versionInfo[item], id: item}
+    newVersionCardList: Object.keys(mVersionInfo).reverse().map(item => {
+      return {...mVersionInfo[item], id: item}
     }),
     suggestionsRemoveCardsList: suggestionsRemoveCardsList,
     suggestionsAddCardList: suggestionsAddCardList,
