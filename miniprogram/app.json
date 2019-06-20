@@ -13,5 +13,6 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "TF炉石套牌库",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

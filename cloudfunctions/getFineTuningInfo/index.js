@@ -4,8 +4,6 @@ const db = cloud.database()
 const MAX_LIMIT = 100
 let {timeNode, versionInfo, honorRoomTimeNode} = require('./const');
 
-let mVersionInfo = Object.assign({}, versionInfo);
-
 function formatNum(num) {
   return Math.round(num * 100) / 100
 }
@@ -28,6 +26,7 @@ function sortCardWeightInfoToList(obj, len, legendaryIsUp) {
 }
 
 exports.main = async (event, context) => {
+  let mVersionInfo = Object.assign({}, versionInfo);
   const {data: deck} = await db.collection('deck-list').doc(event.deckId).get();
   let suggestionsAddCardsObj = {};
   let suggestionsRemoveCardsObj = {};

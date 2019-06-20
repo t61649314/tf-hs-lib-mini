@@ -12,6 +12,8 @@
 	"appid": "wx111aafbe3d0326e3",
 	"projectname": "tf-deck-lib",
 	"libVersion": "2.5.0",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
