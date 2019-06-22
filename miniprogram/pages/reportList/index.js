@@ -38,11 +38,12 @@ Page({
           item.timeStr = formatTime(new Date(item.time));
           item.isNew = now.getTime() - item.time < 3 * 24 * 60 * 60 * 1000;
         });
+        let len = data.length;
         data = data.filter(item => {
           return !item.jumpUrl;
         });
         this.data.reportList = this.data.reportList.concat(data);
-        if (data.length === 20) {
+        if (len === 20) {
           this.getReportList(skip + 20);
         } else {
           let reportList = this.data.reportList.sort((a, b) => {
