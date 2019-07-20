@@ -20,6 +20,6 @@
                 <span class="new-icon" wx:if="{{item.hasNew}}">new!</span>
             </navigator>
         </div>
-        <ad class="my-ad" unit-id="adunit-5215dd089956d3e6"></ad>
+        <!--<ad class="my-ad" unit-id="adunit-5215dd089956d3e6"></ad>-->
     </scroll-view>
 </view>
