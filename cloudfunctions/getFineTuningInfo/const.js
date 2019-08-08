@@ -14,6 +14,10 @@ const honorRoomTimeNode = [
 ];
 const timeNode = [
   {
+    time: "2019-08-06",
+    title: "《奥丹姆奇兵》上线",
+  },
+  {
     time: "2019-06-04",
     title: "《机械崛起》补丁上线",
   },
@@ -109,6 +113,11 @@ const timeNode = [
   }
 ];
 const versionInfo = {
+  "1158": {
+    year: 6,
+    time: "2019-08-06",
+    title: "暗影崛起",
+  },
   "1130": {
     year: 6,
     time: "2019-04-10",
