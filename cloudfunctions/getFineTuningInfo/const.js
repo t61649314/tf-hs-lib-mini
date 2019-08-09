@@ -116,7 +116,7 @@ const versionInfo = {
   "1158": {
     year: 6,
     time: "2019-08-06",
-    title: "暗影崛起",
+    title: "奥丹姆奇兵",
   },
   "1130": {
     year: 6,
