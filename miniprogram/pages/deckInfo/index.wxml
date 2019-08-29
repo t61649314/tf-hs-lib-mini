@@ -1,15 +1,13 @@
 <view class="occupation-content">
-    <image class="occupation-bg" src="cloud://tf-deck-lib-server-593c3f.7466-tf-deck-lib-server-593c3f/occupation-bg/{{deck.occupation}}.png"
+    <image class="occupation-bg"
+           src="cloud://tf-deck-lib-server-593c3f.7466-tf-deck-lib-server-593c3f/occupation-bg/{{deck.occupation}}.png"
            mode="aspectFit"></image>
     <view class="info-content">
         <view class="info-item name-item">{{deck.name}}</view>
         <view class="info-item">职业：{{occupationInfo[deck.occupation].cnName}}</view>
         <view class="info-item">模式：{{typeMap[deck.type]}}</view>
         <view class="info-item">时间：{{timeStr}}</view>
-        <view class="info-item">来源：{{deck.page}}
-            <!--<text class="page-text">来源：{{deck.page}}</text>-->
-            <!--<i-button wx:if="{{!hideToPageBtn}}" class="jump-to-deck-list" bind:click="toPage" type="primary" inline="true" size="small">点击进入套牌集>>></i-button>-->
-        </view>
+        <view class="info-item">来源：{{deck.page}}</view>
         <view class="cost-list-content">
             <view class="cost-item" wx:for="{{['0','1','2','3','4','5','6','7+']}}" wx:key="index">
                 <view class="item-histogram-num"

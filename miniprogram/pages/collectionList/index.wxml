@@ -7,7 +7,7 @@
             <div class="item-name">{{item.deckName}}</div>`
             <div class="item-type">{{item.deckTypeStr}}</div>
             <div class="item-page">{{item.deckPage}}</div>
-            <div class="item-time">{{item.deckTimeStr}}</div>
+            <div class="item-time">{{item.createTimeStr}}</div>
         </navigator>
     </div>
     <view wx:elif="{{!scrollLoading}}" class="no-data-content">暂无数据</view>

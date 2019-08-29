@@ -1,9 +1,9 @@
-const {timeNode} = require('../../lib/const');
 const {formatTime} = require('../../lib/utils');
 Page({
   data: {
     reportList: [],
     reportGroup: [],
+    timeNode: [],
     from: "",
     type: "",
     loading: true
@@ -16,7 +16,18 @@ Page({
       'from': options.from,
       'type': options.type
     });
-    this.getReportList(0);
+    const db = wx.cloud.database();
+    db.collection('config-list')
+      .doc('const')
+      .get()
+      .then(({data}) => {
+        if (data) {
+          this.setData({
+            timeNode: data.timeNode,
+          });
+          this.getReportList(0);
+        }
+      }).catch(console.error);
   },
   getReportList: function (skip) {
     const db = wx.cloud.database();
@@ -50,7 +61,7 @@ Page({
             return b.time - a.time
           });
           let lastTime = reportList[reportList.length - 1].time;
-          let reportGroup = reportList.concat(timeNode).sort((a, b) => {
+          let reportGroup = reportList.concat(this.data.timeNode).sort((a, b) => {
             return new Date(b.time).getTime() - new Date(a.time).getTime()
           });
           reportGroup = reportGroup.filter((item, index) => {

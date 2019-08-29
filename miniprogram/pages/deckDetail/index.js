@@ -1,4 +1,3 @@
-const {timeNode, fromMap} = require('../../lib/const');
 const app = getApp();
 Page({
   data: {
@@ -13,7 +12,6 @@ Page({
     collectionId: "",
     deck: {},
     fromUrl: "",
-    fromMap: fromMap,
     scrollHeight: 0,
   },
   onLoad: function (options) {
@@ -26,25 +24,32 @@ Page({
       'id': options.id,
       'time': options.time
     });
-    let weakenArr = timeNode.filter(item => {
-      return new Date(item.time).getTime() > this.data.time && item.weakenCardArr;
-    });
-    weakenArr.forEach(item => {
-      this.data.weakenArr = this.data.weakenArr.concat(item.weakenCardArr)
-    });
-    this.setData({
-      'weakenArr': this.data.weakenArr
-    });
-
-    wx.getSystemInfo({
-      success: (res) => {
-        const windowHeight = res.windowHeight;
-        this.setData({
-          'scrollHeight': windowHeight - 50
-        });
-        this.getDeck();
-      }
-    });
+    const db = wx.cloud.database();
+    db.collection('config-list')
+      .doc('const')
+      .get()
+      .then(({data}) => {
+        if (data) {
+          let weakenArr = data.timeNode.filter(item => {
+            return new Date(item.time).getTime() > this.data.time && item.weakenCardArr;
+          });
+          weakenArr.forEach(item => {
+            this.data.weakenArr = this.data.weakenArr.concat(item.weakenCardArr)
+          });
+          this.setData({
+            'weakenArr': this.data.weakenArr
+          });
+          wx.getSystemInfo({
+            success: (res) => {
+              const windowHeight = res.windowHeight;
+              this.setData({
+                'scrollHeight': windowHeight - 50
+              });
+              this.getDeck();
+            }
+          });
+        }
+      }).catch(console.error);
   },
   getSuggestionsAndSimilarities: function () {
     wx.navigateTo({

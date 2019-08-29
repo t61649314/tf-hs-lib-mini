@@ -2,7 +2,7 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 const db = cloud.database()
 const MAX_LIMIT = 100
-let {timeNode, versionInfo, honorRoomTimeNode} = require('./const');
+let {versionInfo, honorRoomTimeNode} = require('./const');
 
 function formatNum(num) {
   return Math.round(num * 100) / 100
@@ -28,6 +28,7 @@ function sortCardWeightInfoToList(obj, len, legendaryIsUp) {
 exports.main = async (event, context) => {
   let mVersionInfo = Object.assign({}, versionInfo);
   const {data: deck} = await db.collection('deck-list').doc(event.deckId).get();
+  const {data: timeNode} = await db.collection('config-list').doc("const").get();
   let suggestionsAddCardsObj = {};
   let suggestionsRemoveCardsObj = {};
 // 先取出集合记录总数
