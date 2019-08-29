@@ -28,7 +28,7 @@ function sortCardWeightInfoToList(obj, len, legendaryIsUp) {
 exports.main = async (event, context) => {
   let mVersionInfo = Object.assign({}, versionInfo);
   const {data: deck} = await db.collection('deck-list').doc(event.deckId).get();
-  const {data: timeNode} = await db.collection('config-list').doc("const").get();
+  const {data: {timeNode}} = await db.collection('config-list').doc("const").get();
   let suggestionsAddCardsObj = {};
   let suggestionsRemoveCardsObj = {};
 // 先取出集合记录总数

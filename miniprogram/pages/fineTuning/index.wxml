@@ -77,7 +77,7 @@
             <view wx:for="{{newVersionCardList}}" wx:key="{{index}}">
                 <view class="item {{item.isOpen?'item-open':'item-close'}}" data-index="{{index}}"
                       bindtap='versionItemClick'>
-                    <image class="version-img" src="../../images/version-icon/{{item.id}}.png"></image>
+                    <image class="version-img" src="cloud://tf-deck-lib-server-593c3f.7466-tf-deck-lib-server-593c3f/version-icon/{{item.id}}.png"></image>
                     <div class="title">{{item.title}}</div>
                 </view>
                 <view class="sug-card-wrap" wx:if="{{item.isOpen}}" style="padding: 20rpx 10rpx">
