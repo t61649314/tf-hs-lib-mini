@@ -1,18 +1,23 @@
 <view class="container">
-    <div wx:for="{{reportGroup}}" wx:key="index" class="item-box">
-        <navigator wx:if="{{item.name}}" url="{{'../deckList/index?page='+item.name+'&time='+item.time+'&type='+item.type+'&fromUrl='+item.fromUrlEncode}}"
-                   open-type="navigate" class="item">
-            <span class="has-time-title title">{{item.name}}</span>
-            <span class="new-icon" wx:if="{{item.isNew}}">new!</span>
-            <span class="report-time">{{item.timeStr}}</span>
-        </navigator>
-        <div wx:else class="time-node-text">
-            <div class="title">{{item.title}}</div>
-            <div class="time">{{item.time}}</div>
+    <scroll-view scroll-y='true' style="height:{{scrollHeight}}px" bindscrolltolower='lower'>
+        <div wx:for="{{reportGroup}}" wx:key="index" class="item-box">
+            <navigator wx:if="{{item.name}}"
+                       url="{{'../deckList/index?page='+item.name+'&time='+item.time+'&type='+item.type+'&fromUrl='+item.fromUrlEncode}}"
+                       open-type="navigate" class="item">
+                <span class="has-time-title title">{{item.name}}</span>
+                <span class="new-icon" wx:if="{{item.isNew}}">new!</span>
+                <span class="report-time">{{item.timeStr}}</span>
+            </navigator>
+            <div wx:else class="time-node-text">
+                <div class="title">{{item.title}}</div>
+                <div class="time">{{item.time}}</div>
+            </div>
         </div>
-    </div>
+        <i-spin size="large" wx:if="{{scrollLoading}}" custom>
+            <view style="padding: 30rpx 0">
+                <i-icon type="refresh" size="20" i-class="icon-load"></i-icon>
+                <text>加载中...</text>
+            </view>
+        </i-spin>
+    </scroll-view>
 </view>
-<i-spin size="large" fix custom wx:if="{{loading}}">
-    <i-icon type="refresh" size="20" i-class="icon-load"></i-icon>
-    加载中...
-</i-spin>

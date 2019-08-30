@@ -40,14 +40,15 @@ Component({
       }
     ],
     deckList: [],
+    timeNode: [],
     searchData: {
       name: "",
       occupation: "",
       from: "",
-      type: ""
+      type: "wild"
     },
     fromText: "全部",
-    typeText: "全部",
+    typeText: "狂野",
     noMore: false,
     pageNum: 1,
     visible1: false,
@@ -99,7 +100,21 @@ Component({
         this.setData({
           'scrollHeight': this.data.componentHeight - searchBarHeight
         });
-        this.getDeckList();
+        this.setData({
+          'scrollLoading': true
+        });
+        const db = wx.cloud.database();
+        db.collection('config-list')
+          .doc('const')
+          .get()
+          .then(({data}) => {
+            if (data) {
+              this.setData({
+                timeNode: data.timeNode,
+              });
+              this.getDeckList();
+            }
+          }).catch(console.error);
       });
       query.exec();
     },
@@ -144,7 +159,7 @@ Component({
       if (searchData.from) {
         if (searchData.from === "other") {
           const _ = db.command;
-          where.from = _.in(["shengerkuangye","team-rankstar", "fengtian", "zaowuzhe", "suzhijicha", "nga-carry", "other"])
+          where.from = _.in(["shengerkuangye", "team-rankstar", "fengtian", "zaowuzhe", "suzhijicha", "nga-carry", "other"])
         } else {
           where.from = searchData.from
         }
@@ -169,18 +184,36 @@ Component({
         .get()
         .then(({data}) => {
           if (data && data.length) {
+            let lastPage = false;
             if (data.length < 20) {
               this.setData({
                 'noMore': true
               });
+              lastPage = true;
             }
             data.forEach(item => {
               item.timeStr = formatTime(new Date(item.time));
               item.typeStr = typeTitleMap[item.type];
             });
             this.data.deckList = this.data.deckList.concat(data);
+
+            let reportList = this.data.deckList.sort((a, b) => {
+              return b.time - a.time
+            });
+            let lastTime = reportList[reportList.length - 1].time;
+            let deckGroup = reportList.concat(this.data.timeNode).sort((a, b) => {
+              return new Date(b.time).getTime() - new Date(a.time).getTime()
+            });
+            deckGroup = deckGroup.filter((item, index) => {
+              if (item.name) {
+                return true;
+              } else {
+                return new Date(deckGroup[index].time).getTime() > lastTime || (lastPage & new Date(deckGroup[index - 1].time).getTime() === lastTime)
+              }
+            });
             this.setData({
-              'deckList': this.data.deckList
+              'deckList': this.data.deckList,
+              'deckGroup': deckGroup,
             });
           }
           this.setData({
