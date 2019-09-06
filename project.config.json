@@ -10,7 +10,7 @@
 		"autoAudits": false
 	},
 	"appid": "wx111aafbe3d0326e3",
-	"projectname": "tf-deck-lib",
+	"projectname": "tf-hs-lib-mini",
 	"libVersion": "2.5.0",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},

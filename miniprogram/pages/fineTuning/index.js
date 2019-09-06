@@ -50,5 +50,32 @@ Page({
     this.setData({
       'newVersionCardList': this.data.newVersionCardList
     });
+  },
+  similarDeckItemClick: function (event) {
+    let item = this.data.similarDeckList[event.currentTarget.dataset.index];
+    item.isOpen = !item.isOpen;
+    this.setData({
+      'similarDeckList': this.data.similarDeckList
+    });
+  },
+  copyDeck: function (event) {
+    let item = this.data.similarDeckList[event.currentTarget.dataset.index];
+    wx.setClipboardData({
+      data: item.deck.code,
+      success(res) {
+        wx.hideToast();
+        wx.showToast({
+          title: '复制卡组成功',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+    })
+  },
+  goDeckDetails: function (event) {
+    let item = this.data.similarDeckList[event.currentTarget.dataset.index];
+    wx.navigateTo({
+      url: `../deckDetail/index?id=${item.deck._id}&time=${item.deck.time}&hideSugBtn=true`
+    })
   }
 });

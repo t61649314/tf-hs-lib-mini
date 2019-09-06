@@ -125,7 +125,7 @@ exports.main = async (event, context) => {
       } else {
         return b.sameQuantity - a.sameQuantity
       }
-    }).slice(0, 5);
+    }).slice(0, 10);
     //遍历相似卡组得到权重合
     let similarPercentTotal = 0;
     let latestTime = 0;
@@ -149,6 +149,8 @@ exports.main = async (event, context) => {
 
     if (similarDeckList && similarDeckList.length) {
       similarDeckList.forEach(({deck: similarDeckItem, sameQuantity}) => {
+        similarDeckItem.addCardList = [];
+        similarDeckItem.removeCardList = [];
         let time = similarDeckItem.time;
         let similarPercent = formatNum(sameQuantity / 30);
         let weakenArr = timeNode.filter(item => {
@@ -188,11 +190,19 @@ exports.main = async (event, context) => {
                 info: cardItem
               }
             }
+
+            similarDeckItem.addCardList.push(cardItem);
+          }
+        });
+        deck.cards.forEach(cardItem => {
+          let findSimilarCard = similarDeckItem.cards.find(item => item.dbfId === cardItem.dbfId);
+          if (!findSimilarCard) {
+            similarDeckItem.removeCardList.push(cardItem);
           }
         });
       });
-      suggestionsRemoveCardsList = sortCardWeightInfoToList(suggestionsRemoveCardsObj, 5, false).filter(item => item.weight > 0);
-      suggestionsAddCardList = sortCardWeightInfoToList(suggestionsAddCardsObj, 5, true).filter(item => item.weight > 0);
+      suggestionsRemoveCardsList = sortCardWeightInfoToList(suggestionsRemoveCardsObj, 10, false).filter(item => item.weight > 0);
+      suggestionsAddCardList = sortCardWeightInfoToList(suggestionsAddCardsObj, 10, true).filter(item => item.weight > 0);
     }
     let currentDeckWithOutHonorRoomCards = [];
     Object.keys(mVersionInfo).forEach(key => {
