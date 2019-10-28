@@ -128,10 +128,10 @@ Component({
         this.getDeckList();
       }
     },
-    searchNameBlur({detail}) {
-      const name = detail.detail.value;
+    searchNameBlur(data) {
+      const name = data.detail.value;
       if (name !== this.data.searchData.name) {
-        this.data.searchData.name = detail.detail.value;
+        this.data.searchData.name = data.detail.value;
         this.setData({
           'deckList': [],
           'searchData': this.data.searchData,
