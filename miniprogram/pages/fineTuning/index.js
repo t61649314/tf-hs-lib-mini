@@ -13,6 +13,7 @@ Page({
     newVersionCardList: []
   },
   onLoad: function (option) {
+    wx.showShareMenu();
     wx.setNavigationBarTitle({
       title: "相似卡组&微调建议"
     });

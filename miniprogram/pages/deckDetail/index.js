@@ -15,6 +15,7 @@ Page({
     scrollHeight: 0,
   },
   onLoad: function (options) {
+    wx.showShareMenu();
     wx.setNavigationBarTitle({
       title: "卡组详情"
     });

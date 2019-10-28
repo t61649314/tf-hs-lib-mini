@@ -14,6 +14,7 @@ Component({
   },
   lifetimes: {
     attached() {
+      wx.showShareMenu();
       let timeStr = formatTime(new Date(this.properties.deck.time));
       this.properties.deck.cards.forEach(item => {
         let cost = item.cost >= 7 ? 7 : item.cost;

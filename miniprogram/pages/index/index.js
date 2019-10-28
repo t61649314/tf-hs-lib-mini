@@ -6,6 +6,7 @@ Page({
   },
 
   onLoad() {
+    wx.showShareMenu();
     const db = wx.cloud.database();
     db.collection('config-list')
       .doc('notice')

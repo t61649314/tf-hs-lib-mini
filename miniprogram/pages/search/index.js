@@ -94,6 +94,7 @@ Component({
   },
   lifetimes: {
     ready() {
+      wx.showShareMenu();
       const query = this.createSelectorQuery();
       query.select('#search-bar').boundingClientRect((res) => {
         const searchBarHeight = res.height;

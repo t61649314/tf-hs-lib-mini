@@ -16,6 +16,7 @@ Page({
     scrollLoading: false
   },
   onLoad(options) {
+    wx.showShareMenu();
     wx.setNavigationBarTitle({
       title: options.page
     });
