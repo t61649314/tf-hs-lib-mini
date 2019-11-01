@@ -6,7 +6,7 @@
     <scroll-view scroll-y='true' style="height:{{componentHeight-42}}px">
         <div class="navigator-box" wx:if="{{current==='wild'}}">
             <navigator wx:for="{{wildFromList}}" wx:key="{{index}}"
-                       url="../reportList/index?type=wild&from={{item.from}}&cnName={{item.cnName}}"
+                       url="../reportList/index?type=wild&from={{item.name}}&cnName={{item.cnName}}"
                        open-type="navigate" class="item">
                 <text class="title">{{item.cnName}}</text>
                 <span class="new-icon" wx:if="{{item.hasNew}}">new!</span>
@@ -14,7 +14,7 @@
         </div>
         <div class="navigator-box" wx:if="{{current==='standard'}}">
             <navigator wx:for="{{standardFromList}}" wx:key="{{index}}"
-                       url="../reportList/index?type=standard&from={{item.from}}&cnName={{item.cnName}}"
+                       url="../reportList/index?type=standard&from={{item.name}}&cnName={{item.cnName}}"
                        open-type="navigate" class="item">
                 <text class="title">{{item.cnName}}</text>
                 <span class="new-icon" wx:if="{{item.hasNew}}">new!</span>
