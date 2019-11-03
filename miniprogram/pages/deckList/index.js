@@ -43,7 +43,7 @@ Page({
       }
     })
   },
-  copy(event){
+  copy(event) {
     wx.setClipboardData({
       data: event.currentTarget.dataset.content,
       success(res) {
@@ -80,7 +80,7 @@ Page({
         } else {
           this.setData({
             'deckList': this.data.deckList,
-            'showDeckList': this.data.deckList,
+            'showDeckList': this.data.deckList.sort((a, b) => a.occupation > b.occupation ? 1 : -1),
             'scrollLoading': false
           });
         }
@@ -88,7 +88,7 @@ Page({
     }).catch(console.error)
   },
   occupationClick(event) {
-    if(this.data.scrollLoading){
+    if (this.data.scrollLoading) {
       return;
     }
     const key = event.currentTarget.dataset.key;

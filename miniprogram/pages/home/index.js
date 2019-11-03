@@ -15,8 +15,8 @@ Component({
       const _ = db.command;
       db.collection('report-group')
         .get().then(({data}) => {
-        let standardFromList = data.filter(item => item.type === 'standard');
-        let wildFromList = data.filter(item => item.type === 'wild');
+        let standardFromList = data.filter(item => item.type === 'standard').sort((a, b) => a.index - b.index);
+        let wildFromList = data.filter(item => item.type === 'wild').sort((a, b) => a.index - b.index);
         let timeLimit = new Date().getTime() - 3 * 24 * 60 * 60 * 1000;
         db.collection('report-list')
           .where({
