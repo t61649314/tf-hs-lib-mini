@@ -20,9 +20,14 @@ Page({
   onReady() {
     wx.getSystemInfo({
       success: (res) => {
-        const windowHeight = res.windowHeight;
+        const model = res.model;
+        const isIpx = model.search('iPhone X') > -1;
+        let scrollHeight = res.windowHeight;
+        if (isIpx) {
+          scrollHeight -= 20;
+        }
         this.setData({
-          'scrollHeight': windowHeight
+          'scrollHeight': scrollHeight
         });
       }
     })

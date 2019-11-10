@@ -1,9 +1,10 @@
-<wxs src="../../lib/utils.wxs" module="utils" />
+<wxs src="../../lib/utils.wxs" module="utils"/>
 <scroll-view scroll-y='true' style="height:{{scrollHeight}}px" class="container" wx:if="{{isInit}}">
-    <deck-info  deck="{{deck}}"  hideToPageBtn="{{hideToPageBtn}}"></deck-info>
+    <deck-info deck="{{deck}}" hideToPageBtn="{{hideToPageBtn}}"></deck-info>
     <view class="deck-box-head">
         <text class="title">卡组详情</text>
-        <i-button wx:if="{{!hideSugBtn}}" class="sug-sim-btn" bind:click="getSuggestionsAndSimilarities" type="primary" inline="true" size="small">
+        <i-button wx:if="{{!hideSugBtn}}" class="sug-sim-btn" bind:click="getSuggestionsAndSimilarities" type="primary"
+                  inline="true" size="small">
             相似卡组&微调建议
         </i-button>
     </view>
@@ -15,7 +16,9 @@
             <view class="card-cost">{{cardItem.cost}}</view>
             <view class="card-name card-name-{{cardItem.rarity}}">{{cardItem.cnName}}</view>
             <view class="card-img-wrap">
-                <image class="card-img" mode="aspectFit"
+                <view wx:if="{{cardItem.img2}}" class="card-img2"
+                      style="background-image:url('{{cardItem.img2}}')"/>
+                <image wx:else class="card-img" mode="aspectFit"
                        src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(cardItem.img)}}"/>
             </view>
             <view class="card-quantity">
@@ -29,7 +32,7 @@
     </i-button>
     <!--<ad class="my-ad" unit-id="adunit-254b3b09f194c5a7"></ad>-->
 </scroll-view>
-<view class="bottom-btn-box">
+<view class="bottom-btn-box {{isIpx?'is-ipx':''}}">
     <button open-type="share" class="bottom-btn">
         <view class="btn-inner">
             <i-icon type="share"/>

@@ -55,6 +55,35 @@
     width: 210rpx;
 }
 
+.deck-box .card-item .card-img2 {
+    background-position:70rpx -60rpx;
+    background-repeat:no-repeat;
+    background-size:100%;
+    height:100%;
+    width:250rpx;
+    position: relative;
+}
+
+.deck-box .card-item .card-img2:before {
+    content: "";
+    position: absolute;
+    left: 70rpx;
+    height: 50rpx;
+    background: #1b1b1b;
+    width: 40rpx;
+    z-index: 1;
+}
+
+.deck-box .card-item .card-img2:after {
+    content: "";
+    position: absolute;
+    left: 110rpx;
+    height: 50rpx;
+    background: linear-gradient(to right, #1b1b1b, rgba(0, 0, 0, 0));
+    width: 30rpx;
+    z-index: 1;
+}
+
 .deck-box .card-item .card-quantity {
     width: 50rpx;
     color: #fba31b;
@@ -73,6 +102,7 @@
     color: #fff;
     position: absolute;
     left: 65rpx;
+    z-index: 2;
 }
 
 .deck-box .card-item .is-weaken-text {
@@ -114,6 +144,7 @@
     width: 100%;
     display: flex;
     border-top: 1rpx solid #ccc;
+    background: #fff;
 }
 .bottom-btn i-icon{
     margin-right: 10rpx;

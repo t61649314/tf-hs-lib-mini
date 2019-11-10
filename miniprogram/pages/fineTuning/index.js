@@ -1,6 +1,7 @@
 const {formatTime} = require('../../lib/utils');
 Page({
   data: {
+    scrollHeight: 0,
     deck: {},
     latestTimeSimilarDeckIndex: -1,
     fineTuningType: 0,
@@ -13,6 +14,19 @@ Page({
     newVersionCardList: []
   },
   onLoad: function (option) {
+    wx.getSystemInfo({
+      success: (res) => {
+        const model = res.model;
+        const isIpx = model.search('iPhone X') > -1;
+        let scrollHeight=res.windowHeight;
+        if(isIpx){
+          scrollHeight -= 20;
+        }
+        this.setData({
+          'scrollHeight': scrollHeight
+        });
+      }
+    });
     wx.showShareMenu();
     wx.setNavigationBarTitle({
       title: "相似卡组&微调建议"

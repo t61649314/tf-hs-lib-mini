@@ -1,5 +1,5 @@
 <wxs src="../../lib/utils.wxs" module="utils"/>
-<view wx:if="{{!loading}}" class="fine-tuning">
+<scroll-view scroll-y='true' style="height:{{scrollHeight}}px"  wx:if="{{!loading}}" class="fine-tuning">
     <deck-info deck="{{deck}}" hideToPageBtn="{{hideToPageBtn}}"></deck-info>
     <view class="head">
         <view class="title">微调建议</view>
@@ -174,7 +174,7 @@
     <view class="no-data-content" wx:else>
         暂无数据
     </view>
-</view>
+</scroll-view>
 <i-spin size="large" fix custom wx:if="{{loading}}">
     <i-icon type="refresh" size="20" i-class="icon-load"></i-icon>
     加载中...

@@ -1,6 +1,7 @@
 const app = getApp();
 Page({
   data: {
+    isIpx: false,
     hideSugBtn: false,
     hideToPageBtn: false,
     id: "",
@@ -42,6 +43,11 @@ Page({
           });
           wx.getSystemInfo({
             success: (res) => {
+              const model = res.model;
+              const isIpx = model.search('iPhone X') > -1;
+              this.setData({
+                'isIpx': isIpx
+              });
               const windowHeight = res.windowHeight;
               this.setData({
                 'scrollHeight': windowHeight - 50
@@ -65,6 +71,9 @@ Page({
       if (data) {
         data.cards.forEach(item => {
           item.isWeaken = this.isWeaken(item.dbfId);
+        });
+        data.cards.sort((a, b) => {
+          return a.cost - b.cost;
         });
         this.data.deck = data;
       }

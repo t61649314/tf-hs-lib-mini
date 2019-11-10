@@ -151,3 +151,7 @@ body {
     padding:0 20rpx;
 
 }
+
+.is-ipx {
+    bottom: 40rpx!important;
+}

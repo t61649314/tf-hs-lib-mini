@@ -30,11 +30,17 @@ Page({
   onReady() {
     wx.getSystemInfo({
       success: (res) => {
+        const model = res.model;
+        const isIpx = model.search('iPhone X') > -1;
         const windowHeight = res.windowHeight;
         const query = this.createSelectorQuery();
         query.select('.page-head').boundingClientRect((res) => {
+          let scrollHeight = windowHeight - res.height;
+          if (isIpx) {
+            scrollHeight -= 20;
+          }
           this.setData({
-            'scrollHeight': windowHeight - res.height,
+            'scrollHeight': scrollHeight,
             'scrollLoading': true
           });
           this.getDeckList(0);
