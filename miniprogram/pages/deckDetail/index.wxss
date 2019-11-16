@@ -70,17 +70,17 @@
     left: 70rpx;
     height: 50rpx;
     background: #1b1b1b;
-    width: 40rpx;
+    width: 60rpx;
     z-index: 1;
 }
 
 .deck-box .card-item .card-img2:after {
     content: "";
     position: absolute;
-    left: 110rpx;
+    left: 120rpx;
     height: 50rpx;
     background: linear-gradient(to right, #1b1b1b, rgba(0, 0, 0, 0));
-    width: 30rpx;
+    width: 80rpx;
     z-index: 1;
 }
 
@@ -124,7 +124,6 @@
 }
 
 .copy-deck-btn {
-    padding: 20rpx 0;
 }
 
 .copy-deck-btn button{
@@ -136,6 +135,7 @@
 .my-ad{
    margin-top: 40rpx;
 }
+
 .bottom-btn-box{
     height: 50px;
     position: fixed;
@@ -146,9 +146,11 @@
     border-top: 1rpx solid #ccc;
     background: #fff;
 }
+
 .bottom-btn i-icon{
     margin-right: 10rpx;
 }
+
 .bottom-btn{
     -webkit-tap-highlight-color:initial;
     padding: 15px 0;
@@ -161,12 +163,15 @@
     color: #898d98;
     border-radius: initial;
 }
+
 .collection{
     color: #2d8cf0;
 }
+
 .bottom-btn:after {
     border: none;
 }
+
 .bottom-btn .btn-inner{
     border-right: 1rpx solid #ccc;
     width: 100%;

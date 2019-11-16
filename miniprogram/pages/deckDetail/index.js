@@ -48,7 +48,10 @@ Page({
               this.setData({
                 'isIpx': isIpx
               });
-              const windowHeight = res.windowHeight;
+              let windowHeight = res.windowHeight;
+              if (isIpx) {
+                windowHeight -= 20;
+              }
               this.setData({
                 'scrollHeight': windowHeight - 50
               });

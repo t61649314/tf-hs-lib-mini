@@ -21,7 +21,9 @@
                     <view class="card-cost">{{item.info.cost}}</view>
                     <view class="card-name card-name-{{item.info.rarity}}">{{item.info.cnName}}</view>
                     <view class="card-img-wrap">
-                        <image class="card-img" mode="aspectFit"
+                        <view wx:if="{{item.info.img2}}" class="card-img2"
+                              style="background-image:url('{{item.info.img2}}')"/>
+                        <image wx:else class="card-img" mode="aspectFit"
                                src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(item.info.img)}}"/>
                     </view>
                     <view class="card-add">
@@ -36,7 +38,9 @@
                     <view class="card-cost">{{item.info.cost}}</view>
                     <view class="card-name card-name-{{item.info.rarity}}">{{item.info.cnName}}</view>
                     <view class="card-img-wrap">
-                        <image class="card-img" mode="aspectFit"
+                        <view wx:if="{{item.info.img2}}" class="card-img2"
+                              style="background-image:url('{{item.info.img2}}')"/>
+                        <image wx:else class="card-img" mode="aspectFit"
                                src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(item.info.img)}}"/>
                     </view>
                     <view class="card-remove">
@@ -58,7 +62,9 @@
                     <view class="card-cost">{{item.cost}}</view>
                     <view class="card-name card-name-{{item.rarity}}">{{item.cnName}}</view>
                     <view class="card-img-wrap">
-                        <image class="card-img" mode="aspectFit"
+                        <view wx:if="{{item.img2}}" class="card-img2"
+                              style="background-image:url('{{item.img2}}')"/>
+                        <image wx:else class="card-img" mode="aspectFit"
                                src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(item.img)}}"/>
                     </view>
                     <view class="card-remove">
@@ -90,7 +96,9 @@
                             <view class="card-cost">{{cardItem.info.cost}}</view>
                             <view class="card-name card-name-{{cardItem.info.rarity}}">{{cardItem.info.cnName}}</view>
                             <view class="card-img-wrap">
-                                <image class="card-img" mode="aspectFit"
+                                <view wx:if="{{cardItem.info.img2}}" class="card-img2"
+                                      style="background-image:url('{{cardItem.info.img2}}')"/>
+                                <image wx:else class="card-img" mode="aspectFit"
                                        src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(cardItem.info.img)}}"/>
                             </view>
                             <view class="card-add">
@@ -136,6 +144,8 @@
                         <view class="card-cost">{{cardItem.cost}}</view>
                         <view class="card-name card-name-{{cardItem.rarity}}">{{cardItem.cnName}}</view>
                         <view class="card-img-wrap">
+                            <view wx:if="{{cardItem.img2}}" class="card-img2"
+                                  style="background-image:url('{{cardItem.img2}}')"/>
                             <image class="card-img" mode="aspectFit"
                                    src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(cardItem.img)}}"/>
                         </view>
@@ -152,6 +162,8 @@
                         <view class="card-cost">{{cardItem.cost}}</view>
                         <view class="card-name card-name-{{cardItem.rarity}}">{{cardItem.cnName}}</view>
                         <view class="card-img-wrap">
+                            <view wx:if="{{cardItem.img2}}" class="card-img2"
+                                  style="background-image:url('{{cardItem.img2}}')"/>
                             <image class="card-img" mode="aspectFit"
                                    src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(cardItem.img)}}"/>
                         </view>
