@@ -40,17 +40,17 @@
     left: 70rpx;
     height: 50rpx;
     background: #1b1b1b;
-    width: 40rpx;
+    width: 60rpx;
     z-index: 1;
 }
 
 .sug-card-wrap .card-item .card-img2:after {
     content: "";
     position: absolute;
-    left: 110rpx;
+    left: 120rpx;
     height: 50rpx;
     background: linear-gradient(to right, #1b1b1b, rgba(0, 0, 0, 0));
-    width: 30rpx;
+    width: 80rpx;
     z-index: 1;
 }
 
