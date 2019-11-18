@@ -106,6 +106,7 @@
 }
 
 .deck-box .card-item .is-weaken-text {
+    z-index: 3;
     position: absolute;
     color: red;
     font-size: 28rpx;
