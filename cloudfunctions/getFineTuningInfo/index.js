@@ -196,7 +196,7 @@ exports.main = async (event, context) => {
         });
         deck.cards.forEach(cardItem => {
           let findSimilarCard = similarDeckItem.cards.find(item => item.dbfId === cardItem.dbfId);
-          if (!findSimilarCard) {
+          if (!findSimilarCard || findSimilarCard.quantity < cardItem.quantity) {
             similarDeckItem.removeCardList.push(cardItem);
           }
         });
