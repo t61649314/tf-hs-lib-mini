@@ -164,7 +164,6 @@ exports.main = async (event, context) => {
           let findCurrentCard = deck.cards.find(item => item.dbfId === cardItem.dbfId);
           if (findCurrentCard) {//当前有这张卡，为remove做一次反向统计
             suggestionsRemoveCardsObj[cardItem.dbfId].weight = formatNum(suggestionsRemoveCardsObj[cardItem.dbfId].weight - cardItem.quantity * similarPercent);
-
             if (weakenCardIdList.includes(cardItem.dbfId)) {
               return false;
             }
@@ -190,7 +189,8 @@ exports.main = async (event, context) => {
                 info: cardItem
               }
             }
-
+          }
+          if (!findCurrentCard || findCurrentCard.quantity < cardItem.quantity) {
             similarDeckItem.addCardList.push(cardItem);
           }
         });
