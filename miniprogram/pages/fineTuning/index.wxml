@@ -146,7 +146,7 @@
                         <view class="card-img-wrap">
                             <view wx:if="{{cardItem.img2}}" class="card-img2"
                                   style="background-image:url('{{cardItem.img2}}')"/>
-                            <image class="card-img" mode="aspectFit"
+                            <image wx:else class="card-img" mode="aspectFit"
                                    src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(cardItem.img)}}"/>
                         </view>
                         <view class="card-add">
@@ -164,7 +164,7 @@
                         <view class="card-img-wrap">
                             <view wx:if="{{cardItem.img2}}" class="card-img2"
                                   style="background-image:url('{{cardItem.img2}}')"/>
-                            <image class="card-img" mode="aspectFit"
+                            <image wx:else class="card-img" mode="aspectFit"
                                    src="https://cdn.tempostorm.com/cards/{{utils.formatImageUrl(cardItem.img)}}"/>
                         </view>
                         <view class="card-remove">
