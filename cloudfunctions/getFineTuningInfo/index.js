@@ -102,7 +102,7 @@ exports.main = async (event, context) => {
 
   //查询同职业同类型的所有卡组
   if (deckList && deckList.length) {
-    //获取到相似的卡组，最多5个
+    //获取到相似的卡组，最多10个
     similarDeckList = deckList.map(otherItem => {
       let sameQuantity = 0;
       deck.cards.forEach(currentCardItem => {
@@ -138,7 +138,7 @@ exports.main = async (event, context) => {
     });
     //遍历当前卡组的所有卡，初始化根据相似卡组数量得到remove权重，同时得到当前卡组中削弱的卡
     deck.cards.forEach(item => {
-      suggestionsRemoveCardsObj[item.dbfId] = {
+      suggestionsRemoveCardsObj[item.cnName] = {
         weight: formatNum(item.quantity * similarPercentTotal),
         info: item
       };
@@ -163,15 +163,19 @@ exports.main = async (event, context) => {
         similarDeckItem.cards.forEach(cardItem => {
           let findCurrentCard = deck.cards.find(item => item.cnName === cardItem.cnName);
           if (findCurrentCard) {//当前有这张卡，为remove做一次反向统计
-            suggestionsRemoveCardsObj[cardItem.dbfId].weight = formatNum(suggestionsRemoveCardsObj[cardItem.dbfId].weight - cardItem.quantity * similarPercent);
+            let removeQuantity = cardItem.quantity;
+            if (cardItem.quantity > findCurrentCard.quantity) {
+              removeQuantity = findCurrentCard.quantity;
+            }
+            suggestionsRemoveCardsObj[cardItem.cnName].weight = formatNum(suggestionsRemoveCardsObj[cardItem.cnName].weight - removeQuantity * similarPercent);
             if (weakenCardIdList.includes(cardItem.dbfId)) {
               return false;
             }
             if (cardItem.quantity > findCurrentCard.quantity) {
-              if (suggestionsAddCardsObj[cardItem.dbfId]) {
-                suggestionsAddCardsObj[cardItem.dbfId].weight = formatNum(suggestionsAddCardsObj[cardItem.dbfId].weight + (cardItem.quantity - findCurrentCard.quantity) * similarPercent);
+              if (suggestionsAddCardsObj[cardItem.cnName]) {
+                suggestionsAddCardsObj[cardItem.cnName].weight = formatNum(suggestionsAddCardsObj[cardItem.cnName].weight + (cardItem.quantity - findCurrentCard.quantity) * similarPercent);
               } else {
-                suggestionsAddCardsObj[cardItem.dbfId] = {
+                suggestionsAddCardsObj[cardItem.cnName] = {
                   weight: formatNum((cardItem.quantity - findCurrentCard.quantity) * similarPercent),
                   info: cardItem
                 }
@@ -181,10 +185,10 @@ exports.main = async (event, context) => {
             if (weakenCardIdList.includes(cardItem.dbfId)) {
               return false;
             }
-            if (suggestionsAddCardsObj[cardItem.dbfId]) {
-              suggestionsAddCardsObj[cardItem.dbfId].weight = formatNum(suggestionsAddCardsObj[cardItem.dbfId].weight + cardItem.quantity * similarPercent);
+            if (suggestionsAddCardsObj[cardItem.cnName]) {
+              suggestionsAddCardsObj[cardItem.cnName].weight = formatNum(suggestionsAddCardsObj[cardItem.cnName].weight + cardItem.quantity * similarPercent);
             } else {
-              suggestionsAddCardsObj[cardItem.dbfId] = {
+              suggestionsAddCardsObj[cardItem.cnName] = {
                 weight: formatNum(cardItem.quantity * similarPercent),
                 info: cardItem
               }
