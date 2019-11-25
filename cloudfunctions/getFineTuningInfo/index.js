@@ -106,7 +106,7 @@ exports.main = async (event, context) => {
     similarDeckList = deckList.map(otherItem => {
       let sameQuantity = 0;
       deck.cards.forEach(currentCardItem => {
-        let otherCard = otherItem.cards.find(otherCardItem => otherCardItem.dbfId === currentCardItem.dbfId);
+        let otherCard = otherItem.cards.find(otherCardItem => otherCardItem.cnName === currentCardItem.cnName);
         if (otherCard) {
           if (otherCard.quantity === currentCardItem.quantity && otherCard.quantity === 2) {
             sameQuantity += 2;
@@ -161,7 +161,7 @@ exports.main = async (event, context) => {
           weakenCardIdList = weakenCardIdList.concat(item.weakenCardArr)
         });
         similarDeckItem.cards.forEach(cardItem => {
-          let findCurrentCard = deck.cards.find(item => item.dbfId === cardItem.dbfId);
+          let findCurrentCard = deck.cards.find(item => item.cnName === cardItem.cnName);
           if (findCurrentCard) {//当前有这张卡，为remove做一次反向统计
             suggestionsRemoveCardsObj[cardItem.dbfId].weight = formatNum(suggestionsRemoveCardsObj[cardItem.dbfId].weight - cardItem.quantity * similarPercent);
             if (weakenCardIdList.includes(cardItem.dbfId)) {
@@ -195,7 +195,7 @@ exports.main = async (event, context) => {
           }
         });
         deck.cards.forEach(cardItem => {
-          let findSimilarCard = similarDeckItem.cards.find(item => item.dbfId === cardItem.dbfId);
+          let findSimilarCard = similarDeckItem.cards.find(item => item.cnName === cardItem.cnName);
           if (!findSimilarCard || findSimilarCard.quantity < cardItem.quantity) {
             similarDeckItem.removeCardList.push(cardItem);
           }
