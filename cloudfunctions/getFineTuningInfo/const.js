@@ -13,6 +13,11 @@ const honorRoomTimeNode = [
   }
 ];
 const versionInfo = {
+  "1347": {
+    year: 6,
+    time: "2019-12-11",
+    title: "巨龙降临",
+  },
   "1158": {
     year: 6,
     time: "2019-08-06",
