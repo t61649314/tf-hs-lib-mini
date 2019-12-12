@@ -4,7 +4,7 @@
 <home wx:if="{{current==='homepage'}}" component-height="{{componentHeight}}"></home>
 <search wx:if="{{current==='search'}}" component-height="{{componentHeight}}"></search>
 <mine wx:if="{{current==='mine'}}" component-height="{{componentHeight}}"></mine>
-<i-tab-bar i-class="{{isIpx?'is-ipx':''}}" current="{{ current }}" bindchange="handleChange" fixed="true">
+<i-tab-bar color="#576b95" i-class="{{isIpx?'is-ipx':''}}" current="{{ current }}" bindchange="handleChange" fixed="true">
     <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="主页"></i-tab-bar-item>
     <i-tab-bar-item key="search" icon="search" current-icon="searchfill" title="搜索"></i-tab-bar-item>
     <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>

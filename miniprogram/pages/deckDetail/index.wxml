@@ -50,5 +50,5 @@
 </view>
 <i-spin size="large" fix custom wx:if="{{loading}}">
     <i-icon type="refresh" size="20" i-class="icon-load"></i-icon>
-    加载中...
+    <text style="color: #576b95">加载中...</text>
 </i-spin>

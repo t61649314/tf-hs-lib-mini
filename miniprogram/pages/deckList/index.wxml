@@ -1,7 +1,10 @@
 <view class="container">
     <view class="page-head">
         <view class="page-title">{{page}}</view>
-        <view class="page-info-item"><text class="from-url-text">转自：{{fromUrl}}</text><text class="copy-btn" data-content="{{fromUrl}}" bindtap='copy'>复制</text></view>
+        <view class="page-info-item">
+            <text class="from-url-text">转自：{{fromUrl}}</text>
+            <text class="copy-btn" data-content="{{fromUrl}}" bindtap='copy'>复制</text>
+        </view>
         <view class="page-info-item">模式：{{typeMap[type]}}</view>
         <view class="page-info-item">时间：{{timeStr}}</view>
         <view class="occupation-bar">
@@ -16,15 +19,17 @@
             <navigator class="item" wx:for="{{showDeckList}}" wx:key="{{index}}"
                        url="{{'../deckDetail/index?id='+item._id+'&time='+item.time+'&hideToPageBtn=true'}}"
                        open-type="navigate">
-                <image class="item-occupation-icon" src="{{'../../images/'+item.occupation+'-icon.png'}}"></image>
-                <div class="deck-name">{{item.name}}</div>
+                <div class="nav-inner">
+                    <image class="item-occupation-icon" src="{{'../../images/'+item.occupation+'-icon.png'}}"></image>
+                    <div class="deck-name">{{item.name}}</div>
+                </div>
             </navigator>
         </div>
         <view wx:elif="{{!scrollLoading}}" class="no-data-content">暂无数据</view>
         <i-spin size="large" wx:if="{{scrollLoading}}" custom>
             <view style="padding: 30rpx 0">
                 <i-icon type="refresh" size="20" i-class="icon-load"></i-icon>
-                <text>加载中...</text>
+                <text style="color: #576b95">加载中...</text>
             </view>
         </i-spin>
     </scroll-view>

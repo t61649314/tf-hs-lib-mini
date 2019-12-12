@@ -1,4 +1,4 @@
-<scroll-view scroll-y='true' style="height:{{componentHeight}}px" >
+<scroll-view scroll-y='true' style="height:{{componentHeight}}px">
     <view class="userinfo">
         <button open-type="getUserInfo"
                 bindgetuserinfo="onGetUserInfo"
@@ -8,10 +8,14 @@
         <div class="userinfo-nickname">{{userInfo.nickName}}</div>
     </view>
     <navigator url="../about/index" open-type="navigate" class="item">
-        <text class="title">关于小程序</text>
+        <div class="nav-inner">
+            <text class="title">关于小程序</text>
+        </div>
     </navigator>
     <navigator url="../collectionList/index" open-type="navigate" class="item">
-        <text class="title">卡组收藏</text>
+        <div class="nav-inner">
+            <text class="title">卡组收藏</text>
+        </div>
     </navigator>
     <div class="appreciation-code">
         <text class="title">打赏作者</text>

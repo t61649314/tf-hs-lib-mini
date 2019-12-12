@@ -108,7 +108,7 @@
 .deck-box .card-item .is-weaken-text {
     z-index: 3;
     position: absolute;
-    color: red;
+    color: #e64340;
     font-size: 28rpx;
     font-weight: bold;
     word-break: keep-all;
@@ -166,7 +166,7 @@
 }
 
 .collection{
-    color: #2d8cf0;
+    color: #576b95;
 }
 
 .bottom-btn:after {

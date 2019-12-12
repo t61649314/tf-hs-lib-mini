@@ -1,5 +1,5 @@
 <wxs src="../../lib/utils.wxs" module="utils"/>
-<scroll-view scroll-y='true' style="height:{{scrollHeight}}px"  wx:if="{{!loading}}" class="fine-tuning">
+<scroll-view scroll-y='true' style="height:{{scrollHeight}}px" wx:if="{{!loading}}" class="fine-tuning">
     <deck-info deck="{{deck}}" hideToPageBtn="{{hideToPageBtn}}"></deck-info>
     <view class="head">
         <view class="title">微调建议</view>
@@ -83,9 +83,11 @@
             <view wx:for="{{newVersionCardList}}" wx:key="{{index}}">
                 <view class="item {{item.isOpen?'item-open':'item-close'}}" data-index="{{index}}"
                       bindtap='versionItemClick'>
-                    <image class="version-img"
-                           src="cloud://tf-deck-lib-server-593c3f.7466-tf-deck-lib-server-593c3f/version-icon/{{item.id}}.png"></image>
-                    <div class="title">{{item.title}}</div>
+                    <div class="nav-inner">
+                        <image class="version-img"
+                               src="cloud://tf-deck-lib-server-593c3f.7466-tf-deck-lib-server-593c3f/version-icon/{{item.id}}.png"></image>
+                        <div class="title">{{item.title}}</div>
+                    </div>
                 </view>
                 <view class="sug-card-wrap" wx:if="{{item.isOpen}}" style="padding: 20rpx 10rpx">
                     <view class="any-card-wrap" wx:if="{{item.hotCardWeightList&&item.hotCardWeightList.length}}">
@@ -126,13 +128,17 @@
             <view class="item {{item.isOpen?'item-open':'item-close'}}"
                   data-index="{{index}}"
                   bindtap='similarDeckItemClick'>
-                <image class="item-occupation-icon" src="{{'../../images/'+item.deck.occupation+'-icon.png'}}"></image>
-                <div class="item-name">{{item.deck.name}}</div>
-                <div class="item-type {{item.sameQuantity===similarDeckList[0].sameQuantity?'success-text':''}}">
-                    {{item.sameQuantity}}张相同卡
-                </div>
-                <div class="item-page">{{item.deck.page}}</div>
-                <div class="item-time {{latestTimeSimilarDeckIndex===index?'success-text':''}}">{{item.deck.timeStr}}
+                <div class="nav-inner">
+                    <image class="item-occupation-icon"
+                           src="{{'../../images/'+item.deck.occupation+'-icon.png'}}"></image>
+                    <div class="item-name">{{item.deck.name}}</div>
+                    <div class="item-type {{item.sameQuantity===similarDeckList[0].sameQuantity?'success-text':''}}">
+                        {{item.sameQuantity}}张相同卡
+                    </div>
+                    <div class="item-page">{{item.deck.page}}</div>
+                    <div class="item-time {{latestTimeSimilarDeckIndex===index?'success-text':''}}">
+                        {{item.deck.timeStr}}
+                    </div>
                 </div>
             </view>
             <view class="sug-card-wrap" wx:if="{{item.isOpen}}" style="padding: 20rpx 10rpx">
@@ -176,7 +182,8 @@
                     <i-button bind:click="copyDeck" data-index="{{index}}" type="primary" inline="true" size="small">
                         复制卡组
                     </i-button>
-                    <i-button bind:click="goDeckDetails" data-index="{{index}}" type="primary" inline="true" size="small">
+                    <i-button bind:click="goDeckDetails" data-index="{{index}}" type="primary" inline="true"
+                              size="small">
                         卡组详情
                     </i-button>
                 </view>
@@ -189,5 +196,5 @@
 </scroll-view>
 <i-spin size="large" fix custom wx:if="{{loading}}">
     <i-icon type="refresh" size="20" i-class="icon-load"></i-icon>
-    加载中...
+    <text style="color: #576b95">加载中...</text>
 </i-spin>

@@ -56,7 +56,7 @@
     bottom: 0;
     margin: 0 10rpx;
     width: 30rpx;
-    background-color: #2d8cf0;
+    background-color: #576b95;
 }
 
 .cost-list-content .item-num{

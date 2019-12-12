@@ -21,15 +21,11 @@ body {
 }
 
 .item {
-    border-bottom:1rpx solid #ccc;
     height: 100rpx;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0 32rpx;
+    padding: 0 0 0 32rpx;
     position: relative;
     background: #fff;
-    color: #9b9b9b;
+    color: #888888;
     width: 100%;
     box-sizing: border-box;
 }
@@ -49,11 +45,10 @@ body {
     position: absolute;
 }
 
-
 .item:after {
     content: " ";
     display: block;
-    border: 1rpx solid #7d7d80;
+    border: 1rpx solid #888888;
     border-bottom-width: 0;
     border-left-width: 0;
     width: 16rpx;
@@ -67,10 +62,13 @@ body {
 }
 .new-icon{
     position: relative;
-    top: -20rpx;
-    color: red;
+    top: -8px;
+    background: #e64340;
     font-style: italic;
-    margin-left: 10rpx;
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
 }
 @keyframes ani-demo-spin {
     from { transform: rotate(0deg);}
@@ -79,21 +77,29 @@ body {
 }
 .icon-load{
     animation: ani-demo-spin 1s linear infinite;
+    color: #576b95;
 }
-.item .item-name{
+.nav-inner .item-name{
     position: absolute;
     top: 10rpx;
     left: 124rpx;
-    font-size: 28rpx;
-    color: #595959;
-    font-weight: bold;
+    color: #353535;
 }
-.item .item-type{
+.item .nav-inner{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom:1rpx solid #ccc;
+    box-sizing: border-box;
+}
+.nav-inner .item-type{
     position: absolute;
     top: 10rpx;
     right: 72rpx;
 }
-.item .item-page{
+.nav-inner .item-page{
     position: absolute;
     bottom: 10rpx;
     left: 124rpx;
@@ -102,28 +108,26 @@ body {
     text-overflow:ellipsis;
     white-space: nowrap;
 }
-.item .item-time{
+.nav-inner .item-time{
     position: absolute;
     bottom: 10rpx;
     right: 72rpx;
 }
-.item  .item-occupation-icon {
+.nav-inner  .item-occupation-icon {
     width: 60rpx;
     height: 60rpx;
     margin-right: 15rpx;
 }
-.item .title{
-    font-size: 30rpx;
-    color: #595959;
-    font-weight: bold;
+.nav-inner .title{
+    font-size: 26rpx;
+    color: #353535;
 }
 
-.item .report-time{
+.nav-inner .report-time{
     position: absolute;
     bottom: 10rpx;
     left: 32rpx;
-    font-size: 28rpx;
-    color: #919191;
+    color: #888888;
     line-height: 1;
 }
 
@@ -133,12 +137,12 @@ body {
 }
 
 .no-data-content {
-    font-size: 28rpx;
+    font-size: 26rpx;
     color: #5a5a5a;
     padding: 50rpx;
 }
 .waring-text{
-    color: red;
+    color: #e64340;
 }
 .success-text{
     color: #09bb07;

@@ -55,7 +55,7 @@
 }
 .appreciation-code .title{
     font-size: 30rpx;
-    color: #595959;
+    color: #353535;
     font-weight: bold;
 }
 .appreciation-image{

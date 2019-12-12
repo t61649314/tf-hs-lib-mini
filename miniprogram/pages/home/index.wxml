@@ -1,23 +1,27 @@
 <view class="container" style="height:{{componentHeight}}px">
-    <i-tabs current="{{ current }}" bindchange="handleChange">
+    <i-tabs color="#576b95" current="{{ current }}" bindchange="handleChange">
         <i-tab style="width: 50%" key="wild" title="狂野" dot="{{wildHasNew}}"></i-tab>
         <i-tab style="width: 50%" key="standard" title="标准" dot="{{standardHasNew}}"></i-tab>
     </i-tabs>
-    <scroll-view scroll-y='true' style="height:{{componentHeight-42}}px">
+    <scroll-view scroll-y='true' style="height:{{componentHeight-46}}px">
         <div class="navigator-box" wx:if="{{current==='wild'}}">
             <navigator wx:for="{{wildFromList}}" wx:key="{{index}}"
                        url="../reportList/index?type=wild&from={{item.name}}&cnName={{item.cnName}}"
                        open-type="navigate" class="item">
-                <text class="title">{{item.cnName}}</text>
-                <span class="new-icon" wx:if="{{item.hasNew}}">new!</span>
+                <div class="nav-inner">
+                    <text class="title">{{item.cnName}}</text>
+                    <span class="new-icon" wx:if="{{item.hasNew}}"></span>
+                </div>
             </navigator>
         </div>
         <div class="navigator-box" wx:if="{{current==='standard'}}">
             <navigator wx:for="{{standardFromList}}" wx:key="{{index}}"
                        url="../reportList/index?type=standard&from={{item.name}}&cnName={{item.cnName}}"
                        open-type="navigate" class="item">
-                <text class="title">{{item.cnName}}</text>
-                <span class="new-icon" wx:if="{{item.hasNew}}">new!</span>
+                <div class="nav-inner">
+                    <text class="title">{{item.cnName}}</text>
+                    <span class="new-icon" wx:if="{{item.hasNew}}"></span>
+                </div>
             </navigator>
         </div>
         <!--<ad class="my-ad" unit-id="adunit-5215dd089956d3e6"></ad>-->

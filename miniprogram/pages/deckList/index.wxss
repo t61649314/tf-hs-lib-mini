@@ -6,9 +6,8 @@
     box-sizing: border-box;
 }
 .item .deck-name{
-    font-size: 28rpx;
-    color: #595959;
-    font-weight: bold;
+    font-size: 26rpx;
+    color: #353535;
 }
 .page-head{
     width: 100%;
@@ -39,7 +38,7 @@
     padding: 5rpx;
 }
 .occupation-bar .active{
-    background:#2d8cf0;
+    background:#576b95;
     border-radius:50%;
 }
 .from-url-text{

@@ -4,9 +4,12 @@
             <navigator wx:if="{{item.name}}"
                        url="{{'../deckList/index?page='+item.name+'&time='+item.time+'&type='+item.type+'&fromUrl='+item.fromUrlEncode}}"
                        open-type="navigate" class="item">
-                <span class="has-time-title title">{{item.name}}<span style="color: #E6A23C;" wx:if="{{item.preConstruction}}">【预构筑】</span></span>
-                <span class="new-icon" wx:if="{{item.isNew}}">new!</span>
-                <span class="report-time">{{item.timeStr}}</span>
+                <div class="nav-inner">
+                    <span class="has-time-title title">{{item.name}}<span style="color: #E6A23C;"
+                                                                          wx:if="{{item.preConstruction}}">【预构筑】</span></span>
+                    <span class="new-icon report-new-icon" wx:if="{{item.isNew}}"></span>
+                    <span class="report-time">{{item.timeStr}}</span>
+                </div>
             </navigator>
             <div wx:else class="time-node-text">
                 <div class="title">{{item.title}}</div>
@@ -14,9 +17,9 @@
             </div>
         </div>
         <i-spin size="large" wx:if="{{scrollLoading}}" custom>
-            <view style="padding: 30rpx 0">
+            <view style="padding: 30rpx 0;">
                 <i-icon type="refresh" size="20" i-class="icon-load"></i-icon>
-                <text>加载中...</text>
+                <text style="color: #576b95">加载中...</text>
             </view>
         </i-spin>
     </scroll-view>

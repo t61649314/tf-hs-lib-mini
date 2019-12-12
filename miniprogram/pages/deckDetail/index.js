@@ -54,7 +54,7 @@ Page({
                 windowHeight -= 20;
               }
               this.setData({
-                'scrollHeight': windowHeight - 50
+                'scrollHeight': windowHeight - 70
               });
               this.getDeck();
             }
