@@ -8,6 +8,7 @@ Page({
     page: "",
     time: "",
     weakenArr: [],
+    preConstruction: false,
     isInit: false,
     loading: true,
     collectionId: "",
@@ -79,6 +80,17 @@ Page({
           return a.cost - b.cost;
         });
         this.data.deck = data;
+        db.collection('report-list')
+          .where({
+            name: this.data.deck.page
+          })
+          .get().then(({data}) => {
+          if (data && data.length) {
+            this.setData({
+              'preConstruction': data[0].preConstruction
+            });
+          }
+        }).catch(console.error)
       }
       db.collection('collection-list')
         .where({

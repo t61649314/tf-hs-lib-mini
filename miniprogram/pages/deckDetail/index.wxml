@@ -1,6 +1,6 @@
 <wxs src="../../lib/utils.wxs" module="utils"/>
 <scroll-view scroll-y='true' style="height:{{scrollHeight}}px" class="container" wx:if="{{isInit}}">
-    <deck-info deck="{{deck}}" hideToPageBtn="{{hideToPageBtn}}"></deck-info>
+    <deck-info deck="{{deck}}" preConstruction="{{preConstruction}}" hideToPageBtn="{{hideToPageBtn}}"></deck-info>
     <view class="deck-box-head">
         <text class="title">卡组详情</text>
         <i-button wx:if="{{!hideSugBtn}}" class="sug-sim-btn" bind:click="getSuggestionsAndSimilarities"

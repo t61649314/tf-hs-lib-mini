@@ -3,6 +3,7 @@ const {formatTime} = require('../../lib/utils');
 const db = wx.cloud.database();
 Component({
   properties: {
+    preConstruction :Boolean,
     deck: Object,
     hideToPageBtn: Boolean
   },

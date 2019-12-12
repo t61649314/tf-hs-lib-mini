@@ -7,7 +7,7 @@
         <view class="info-item">职业：{{occupationInfo[deck.occupation].cnName}}</view>
         <view class="info-item">模式：{{typeMap[deck.type]}}</view>
         <view class="info-item">时间：{{timeStr}}</view>
-        <view class="info-item">来源：{{deck.page}}</view>
+        <view class="info-item">来源：{{deck.page}}<span style="color: #E6A23C;" wx:if="{{preConstruction}}">【预构筑】</span></view>
         <view class="cost-list-content">
             <view class="cost-item" wx:for="{{['0','1','2','3','4','5','6','7+']}}" wx:key="index">
                 <view class="item-histogram-num"
