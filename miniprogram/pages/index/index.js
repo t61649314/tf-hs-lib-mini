@@ -1,6 +1,7 @@
 Page({
   data: {
     isIpx: false,
+    noticeShow: false,
     current: "homepage",
     notice: "",
     componentHeight: ""
@@ -16,6 +17,7 @@ Page({
         if (data) {
           this.setData({
             notice: data.value,
+            noticeShow: data.show,
           });
           if (data.loop) {
             this.selectComponent("#my-notice").initAnimation();

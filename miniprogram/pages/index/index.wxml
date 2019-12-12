@@ -1,4 +1,4 @@
-<i-notice-bar id="my-notice" icon="systemprompt">
+<i-notice-bar wx:if="{{noticeShow}}" id="my-notice" icon="systemprompt">
     {{notice}}
 </i-notice-bar>
 <home wx:if="{{current==='homepage'}}" component-height="{{componentHeight}}"></home>
