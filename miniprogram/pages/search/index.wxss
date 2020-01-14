@@ -51,16 +51,23 @@
 .from-type-bar{
     text-align: left;
 }
+.from-type-bar .search-item-outer{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
 .from-type-bar .from-item{
+    width: 100%;
     box-sizing: border-box;
-    padding-left: 10rpx;
-    flex: 3;
+    padding-left: 20rpx;
     border-right: 1rpx solid #ccc;
 }
 .from-type-bar .type-item{
+    width: 100%;
     box-sizing: border-box;
-    padding-left: 10rpx;
-    flex: 2;
+    padding-left: 20rpx;
 }
 .search-bar view{
     font-size: 24rpx;
@@ -68,23 +75,6 @@
 
 .search-bar .i-input{
     border: 0;
-}
-.often-word{
-    border-bottom:0;
-    flex-wrap: wrap;
-    height: auto;
-    padding: 16rpx 0;
-    font-size: 24rpx;
-}
-.word-item{
-    padding: 0 10rpx;
-    border-radius: 4px;
-    border: 1rpx solid #ccc;
-    margin: 9rpx 14rpx;
-    height: 50rpx;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
 }
 
 .time-node-text {

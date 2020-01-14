@@ -5,7 +5,13 @@
     "pages/deckList/index",
     "pages/deckDetail/index",
     "pages/about/index",
-    "pages/collectionList/index"
+    "pages/collectionList/index",
+    "pages/deckInfo/index",
+    "pages/home/index",
+    "pages/mine/index",
+    "pages/search/index",
+    "pages/dynamic/index",
+    "pages/fineTuning/index"
   ],
   "window": {
     "backgroundColor": "#fff",

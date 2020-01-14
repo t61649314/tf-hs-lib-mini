@@ -6,13 +6,17 @@
                    placeholder="请输入卡组名称"/>
         </div>
         <div class="from-type-bar search-item">
-            <div class="from-item" bindtap="handleOpen1">
-                来源：{{fromText}}
-                <i-icon type="unfold"/>
+            <div class="search-item-outer" bindtap="handleOpen1">
+                <div class="from-item">
+                    来源：{{fromText}}
+                    <i-icon type="unfold"/>
+                </div>
             </div>
-            <div class="type-item" bindtap="handleOpen2">
-                模式：{{typeText}}
-                <i-icon type="unfold"/>
+            <div class="search-item-outer" bindtap="handleOpen2">
+                <div class="type-item">
+                    模式：{{typeText}}
+                    <i-icon type="unfold"/>
+                </div>
             </div>
         </div>
         <div class="occupation-bar search-item">
