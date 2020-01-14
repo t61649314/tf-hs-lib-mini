@@ -101,9 +101,9 @@ Page({
           'reportGroup': reportGroup,
         });
       }
-      // this.setData({
-      //   'scrollLoading': false
-      // });
+      this.setData({
+        'scrollLoading': false
+      });
     }).catch(console.error)
   },
 });
