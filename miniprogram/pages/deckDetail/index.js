@@ -1,6 +1,7 @@
 const app = getApp();
 Page({
   data: {
+    adShow: false,
     isIpx: false,
     hideSugBtn: false,
     hideToPageBtn: false,
@@ -28,6 +29,14 @@ Page({
       'time': options.time
     });
     const db = wx.cloud.database();
+    db.collection('config-list')
+      .doc('ad')
+      .get()
+      .then(({data}) => {
+        this.setData({
+          'adShow': !!data.show
+        });
+      }).catch(console.error);
     db.collection('config-list')
       .doc('const')
       .get()

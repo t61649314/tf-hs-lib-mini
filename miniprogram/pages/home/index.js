@@ -4,6 +4,7 @@ Component({
   },
   data: {
     current: "wild",
+    adShow: false,
     wildHasNew: false,
     standardHasNew: false,
     wildFromList: [],
@@ -13,6 +14,14 @@ Component({
     attached() {
       const db = wx.cloud.database();
       const _ = db.command;
+      db.collection('config-list')
+        .doc('ad')
+        .get()
+        .then(({data}) => {
+          this.setData({
+            'adShow': !!data.show
+          });
+        }).catch(console.error);
       db.collection('report-group')
         .get().then(({data}) => {
         let standardFromList = data.filter(item => item.type === 'standard').sort((a, b) => a.index - b.index);
@@ -64,4 +73,4 @@ Component({
       });
     },
   }
-})
+});
