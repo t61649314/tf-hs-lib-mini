@@ -5,28 +5,25 @@
     </i-tabs>
     <scroll-view scroll-y='true' style="height:{{componentHeight-46}}px">
         <div class="navigator-box" wx:if="{{current==='wild'}}">
-            <div wx:for="{{wildFromList}}" wx:key="{{index}}">
-                <navigator url="../reportList/index?type=wild&from={{item.name}}&cnName={{item.cnName}}"
-                           open-type="navigate" class="item">
-                    <div class="nav-inner">
-                        <text class="title">{{item.cnName}}</text>
-                        <span class="new-icon" wx:if="{{item.hasNew}}"></span>
-                    </div>
-                </navigator>
-                <ad wx:if="{{index===3&&adShow}}" class="my-ad" unit-id="adunit-5215dd089956d3e6"></ad>
-            </div>
+            <navigator wx:for="{{wildFromList}}" wx:key="{{index}}"
+                       url="../reportList/index?type=wild&from={{item.name}}&cnName={{item.cnName}}"
+                       open-type="navigate" class="item">
+                <div class="nav-inner">
+                    <text class="title">{{item.cnName}}</text>
+                    <span class="new-icon" wx:if="{{item.hasNew}}"></span>
+                </div>
+            </navigator>
         </div>
         <div class="navigator-box" wx:if="{{current==='standard'}}">
-            <div wx:for="{{standardFromList}}" wx:key="{{index}}">
-                <navigator url="../reportList/index?type=standard&from={{item.name}}&cnName={{item.cnName}}"
-                           open-type="navigate" class="item">
-                    <div class="nav-inner">
-                        <text class="title">{{item.cnName}}</text>
-                        <span class="new-icon" wx:if="{{item.hasNew}}"></span>
-                    </div>
-                </navigator>
-                <ad wx:if="{{index===1&&adShow}}" class="my-ad" unit-id="adunit-5215dd089956d3e6"></ad>
-            </div>
+            <navigator wx:for="{{standardFromList}}" wx:key="{{index}}"
+                       url="../reportList/index?type=standard&from={{item.name}}&cnName={{item.cnName}}"
+                       open-type="navigate" class="item">
+                <div class="nav-inner">
+                    <text class="title">{{item.cnName}}</text>
+                    <span class="new-icon" wx:if="{{item.hasNew}}"></span>
+                </div>
+            </navigator>
         </div>
+        <ad wx:if="{{adShow}}" unit-id="adunit-e03c88f0046e427f" ad-type="video" ad-theme="white"></ad>
     </scroll-view>
 </view>

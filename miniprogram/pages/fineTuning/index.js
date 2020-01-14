@@ -1,6 +1,7 @@
 const {formatTime} = require('../../lib/utils');
 Page({
   data: {
+    adShow: false,
     scrollHeight: 0,
     deck: {},
     latestTimeSimilarDeckIndex: -1,
@@ -58,6 +59,16 @@ Page({
         })
       });
     }).catch(console.error)
+
+    const db = wx.cloud.database();
+    db.collection('config-list')
+      .doc('ad')
+      .get()
+      .then(({data}) => {
+        this.setData({
+          'adShow': !!data.show
+        });
+      }).catch(console.error);
   },
   versionItemClick: function (event) {
     let item = this.data.newVersionCardList[event.currentTarget.dataset.index];

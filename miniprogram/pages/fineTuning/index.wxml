@@ -119,7 +119,7 @@
           wx:if="{{!newVersionCardList.length&&!deckWeakenCardList.length&&!similarDeckList.length}}">
         暂无数据
     </view>
-    <!--<ad class="my-ad" unit-id="adunit-254b3b09f194c5a7"></ad>-->
+    <ad wx:if="{{adShow}}" unit-id="adunit-e03c88f0046e427f" ad-type="video" ad-theme="white"></ad>
     <view class="head">
         <view class="title">相似卡组</view>
     </view>

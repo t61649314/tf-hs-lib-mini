@@ -31,7 +31,7 @@
     <i-button class="copy-deck-btn" data-code="{{deck.code}}" bind:click="handleClick" type="primary"
               size="small">复制卡组
     </i-button>
-    <ad wx:if="{{adShow}}" class="my-ad" unit-id="adunit-254b3b09f194c5a7"></ad>
+    <ad wx:if="{{adShow}}" unit-id="adunit-e03c88f0046e427f" ad-type="video" ad-theme="white"></ad>
 </scroll-view>
 <view class="bottom-btn-box {{isIpx?'is-ipx':''}}">
     <button open-type="share" class="bottom-btn">
