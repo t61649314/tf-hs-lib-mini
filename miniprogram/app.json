@@ -10,7 +10,6 @@
     "pages/home/index",
     "pages/mine/index",
     "pages/search/index",
-    "pages/dynamic/index",
     "pages/fineTuning/index"
   ],
   "window": {

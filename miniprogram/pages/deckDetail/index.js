@@ -18,26 +18,6 @@ Page({
     scrollHeight: 0,
   },
   onLoad: function (options) {
-    // 在页面中定义插屏广告
-    let interstitialAd = null
-
-    // 在页面onLoad回调事件中创建插屏广告实例
-    if (wx.createInterstitialAd) {
-      interstitialAd = wx.createInterstitialAd({
-        adUnitId: 'adunit-833cfa20818eb587'
-      })
-      interstitialAd.onLoad(() => {})
-      interstitialAd.onError((err) => {})
-      interstitialAd.onClose(() => {})
-    }
-
-    // 在适合的场景显示插屏广告
-    if (interstitialAd) {
-      interstitialAd.show().catch((err) => {
-        console.error(err)
-      })
-    }
-
     wx.showShareMenu();
     wx.setNavigationBarTitle({
       title: "卡组详情"
@@ -56,6 +36,27 @@ Page({
         this.setData({
           'adShow': !!data.show
         });
+        if(data.show){
+          // 在页面中定义插屏广告
+          let interstitialAd = null
+
+          // 在页面onLoad回调事件中创建插屏广告实例
+          if (wx.createInterstitialAd) {
+            interstitialAd = wx.createInterstitialAd({
+              adUnitId: 'adunit-833cfa20818eb587'
+            })
+            interstitialAd.onLoad(() => {})
+            interstitialAd.onError((err) => {})
+            interstitialAd.onClose(() => {})
+          }
+
+          // 在适合的场景显示插屏广告
+          if (interstitialAd) {
+            interstitialAd.show().catch((err) => {
+              console.error(err)
+            })
+          }
+        }
       }).catch(console.error);
     db.collection('config-list')
       .doc('const')
