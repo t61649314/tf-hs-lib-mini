@@ -10,6 +10,9 @@ page {
     color: #333;
     font-size: 24rpx;
 }
+ad{
+    text-align: initial;
+}
 
 body {
     margin: 0;
