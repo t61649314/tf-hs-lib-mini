@@ -15,7 +15,7 @@ const honorRoomTimeNode = [
 const versionInfo = {
     "1403": {
         year: 6,
-        time: "2019-01-22",
+        time: "2020-01-22",
         title: "迦拉克隆的觉醒",
     },
     "1347": {
