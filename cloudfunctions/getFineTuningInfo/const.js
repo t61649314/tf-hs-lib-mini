@@ -10,6 +10,10 @@ const honorRoomTimeNode = [
     {
         time: "2019-04-10",
         cardArr: [233, 631, 679, 48158, 47693]
+    },
+    {
+        time: "2020-03-27",
+        cardArr: [559, 993, 734, 754, 1659,9,1368,1365,237,1361,1650]
     }
 ];
 const versionInfo = {
