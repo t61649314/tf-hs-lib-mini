@@ -17,6 +17,11 @@ const honorRoomTimeNode = [
   }
 ];
 const versionInfo = {
+  "1443": {
+    year: 7,
+    time: "2020-08-07",
+    title: "通灵学园",
+  },
   "1414": {
     year: 7,
     time: "2020-04-08",
