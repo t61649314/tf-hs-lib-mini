@@ -151,15 +151,7 @@ exports.main = async (event, context) => {
       similarDeckList.forEach(({deck: similarDeckItem, sameQuantity}) => {
         similarDeckItem.addCardList = [];
         similarDeckItem.removeCardList = [];
-        let time = similarDeckItem.time;
         let similarPercent = formatNum(sameQuantity / 30);
-        let weakenArr = timeNode.filter(item => {
-          return new Date(item.time).getTime() > time && item.weakenCardArr;
-        });
-        let weakenCardIdList = [];
-        weakenArr.forEach(item => {
-          weakenCardIdList = weakenCardIdList.concat(item.weakenCardArr)
-        });
         similarDeckItem.cards.forEach(cardItem => {
           let findCurrentCard = deck.cards.find(item => item.cnName === cardItem.cnName);
           if (findCurrentCard) {//当前有这张卡，为remove做一次反向统计
@@ -168,9 +160,6 @@ exports.main = async (event, context) => {
               removeQuantity = findCurrentCard.quantity;
             }
             suggestionsRemoveCardsObj[cardItem.cnName].weight = formatNum(suggestionsRemoveCardsObj[cardItem.cnName].weight - removeQuantity * similarPercent);
-            if (weakenCardIdList.includes(cardItem.dbfId)) {
-              return false;
-            }
             if (cardItem.quantity > findCurrentCard.quantity) {
               if (suggestionsAddCardsObj[cardItem.cnName]) {
                 suggestionsAddCardsObj[cardItem.cnName].weight = formatNum(suggestionsAddCardsObj[cardItem.cnName].weight + (cardItem.quantity - findCurrentCard.quantity) * similarPercent);
@@ -182,9 +171,6 @@ exports.main = async (event, context) => {
               }
             }
           } else {//当前没这张卡
-            if (weakenCardIdList.includes(cardItem.dbfId)) {
-              return false;
-            }
             if (suggestionsAddCardsObj[cardItem.cnName]) {
               suggestionsAddCardsObj[cardItem.cnName].weight = formatNum(suggestionsAddCardsObj[cardItem.cnName].weight + cardItem.quantity * similarPercent);
             } else {
