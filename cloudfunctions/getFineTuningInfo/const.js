@@ -17,6 +17,11 @@ const honorRoomTimeNode = [
   }
 ];
 const versionInfo = {
+  "1466": {
+    year: 7,
+    time: "2020-11-18",
+    title: "疯狂的暗月马戏团",
+  },
   "1443": {
     year: 7,
     time: "2020-08-07",
