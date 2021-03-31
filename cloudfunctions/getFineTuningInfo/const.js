@@ -17,6 +17,11 @@ const honorRoomTimeNode = [
   }
 ];
 const versionInfo = {
+  "1525": {
+    year: 8,
+    time: "2021-03-31",
+    title: "贫瘠之地的锤炼",
+  },
   "1466": {
     year: 7,
     time: "2020-11-18",
